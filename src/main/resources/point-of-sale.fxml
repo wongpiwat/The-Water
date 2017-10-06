@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PointOfSaleController">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#29b6f6" height="304.0" layoutX="360.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="313.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="174.0" layoutX="695.0" layoutY="4.0" stroke="#dad8d8" strokeType="INSIDE" width="383.0" />
+        <TableView fx:id="posTableView" prefHeight="518.0" prefWidth="341.0">
+            <columns>
+                <TableColumn minWidth="0.0" prefWidth="71.0" text="Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="185.0" text="Name"><cellValueFactory><PropertyValueFactory property="nameFood" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="65.0" text="Price"><cellValueFactory><PropertyValueFactory property="price" /></cellValueFactory></TableColumn>
+            </columns>
+        </TableView>
+        <TableView fx:id="customerOrderTableView" layoutX="695.0" layoutY="183.0" prefHeight="335.0" prefWidth="385.0">
+            <columns>
+                <TableColumn prefWidth="72.0" text="Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="213.0" sortType="DESCENDING" text="Name"><cellValueFactory><PropertyValueFactory property="nameFood" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="76.0" text="Price"><cellValueFactory><PropertyValueFactory property="price" /></cellValueFactory></TableColumn>
+            </columns>
+        </TableView>
+        <GridPane layoutX="341.0" layoutY="100.0" prefHeight="331.0" prefWidth="354.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+            <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#29b6f6" height="68.0" layoutX="119.0" layoutY="10.0" stroke="#29b6f6" strokeType="INSIDE" width="119.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="sevenButton" mnemonicParsing="false" onAction="#handleBtnNumber7" prefHeight="100.0" prefWidth="125.0" text="7" GridPane.rowIndex="1"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="eightButton" mnemonicParsing="false" onAction="#handleBtnNumber8" prefHeight="103.0" prefWidth="125.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="nineButton" mnemonicParsing="false" onAction="#handleBtnNumber9" prefHeight="100.0" prefWidth="125.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="fourButton" mnemonicParsing="false" onAction="#handleBtnNumber4" prefHeight="100.0" prefWidth="125.0" text="4" GridPane.rowIndex="2"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="fiveButton" mnemonicParsing="false" onAction="#handleBtnNumber5" prefHeight="100.0" prefWidth="125.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="sixButton" mnemonicParsing="false" onAction="#handleBtnNumber6" prefHeight="100.0" prefWidth="125.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="oneButton" mnemonicParsing="false" onAction="#handleBtnNumber1" prefHeight="100.0" prefWidth="125.0" text="1" GridPane.rowIndex="3"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="twoButton" mnemonicParsing="false" onAction="#handleBtnNumber2" prefHeight="100.0" prefWidth="125.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="threeButton" mnemonicParsing="false" onAction="#handleBtnNumber3" prefHeight="100.0" prefWidth="125.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="zeroButton" mnemonicParsing="false" onAction="#handleBtnNumber0" prefHeight="100.0" prefWidth="125.0" text="0" GridPane.rowIndex="4"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="backspaceButton" mnemonicParsing="false" onAction="#handleBtnCE" prefHeight="100.0" prefWidth="125.0" text="CE"><font><Font size="20.0" /></font></Button>
+                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleBtnDelete" prefHeight="100.0" prefWidth="125.0" text="Del" GridPane.columnIndex="2"><font><Font size="20.0" /></font></Button>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#29b6f6" height="68.0" stroke="#29b6f6" strokeType="INSIDE" width="119.0" GridPane.columnIndex="1" />
+                <Button fx:id="dotButton" mnemonicParsing="false" onAction="#handleBtnNumberDot" prefHeight="100.0" prefWidth="125.0" text="." GridPane.columnIndex="2" GridPane.rowIndex="4"><font><Font size="28.0" /></font></Button>
+        </GridPane>
+        <Button fx:id="enterButton" layoutX="341.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleBtnEnter" prefHeight="87.0" prefWidth="354.0" text="Enter"><font><Font size="20.0" /></font></Button>
+        <Button fx:id="payButton" layoutX="891.0" layoutY="522.0" mnemonicParsing="false" onAction="#bthPay" prefHeight="69.0" prefWidth="175.0" styleClass="paybutton" text="Pay"><font><Font size="30.0" /></font></Button>
+        <Button fx:id="logoutButton" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleBtnLogout" prefHeight="69.0" prefWidth="175.0" text="Log out"><font><Font size="30.0" /></font></Button>
+        <Button layoutX="453.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleBtnVoucher" prefHeight="69.0" prefWidth="175.0" text="Voucher"><font><Font size="30.0" /></font></Button>
+        <GridPane layoutX="700.0" layoutY="5.0" prefHeight="174.0" prefWidth="378.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.666748046875" minWidth="10.0" prefWidth="203.0" />
+         <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="71.66668701171875" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="48.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="41.666656494140625" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+                <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="53.0" prefWidth="180.0" text="TOTAL:"><font><Font size="43.0" /></font></Label>
+                <Label fx:id="totalLabel" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" prefHeight="73.0" prefWidth="215.0" text="0.00" GridPane.columnIndex="1"><font><Font size="50.0" /></font></Label>
+                <Label prefHeight="31.0" prefWidth="237.0" text="TAX :" GridPane.rowIndex="4"><font><Font size="25.0" /></font></Label>
+                <Label fx:id="texLabel" alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="215.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4"><font><Font size="25.0" /></font></Label>
+                <Label fx:id="netLabel" alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="215.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3"><font><Font size="25.0" /></font></Label>
+                <Label prefHeight="43.0" prefWidth="179.0" text="Change:" textFill="RED" GridPane.rowIndex="1"><font><Font size="40.0" /></font></Label>
+                <Label fx:id="changeLabel" alignment="BOTTOM_RIGHT" prefHeight="73.0" prefWidth="215.0" text="0.00" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1"><font><Font size="50.0" /></font></Label>
+                <Label prefHeight="30.0" prefWidth="165.0" text="Discount:" GridPane.rowIndex="2"><font><Font size="25.0" /></font></Label>
+                <Label alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="215.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2"><font><Font size="25.0" /></font></Label>
+                <Label prefHeight="32.0" prefWidth="216.0" text="NET :" GridPane.rowIndex="3"><font><Font size="25.0" /></font></Label>
+        </GridPane>
+        <Label fx:id="cashLabel" alignment="BOTTOM_RIGHT" layoutX="342.0" layoutY="25.0" prefHeight="73.0" prefWidth="353.0" text="0.00"><font><Font size="42.0" /></font></Label>
+</Pane>

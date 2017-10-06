@@ -1,0 +1,38 @@
+
+.theBackground {
+    -fx-background-color : #FFFFFF;
+    }
+
+.loginTitle {
+    -fx-text-fill   : #FFFFFF;
+    }
+
+.homeTitle {
+    -fx-text-fill   : #29B6F6;
+    }
+
+.warningText {
+    -fx-fill : #0277BD;
+    }
+
+.inputSection {
+    -fx-background-color : #E1F5FE;
+    }
+
+.button {
+    -fx-background-color : #29B6F6;
+    -fx-text-fill        : #FFFFFF;
+    }
+
+.button:hover {
+    -fx-background-color : #01579B;
+}
+
+.text-field {
+    -fx-prompt-text-fill: gray;
+}
+
+.table-view .table-cell{
+    -fx-font-weight:bold;
+    -fx-font-size:18px;
+ }
