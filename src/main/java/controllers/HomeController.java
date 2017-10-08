@@ -21,7 +21,7 @@ public class HomeController {
         stage.show();
     }
 
-    public void managementOnClick(ActionEvent event) throws IOException{
+    public void salesOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sales-management.fxml"));
@@ -49,6 +49,14 @@ public class HomeController {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-management.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
+    }
+
+    public void stockOnClick(ActionEvent event) throws IOException{
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/stock-management.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }

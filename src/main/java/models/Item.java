@@ -4,9 +4,8 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Menu {
+public class Item {
     private SimpleIntegerProperty id = new SimpleIntegerProperty(0);
-    private SimpleStringProperty type = new SimpleStringProperty("");
     private SimpleStringProperty nameFood = new SimpleStringProperty("");
     private SimpleDoubleProperty price = new SimpleDoubleProperty(0);
 
@@ -16,9 +15,8 @@ public class Menu {
 //        setPrice(price);
 //    }
 
-    public Menu(int id, String type, String nameFood, double price) {
+    public Item(int id, String nameFood, double price) {
         setId(id);
-        setType(type);
         setNameFood(nameFood);
         setPrice(price);
     }
@@ -28,10 +26,6 @@ public class Menu {
     }
 
     public void setId(int id) { this.id.set(id); }
-
-    public String getType(){ return type.get();}
-
-    public void setType(String type) { this.type.set(type);}
 
     public String getNameFood() { return nameFood.get(); }
 

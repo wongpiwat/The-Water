@@ -1,1 +1,1 @@
-# The Cashier
+# The Cashier Furniture
