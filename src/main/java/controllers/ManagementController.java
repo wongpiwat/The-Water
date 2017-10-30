@@ -1,6 +1,8 @@
 package controllers;
 
-import databases.ItemDB;
+import databases.ItemsDB;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import models.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,52 +18,48 @@ import java.util.ResourceBundle;
 
 public class ManagementController implements Initializable {
 
-    public static ItemDB ItemDB = new ItemDB();
+    public static ItemsDB ItemsDB = new ItemsDB();
 
-    @FXML
-    private TableView<Item> tableView;
-    @FXML
-    private TextField textFood;
-    @FXML
-    private TextField textPrice;
-
-    @FXML
-    private MenuItem item1, item2, item3;
-
+    @FXML private TableView<Item> tableView;
+    @FXML private Button deleteButton,editButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tableView.setItems(ItemDB.loadMenu());
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
+        tableView.setItems(ItemsDB.loadDB());
+        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
+            @Override
+            public void changed(ObservableValue<? extends Item> observable, Item oldValue, Item newValue) {
+                editButton.setDisable(false);
+                deleteButton.setDisable(false);
+            }
+        });
     }
 
-    public void addMenu() {
-        if (!textFood.getText().isEmpty() && !textPrice.getText().isEmpty()) {
-            int id = ItemDB.getCreateID();
-            String nameFood = textFood.getText();
-            Double price = Double.parseDouble(textPrice.getText());
-            ItemDB.saveDB(id, nameFood, price);
-            tableView.setItems(ItemDB.loadMenu());
-//            typeFoodButton.getText();
-            textFood.setText("");
-            textPrice.setText("");
-        }
+    public void createItem(ActionEvent event) throws IOException {
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
     }
 
-    public void deleteMenu() {
+    public void deleteItem() {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-            ItemDB.deleteDB(tableView.getSelectionModel().getSelectedItem().getId());
-            tableView.setItems(ItemDB.loadMenu());
+            ItemsDB.deleteDB(tableView.getSelectionModel().getSelectedItem().getNo());
+            tableView.setItems(ItemsDB.loadDB());
         }
     }
 
-    public void editMenu(ActionEvent event) throws IOException {
+    public void editItem(ActionEvent event) throws IOException {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
             Button button = (Button) event.getSource();
             Stage stage = (Stage) button.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit-sale.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
             stage.setScene(new Scene(loader.load()));
-            EditController editController = loader.getController();
-            editController.setEditMenu(tableView.getSelectionModel().getSelectedItem());
+            AddDataController addDataController = loader.getController();
+            addDataController.setEditMenu(tableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }

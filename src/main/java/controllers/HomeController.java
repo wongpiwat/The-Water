@@ -10,21 +10,10 @@ import java.io.IOException;
 
 public class HomeController {
 
-    public void posOnClick(ActionEvent event) throws IOException{
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/point-of-sale.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        PointOfSaleController pointOfSaleController = loader.getController();
-        pointOfSaleController.setCashier(false);
-        pointOfSaleController.getLogoutButton().setText("Back");
-        stage.show();
-    }
-
     public void salesOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sales-management.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/management.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
@@ -37,29 +26,14 @@ public class HomeController {
         stage.show();
     }
 
-    public void reportsOnClick(ActionEvent event) throws IOException{
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sales-report.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-    }
-
     public void accountsOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-management.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
 
-    public void stockOnClick(ActionEvent event) throws IOException{
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/stock-management.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-    }
 
     public void aboutOnClick(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();

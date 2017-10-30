@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SE_MENU" />
         <module name="The Cashier" />
+        <module name="The Water" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="SE_MENU" target="1.8" />
       <module name="The Cashier" target="1.8" />
+      <module name="The Water" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

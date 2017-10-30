@@ -1,47 +1,56 @@
 package models;
 
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Item {
-    private SimpleIntegerProperty id = new SimpleIntegerProperty(0);
-    private SimpleStringProperty nameFood = new SimpleStringProperty("");
-    private SimpleDoubleProperty price = new SimpleDoubleProperty(0);
+    private SimpleIntegerProperty no = new SimpleIntegerProperty();
+    private SimpleStringProperty date = new SimpleStringProperty();
+    private SimpleStringProperty dissolvedOxygen = new SimpleStringProperty();
+    private SimpleStringProperty celsius = new SimpleStringProperty();
+    private SimpleStringProperty volume = new SimpleStringProperty();
 
-//    public Menu(String type, String nameFood, int quantity, double price) {
-//        setType(type);
-//        setNameFood(nameFood);
-//        setPrice(price);
-//    }
-
-    public Item(int id, String nameFood, double price) {
-        setId(id);
-        setNameFood(nameFood);
-        setPrice(price);
+    public Item(int no, String date, String dissolvedOxygen,String celsius,String volume) {
+        setNo(no);
+        setDate(date);
+        setDissolvedOxygen(dissolvedOxygen);
+        setCelsius(celsius);
+        setVolume(volume);
     }
 
-    public int getId() {
-        return id.get();
+    public int getNo() {
+        return no.get();
     }
 
-    public void setId(int id) { this.id.set(id); }
+    public void setNo(int id) { this.no.set(id); }
 
-    public String getNameFood() { return nameFood.get(); }
+    public String getDate() { return date.get(); }
 
-    public void setNameFood(String nameFood) {
-        this.nameFood.set(nameFood);
+    public void setDate(String nameFood) {
+        this.date.set(nameFood);
     }
 
-    public double getPrice() {
-        return price.get();
+    public String getDissolvedOxygen() {
+        return dissolvedOxygen.get();
     }
 
-    public void setPrice(double price) {
-        this.price.set(price);
+    public void setDissolvedOxygen(String dissolvedOxygen) {
+        this.dissolvedOxygen.set(dissolvedOxygen);
     }
-//
-//    public int getQuantity() { return quantity.get(); }
-//
-//    public void setQuantity(int quantity) { this.quantity.set(quantity); }
+
+    public String getCelsius() {
+        return celsius.get();
+    }
+
+    public void setCelsius(String celsius) {
+        this.celsius.set(celsius);
+    }
+
+    public String getVolume() {
+        return volume.get();
+    }
+
+    public void setVolume(String volume) {
+        this.volume.set(volume);
+    }
 }

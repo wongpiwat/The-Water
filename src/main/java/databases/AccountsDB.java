@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class AccountsDB {
 
-    public ObservableList loadAccounts() {
+    public static ObservableList loadAccounts() {
         ObservableList<Accounts> accounts = FXCollections.observableArrayList();
         try {
             Class.forName("org.sqlite.JDBC");
@@ -38,7 +38,7 @@ public class AccountsDB {
         return accounts;
     }
 
-    public void saveAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void saveAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
         try {
             Class.forName("org.sqlite.JDBC");
             String dbURL = "jdbc:sqlite:Accounts.db";
@@ -56,7 +56,7 @@ public class AccountsDB {
         }
     }
 
-    public void deleteAccountsDB(int id) {
+    public static void deleteAccountsDB(int id) {
         try {
             Class.forName("org.sqlite.JDBC");
             String dbURL = "jdbc:sqlite:Accounts.db";
@@ -74,7 +74,7 @@ public class AccountsDB {
         }
     }
 
-    public int getCreateAccountsID() {
+    public static int getCreateAccountsID() {
         try {
             Class.forName("org.sqlite.JDBC");
             String dbURL = "jdbc:sqlite:Accounts.db";
@@ -95,7 +95,7 @@ public class AccountsDB {
         return 1;
     }
 
-    public void editAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void editAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
         try {
             Class.forName("org.sqlite.JDBC");
             String dbURL = "jdbc:sqlite:Accounts.db";

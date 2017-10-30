@@ -6,25 +6,26 @@ import models.Item;
 
 import java.sql.*;
 
-public class ItemDB {
+public class ItemsDB {
+    public static String dbURL = "jdbc:sqlite:Item.db";
 
-    public ObservableList loadMenu() {
-        ObservableList<Item> menu = FXCollections.observableArrayList();
+    public static ObservableList loadDB() {
+        ObservableList<Item> items = FXCollections.observableArrayList();
         try {
             Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Menu.db";
             Connection conn = DriverManager.getConnection(dbURL);
             if (conn != null) {
-                String query = "select * from Menu";
+                String query = "select * from Item";
                 Statement statement = conn.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                    int id = resultSet.getInt(1);
-                    String nameFood = resultSet.getString(3);
-                    Double price = resultSet.getDouble(4);
-                    menu.add(new Item(id, nameFood, price));
+                    int no = resultSet.getInt(1);
+                    String date = resultSet.getString(2);
+                    String dissolvedOxygen = resultSet.getString(3);
+                    String celsius = resultSet.getString(4);
+                    String volume = resultSet.getString(5);
+                    items.add(new Item(no, date, dissolvedOxygen,celsius,volume));
                 }
-                //close connection
                 conn.close();
             }
         } catch (ClassNotFoundException ex) {
@@ -32,73 +33,15 @@ public class ItemDB {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return menu;
+        return items;
     }
 
-    public void saveDB(int id, String nameFood, Double price) {
+    public static void saveDB(String Date, String dissolvedOxygen,String celsius,String volume) {
         try {
             Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Menu.db";
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Menu(id, Name_Food, Price) values (\'" + id + "\' , \'" + nameFood + "\',\'" + price + "')";
-                PreparedStatement p = connection.prepareStatement(query);
-                p.executeUpdate();
-                connection.close();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteDB(int id) {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Menu.db";
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "Delete from Menu where id == \'" + id + "\'";
-                PreparedStatement p = connection.prepareStatement(query);
-                p.executeUpdate();
-                connection.close();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public int getCreateID() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Menu.db";
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "Select max(id) from Menu";
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                int minID = resultSet.getInt(1);
-                connection.close();
-                return minID + 1;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 1;
-    }
-
-    public void editDB(int id, String nameFood, double price) {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Menu.db";
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "update Menu set id=\'" + id + "\' ,Name_Food=\'" + nameFood + "\' ,Price=\'" + price + "\' where ID == \'" + id + "\'";
+                String query = "insert into Item(Date, DissolvedOxygen, Celsius, Volume) values (\'" + Date + "\',\'" + dissolvedOxygen + "\',\'" + celsius + "\',\'" + volume + "\')";
                 System.out.println(query);
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
@@ -109,6 +52,61 @@ public class ItemDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void deleteDB(int no) {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "Delete from Item where No == \'" + no + "\'";
+                PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                connection.close();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editDB(int no,String date, String dissolvedOxygen,String celsius,String volume) {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "update Item set Date=\'" + date + "\' ,DissolvedOxygen=\'" + dissolvedOxygen + "\' ,Celsius=\'" + celsius + "\' ,Volume=\'" + volume + "\' where No == \'" + no + "\'";
+                System.out.println(query);
+                PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                connection.close();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getCreateID() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "Select max(seq) from sqlite_sequence";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                int minID = resultSet.getInt(1);
+                connection.close();
+                return minID + 1;
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 1;
     }
 }
 

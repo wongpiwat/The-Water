@@ -56,11 +56,7 @@ public class LoginController {
         boolean loginSuccess = false;
         for (Accounts i : accounts){
             if (i.getUsername().equals(userName.getText()) && i.getPassword().equals(userPassword.getText())){
-                if (i.getDepartment().equals("Cashier")){
-                    this.loginToPointOfSale(stage);
-                } else {
-                    this.loginToHome(stage);
-                }
+                this.loginToHome(stage);
                 loginSuccess = true;
                 break;
             }
@@ -72,13 +68,6 @@ public class LoginController {
 
     private void loginToHome(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/home.fxml" ));
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-        warningText.setText("");
-    }
-
-    private void loginToPointOfSale(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/point-of-sale.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
         warningText.setText("");

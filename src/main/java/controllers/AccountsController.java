@@ -1,6 +1,8 @@
 package controllers;
 
 import databases.AccountsDB;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,37 +16,35 @@ import models.Accounts;
 import java.io.IOException;
 
 
-public class AccountsManagementController {
+public class AccountsController {
 
     static AccountsDB accountsDB = new AccountsDB();
 
     @FXML
     private TableView<Accounts> accountsTableView;
     @FXML
-    private TextField departmentText, firstNameText, lastNameText, usernameText, passwordText;
+    private Button deleteButton,editButton;
 
 
     public void initialize() {
+        editButton.setDisable(true);
+        deleteButton.setDisable(true);
         accountsTableView.setItems(accountsDB.loadAccounts());
+        accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Accounts>() {
+            @Override
+            public void changed(ObservableValue<? extends Accounts> observable, Accounts oldValue, Accounts newValue) {
+                editButton.setDisable(false);
+                deleteButton.setDisable(false);
+            }
+        });
     }
 
-    public void addAccount() {
-        if (!departmentText.getText().isEmpty() && !firstNameText.getText().isEmpty() && !lastNameText.getText().isEmpty()
-                && !usernameText.getText().isEmpty() && !passwordText.getText().isEmpty()) {
-            int id = accountsDB.getCreateAccountsID();
-            String department = departmentText.getText();
-            String firstName = firstNameText.getText();
-            String lastName = lastNameText.getText();
-            String username = usernameText.getText();
-            String password = passwordText.getText();
-            accountsDB.saveAccountsDB(id, department, firstName, lastName, username, password);
-            accountsTableView.setItems(accountsDB.loadAccounts());
-            departmentText.setText("");
-            firstNameText.setText("");
-            lastNameText.setText("");
-            usernameText.setText("");
-            passwordText.setText("");
-        }
+    public void addAccount(ActionEvent event) throws IOException {
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-add.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
     }
 
 
@@ -68,10 +68,10 @@ public class AccountsManagementController {
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
             Button button = (Button) event.getSource();
             Stage stage = (Stage) button.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/edit-accounts.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-add.fxml"));
             stage.setScene(new Scene(loader.load()));
-            EditAccountController editAccountController = loader.getController();
-            editAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
+            AddAccountController addAccountController = loader.getController();
+            addAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }
