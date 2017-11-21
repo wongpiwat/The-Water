@@ -2,9 +2,7 @@ package controllers;
 import databases.AccountsDB;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;

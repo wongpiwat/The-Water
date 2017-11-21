@@ -7,12 +7,13 @@ import models.Accounts;
 import java.sql.*;
 
 public class AccountsDB {
+    public static String dbURL = "jdbc:sqlite:Database.db";
+    private static String dbName = "org.sqlite.JDBC";
 
     public static ObservableList loadAccounts() {
         ObservableList<Accounts> accounts = FXCollections.observableArrayList();
         try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Accounts.db";
+            Class.forName(dbName);
             Connection conn = DriverManager.getConnection(dbURL);
             if (conn != null) {
                 String query = "select * from Accounts";
@@ -27,7 +28,6 @@ public class AccountsDB {
                     String password = resultSet.getString(6);
                     accounts.add(new Accounts(id, department, firstName, lastName, username, password));
                 }
-                //close connection
                 conn.close();
             }
         } catch (ClassNotFoundException ex) {
@@ -40,8 +40,7 @@ public class AccountsDB {
 
     public static void saveAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Accounts.db";
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "insert into Accounts (id, department, firstName, lastName, userName, password) values (\'" + id + "\', \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
@@ -58,8 +57,7 @@ public class AccountsDB {
 
     public static void deleteAccountsDB(int id) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Accounts.db";
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "Delete from Accounts where id == \'" + id + "\'";
@@ -76,8 +74,7 @@ public class AccountsDB {
 
     public static int getCreateAccountsID() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Accounts.db";
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "Select max(id) from Accounts";
@@ -97,8 +94,7 @@ public class AccountsDB {
 
     public static void editAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
         try {
-            Class.forName("org.sqlite.JDBC");
-            String dbURL = "jdbc:sqlite:Accounts.db";
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "update Accounts set id=\'" + id + "\' ,department=\'" + department + "\' ,firstname=\'" + firstname +

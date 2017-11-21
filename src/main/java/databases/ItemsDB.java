@@ -7,12 +7,13 @@ import models.Item;
 import java.sql.*;
 
 public class ItemsDB {
-    public static String dbURL = "jdbc:sqlite:Item.db";
+    public static String dbURL = "jdbc:sqlite:Database.db";
+    private static String dbName = "org.sqlite.JDBC";
 
     public static ObservableList loadDB() {
         ObservableList<Item> items = FXCollections.observableArrayList();
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName(dbName);
             Connection conn = DriverManager.getConnection(dbURL);
             if (conn != null) {
                 String query = "select * from Item";
@@ -38,7 +39,7 @@ public class ItemsDB {
 
     public static void saveDB(String Date, String dissolvedOxygen,String celsius,String volume) {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "insert into Item(Date, DissolvedOxygen, Celsius, Volume) values (\'" + Date + "\',\'" + dissolvedOxygen + "\',\'" + celsius + "\',\'" + volume + "\')";
@@ -56,7 +57,7 @@ public class ItemsDB {
 
     public static void deleteDB(int no) {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "Delete from Item where No == \'" + no + "\'";
@@ -73,7 +74,7 @@ public class ItemsDB {
 
     public static void editDB(int no,String date, String dissolvedOxygen,String celsius,String volume) {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "update Item set Date=\'" + date + "\' ,DissolvedOxygen=\'" + dissolvedOxygen + "\' ,Celsius=\'" + celsius + "\' ,Volume=\'" + volume + "\' where No == \'" + no + "\'";
@@ -91,7 +92,7 @@ public class ItemsDB {
 
     public static int getCreateID() {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "Select max(seq) from sqlite_sequence";
