@@ -17,17 +17,13 @@ import java.io.IOException;
 public class AddItemController {
     Item item;
     @FXML private TextField dissolvedOxygen,celsius,volumeWater,volumeSludge;
-    @FXML private CheckBox wasteWaterMachineCheckBoxLeft,wasteWaterMachineCheckBoxRight,waterPumpCheckBoxLeft,waterPumpCheckBoxRight,aeratorCheckBoxLeft,aeratorCheckBoxRight,sedimentationMachineCheckBoxLeft,sedimentationMachineCheckBoxRight;
+    @FXML private CheckBox wasteWaterMachineCheckBoxLeft,wasteWaterMachineCheckBoxRight,waterPumpCheckBoxLeft,waterPumpCheckBoxRight,aeratorCheckBoxLeft,aeratorCheckBoxRight,sludgeDewateringMachineCheckBoxLeft,sludgeDewateringMachineCheckBoxRight;
     @FXML private Label titleLabel;
     @FXML private ChoiceBox numberMachine,round;
 
     public void initialize() {
         numberMachine.setItems(FXCollections.observableArrayList("1", new Separator(), "2"));
-        round.setItems(FXCollections.observableArrayList("ก่อน", new Separator(), "หลัง"));
-        wasteWaterMachineCheckBoxLeft.setSelected(true);
-        waterPumpCheckBoxLeft.setSelected(true);
-        aeratorCheckBoxLeft.setSelected(true);
-        sedimentationMachineCheckBoxLeft.setSelected(true);
+        round.setItems(FXCollections.observableArrayList("1", new Separator(), "2"));
         EventHandler eventHandler = (EventHandler<ActionEvent>) event -> {
             if (event.getSource() instanceof CheckBox) {
                 CheckBox checkBox = (CheckBox) event.getSource();
@@ -46,10 +42,10 @@ public class AddItemController {
                 } else if (checkBox.getId().equals("aeratorCheckBoxRight")) {
                     aeratorCheckBoxLeft.setSelected(!aeratorCheckBoxRight.isSelected());
                 }
-                if (checkBox.getId().equals("sedimentationMachineCheckBoxLeft")) {
-                    sedimentationMachineCheckBoxRight.setSelected(!sedimentationMachineCheckBoxLeft.isSelected());
-                } else if (checkBox.getId().equals("sedimentationMachineCheckBoxRight")) {
-                    sedimentationMachineCheckBoxLeft.setSelected(!sedimentationMachineCheckBoxRight.isSelected());
+                if (checkBox.getId().equals("sludgeDewateringMachineCheckBoxLeft")) {
+                    sludgeDewateringMachineCheckBoxRight.setSelected(!sludgeDewateringMachineCheckBoxLeft.isSelected());
+                } else if (checkBox.getId().equals("sludgeDewateringMachineCheckBoxRight")) {
+                    sludgeDewateringMachineCheckBoxLeft.setSelected(!sludgeDewateringMachineCheckBoxRight.isSelected());
                 }
             }
         };
@@ -59,22 +55,53 @@ public class AddItemController {
         waterPumpCheckBoxRight.setOnAction(eventHandler);
         aeratorCheckBoxLeft.setOnAction(eventHandler);
         aeratorCheckBoxRight.setOnAction(eventHandler);
-        sedimentationMachineCheckBoxLeft.setOnAction(eventHandler);
-        sedimentationMachineCheckBoxRight.setOnAction(eventHandler);
+        sludgeDewateringMachineCheckBoxLeft.setOnAction(eventHandler);
+        sludgeDewateringMachineCheckBoxRight.setOnAction(eventHandler);
     }
 
-    public void setEditMenu(Item item){
+    public void setCreate() {
+        wasteWaterMachineCheckBoxLeft.setSelected(true);
+        waterPumpCheckBoxLeft.setSelected(true);
+        aeratorCheckBoxLeft.setSelected(true);
+        sludgeDewateringMachineCheckBoxLeft.setSelected(true);
+    }
+
+    public void setEdit(Item item){
         this.item = item;
-//        dissolvedOxygen.setText(this.item.getDissolvedOxygen());
-//        celsius.setText(this.item.getCelsius());
-//        volumeWater.setText(this.item.getVolume());
-//        volumeSludge.setText(this.item.getVolume());
+        numberMachine.setValue(item.getNumberMachine()+"");
+        round.setValue(item.getRound()+"");
+        dissolvedOxygen.setText(this.item.getDissolvedOxygen()+"");
+        celsius.setText(this.item.getCelsius()+"");
+        volumeWater.setText(this.item.getVolumeWater()+"");
+        volumeSludge.setText(this.item.getVolumeSludge()+"");
+
+        if (this.item.isWasteWaterMachine()) {
+            wasteWaterMachineCheckBoxLeft.setSelected(true);
+        } else {
+            wasteWaterMachineCheckBoxRight.setSelected(true);
+        }
+        if (this.item.isWaterPump()) {
+            waterPumpCheckBoxLeft.setSelected(true);
+        } else {
+            waterPumpCheckBoxRight.setSelected(true);
+        }
+        if (this.item.isAerator()) {
+            aeratorCheckBoxLeft.setSelected(true);
+        } else {
+            aeratorCheckBoxRight.setSelected(true);
+        }
+        if (this.item.isSludgeDewateringMachine()) {
+            sludgeDewateringMachineCheckBoxLeft.setSelected(true);
+        } else {
+            sludgeDewateringMachineCheckBoxRight.setSelected(true);
+        }
+
     }
 
     public void saveItem(ActionEvent event){
         if (item == null) {
             if (numberMachine.getValue()!=null && round.getValue()!=null && !dissolvedOxygen.getText().isEmpty() && !celsius.getText().isEmpty() && !volumeWater.getText().isEmpty()) {
-                ItemsDB.saveItem(DateUtilities.getDateNumber(), Integer.parseInt(numberMachine.getValue().toString()),round.getValue().toString(),Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(celsius.getText()), Double.parseDouble(volumeWater.getText()), Double.parseDouble(volumeSludge.getText()), isCheck(wasteWaterMachineCheckBoxLeft),isCheck(waterPumpCheckBoxLeft),isCheck(aeratorCheckBoxLeft),isCheck(sedimentationMachineCheckBoxLeft));
+                ItemsDB.saveItem(DateUtilities.getDateNumber(), Integer.parseInt(numberMachine.getValue().toString()),Integer.parseInt(round.getValue().toString()),Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(celsius.getText()), Double.parseDouble(volumeWater.getText()), Double.parseDouble(volumeSludge.getText()), isCheck(wasteWaterMachineCheckBoxLeft),isCheck(waterPumpCheckBoxLeft),isCheck(aeratorCheckBoxLeft),isCheck(sludgeDewateringMachineCheckBoxLeft));
                 dissolvedOxygen.setText("");
                 celsius.setText("");
                 volumeWater.setText("");
@@ -82,11 +109,17 @@ public class AddItemController {
                 backToManagementWindow(event);
             }
         } else {
-//            this.item.setDissolvedOxygen(dissolvedOxygen.getText());
-//            this.item.setCelsius(celsius.getText());
-//            this.item.setVolume(volumeWater.getText());
-            //this.item.s
-            //ItemsDB.editItem(this.item.getNo(), DateUtilities.getDateNumber(),this.item.getDissolvedOxygen(),this.item.getCelsius(),this.item.getVolume());
+            item.setNumberMachine(Integer.parseInt(numberMachine.getValue().toString()));
+            item.setRound(Integer.parseInt(round.getValue().toString()));
+            item.setDissolvedOxygen(Double.parseDouble(dissolvedOxygen.getText()));
+            item.setCelsius(Double.parseDouble(celsius.getText()));
+            item.setVolumeWater(Double.parseDouble(volumeWater.getText()));
+            item.setVolumeSludge(Double.parseDouble(volumeSludge.getText()));
+            item.setWasteWaterMachine(isCheck(wasteWaterMachineCheckBoxLeft));
+            item.setWaterPump(isCheck(waterPumpCheckBoxLeft));
+            item.setAerator(isCheck(aeratorCheckBoxLeft));
+            item.setSludgeDewateringMachine(isCheck(sludgeDewateringMachineCheckBoxLeft));
+            ItemsDB.editItem(item.getNo(), DateUtilities.getDateNumber(),item.getNumberMachine(),item.getRound(),item.getDissolvedOxygen(),item.getCelsius(),item.getVolumeWater(),item.getVolumeSludge(),item.isWasteWaterMachine(),item.isWaterPump(),item.isAerator(),item.isSludgeDewateringMachine());
             backToManagementWindow(event);
         }
     }

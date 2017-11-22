@@ -12,12 +12,12 @@
    <children>
        <TableView fx:id="accountsTableView" layoutX="5.0" layoutY="58.0" prefHeight="460.0" prefWidth="1070.0">
            <columns>
-               <TableColumn prefWidth="115.0" text="ID"><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
-               <TableColumn minWidth="0.0" prefWidth="185.0" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
-               <TableColumn minWidth="0.0" prefWidth="185.0" text="First Name"><cellValueFactory><PropertyValueFactory property="firstname" /></cellValueFactory></TableColumn>
-               <TableColumn minWidth="0.0" prefWidth="185.0" text="Last Name"><cellValueFactory><PropertyValueFactory property="lastname" /></cellValueFactory></TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="185.0" text="Username"><cellValueFactory><PropertyValueFactory property="username" /></cellValueFactory></TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="185.0" text="Password"><cellValueFactory><PropertyValueFactory property="password" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="115.0" resizable="false" sortable="false" text="ID"><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+               <TableColumn minWidth="0.0" prefWidth="185.0" resizable="false" sortable="false" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
+               <TableColumn minWidth="0.0" prefWidth="185.0" resizable="false" sortable="false" text="First Name"><cellValueFactory><PropertyValueFactory property="firstname" /></cellValueFactory></TableColumn>
+               <TableColumn minWidth="0.0" prefWidth="185.0" resizable="false" sortable="false" text="Last Name"><cellValueFactory><PropertyValueFactory property="lastname" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="185.0" resizable="false" sortable="false" text="Username"><cellValueFactory><PropertyValueFactory property="username" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="185.0" resizable="false" sortable="false" text="Password"><cellValueFactory><PropertyValueFactory property="password" /></cellValueFactory></TableColumn>
            </columns>
        </TableView>
        <Label layoutX="14.0" styleClass="homeTitle" text="Accounts"><font><Font size="40.0" /></font></Label>

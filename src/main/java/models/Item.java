@@ -4,7 +4,7 @@ public class Item {
     private int no;
     private String date;
     private int numberMachine;
-    private String round;
+    private int round;
     private double dissolvedOxygen;
     private double celsius;
     private double volumeWater;
@@ -14,7 +14,7 @@ public class Item {
     private boolean aerator;
     private boolean sludgeDewateringMachine;
 
-    public Item(int no, String date, int numberMachine, String round, double dissolvedOxygen, double celsius, double volumeWater, double volumeSludge, boolean wasteWaterMachine, boolean waterPump, boolean aerator, boolean sludgeDewateringMachine) {
+    public Item(int no, String date, int numberMachine, int round, double dissolvedOxygen, double celsius, double volumeWater, double volumeSludge, boolean wasteWaterMachine, boolean waterPump, boolean aerator, boolean sludgeDewateringMachine) {
         this.no = no;
         this.date = date;
         this.numberMachine = numberMachine;
@@ -50,11 +50,11 @@ public class Item {
         this.numberMachine = numberMachine;
     }
 
-    public String getRound() {
+    public int getRound() {
         return round;
     }
 
-    public void setRound(String round) {
+    public void setRound(int round) {
         this.round = round;
     }
 

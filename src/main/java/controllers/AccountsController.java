@@ -47,6 +47,8 @@ public class AccountsController {
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
             accountsDB.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
             accountsTableView.setItems(accountsDB.loadAccounts());
+            deleteButton.setDisable(true);
+            editButton.setDisable(true);
         }
     }
 

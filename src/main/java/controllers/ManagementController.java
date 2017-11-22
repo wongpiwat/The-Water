@@ -42,6 +42,7 @@ public class ManagementController implements Initializable {
         stage.setScene(new Scene(loader.load()));
         AddItemController addItemController = loader.getController();
         addItemController.setTitleLabel("Create");
+        addItemController.setCreate();
         stage.show();
     }
 
@@ -49,6 +50,8 @@ public class ManagementController implements Initializable {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
             ItemsDB.deleteItem(tableView.getSelectionModel().getSelectedItem().getNo());
             tableView.setItems(ItemsDB.loadItems());
+            deleteButton.setDisable(true);
+            editButton.setDisable(true);
         }
     }
 
@@ -60,7 +63,7 @@ public class ManagementController implements Initializable {
             stage.setScene(new Scene(loader.load()));
             AddItemController addItemController = loader.getController();
             addItemController.setTitleLabel("Edit");
-            addItemController.setEditMenu(tableView.getSelectionModel().getSelectedItem());
+            addItemController.setEdit(tableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }

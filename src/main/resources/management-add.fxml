@@ -9,38 +9,38 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddItemController">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="35.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="562.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="657.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="409.0" />
-   <ChoiceBox fx:id="numberMachine" layoutX="150.0" layoutY="73.0" prefHeight="50.0" prefWidth="150.0" />
-   <ChoiceBox fx:id="round" layoutX="150.0" layoutY="141.0" prefHeight="50.0" prefWidth="150.0" />
-    <TextField fx:id="dissolvedOxygen" layoutX="355.0" layoutY="189.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="celsius" layoutX="255.0" layoutY="266.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="volumeWater" layoutX="255.0" layoutY="345.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="volumeSludge" layoutX="255.0" layoutY="425.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-   <CheckBox fx:id="wasteWaterMachineCheckBoxLeft" layoutX="895.0" layoutY="151.0" mnemonicParsing="false" />
-   <CheckBox fx:id="wasteWaterMachineCheckBoxRight" layoutX="980.0" layoutY="151.0" mnemonicParsing="false" />
-   <CheckBox fx:id="waterPumpCheckBoxLeft" layoutX="896.0" layoutY="239.0" mnemonicParsing="false" />
-   <CheckBox fx:id="waterPumpCheckBoxRight" layoutX="980.0" layoutY="239.0" mnemonicParsing="false" />
-   <CheckBox fx:id="aeratorCheckBoxLeft" layoutX="895.0" layoutY="316.0" mnemonicParsing="false" />
-   <CheckBox fx:id="aeratorCheckBoxRight" layoutX="980.0" layoutY="316.0" mnemonicParsing="false" />
-   <CheckBox fx:id="sedimentationMachineCheckBoxLeft" layoutX="895.0" layoutY="399.0" mnemonicParsing="false" />
-   <CheckBox fx:id="sedimentationMachineCheckBoxRight" layoutX="980.0" layoutY="399.0" mnemonicParsing="false" />
+<Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddItemController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="89.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="605.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="409.0" />
+   <ChoiceBox fx:id="numberMachine" layoutX="204.0" layoutY="73.0" prefHeight="50.0" prefWidth="150.0" />
+   <ChoiceBox fx:id="round" layoutX="204.0" layoutY="141.0" prefHeight="50.0" prefWidth="150.0" />
+    <TextField fx:id="dissolvedOxygen" layoutX="409.0" layoutY="189.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="celsius" layoutX="309.0" layoutY="266.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="volumeWater" layoutX="309.0" layoutY="345.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="volumeSludge" layoutX="309.0" layoutY="425.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+   <CheckBox fx:id="wasteWaterMachineCheckBoxLeft" layoutX="843.0" layoutY="151.0" mnemonicParsing="false" />
+   <CheckBox fx:id="wasteWaterMachineCheckBoxRight" layoutX="928.0" layoutY="151.0" mnemonicParsing="false" />
+   <CheckBox fx:id="waterPumpCheckBoxLeft" layoutX="844.0" layoutY="239.0" mnemonicParsing="false" />
+   <CheckBox fx:id="waterPumpCheckBoxRight" layoutX="928.0" layoutY="239.0" mnemonicParsing="false" />
+   <CheckBox fx:id="aeratorCheckBoxLeft" layoutX="843.0" layoutY="316.0" mnemonicParsing="false" />
+   <CheckBox fx:id="aeratorCheckBoxRight" layoutX="928.0" layoutY="316.0" mnemonicParsing="false" />
+   <CheckBox fx:id="sludgeDewateringMachineCheckBoxLeft" layoutX="843.0" layoutY="399.0" mnemonicParsing="false" />
+   <CheckBox fx:id="sludgeDewateringMachineCheckBoxRight" layoutX="928.0" layoutY="399.0" mnemonicParsing="false" />
 
     <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelToMenu" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
     <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Edit"><font><Font size="40.0" /></font></Label>
-   <Label layoutX="52.0" layoutY="73.0" prefHeight="50.0" prefWidth="94.0" text="เครื่อง"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="52.0" layoutY="141.0" prefHeight="50.0" prefWidth="94.0" text="รอบ"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="52.0" layoutY="198.0" prefHeight="50.0" prefWidth="301.0" text="ปริมาณออกซิเจนในน้ำ"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="52.0" layoutY="275.0" prefHeight="50.0" prefWidth="150.0" text="อุณหภูมิน้ำ"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="56.0" layoutY="354.0" prefHeight="50.0" prefWidth="141.0" text="ปริมาตรน้ำ"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="50.0" layoutY="434.0" prefHeight="50.0" prefWidth="200.0" text="ปริมาตรตะกอน"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="675.0" layoutY="135.0" prefHeight="50.0" prefWidth="195.0" text="เครื่องบำบัดน้ำ"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="675.0" layoutY="223.0" prefHeight="50.0" prefWidth="175.0" text="เครื่องสูบน้ำ"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="671.0" layoutY="300.0" prefHeight="50.0" prefWidth="219.0" text="เครื่องเติมอากาศ"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="675.0" layoutY="383.0" prefHeight="50.0" prefWidth="211.0" text="เครื่องรีดตะกอน"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="871.0" layoutY="65.0" prefHeight="50.0" prefWidth="73.0" text="ปกติ"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="954.0" layoutY="65.0" prefHeight="50.0" prefWidth="100.0" text="ไม่ปกติ"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="106.0" layoutY="73.0" prefHeight="50.0" prefWidth="94.0" text="เครื่อง"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="106.0" layoutY="141.0" prefHeight="50.0" prefWidth="94.0" text="รอบ"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="106.0" layoutY="198.0" prefHeight="50.0" prefWidth="301.0" text="ปริมาณออกซิเจนในน้ำ"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="106.0" layoutY="275.0" prefHeight="50.0" prefWidth="150.0" text="อุณหภูมิน้ำ"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="110.0" layoutY="354.0" prefHeight="50.0" prefWidth="141.0" text="ปริมาตรน้ำ"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="104.0" layoutY="434.0" prefHeight="50.0" prefWidth="200.0" text="ปริมาตรตะกอน"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="623.0" layoutY="135.0" prefHeight="50.0" prefWidth="195.0" text="เครื่องบำบัดน้ำ"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="623.0" layoutY="223.0" prefHeight="50.0" prefWidth="175.0" text="เครื่องสูบน้ำ"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="619.0" layoutY="300.0" prefHeight="50.0" prefWidth="219.0" text="เครื่องเติมอากาศ"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="623.0" layoutY="383.0" prefHeight="50.0" prefWidth="211.0" text="เครื่องรีดตะกอน"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="819.0" layoutY="65.0" prefHeight="50.0" prefWidth="73.0" text="ปกติ"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="902.0" layoutY="65.0" prefHeight="50.0" prefWidth="100.0" text="ไม่ปกติ"><font><Font size="30.0" /></font></Label>
 
 </Pane>

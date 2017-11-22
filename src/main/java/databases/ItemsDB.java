@@ -23,7 +23,7 @@ public class ItemsDB {
                     int no = resultSet.getInt(1);
                     String date = resultSet.getString(2);
                     int numberMachine = resultSet.getInt(3);
-                    String round = resultSet.getString(4);
+                    int round = resultSet.getInt(4);
                     double dissolvedOxygen = resultSet.getDouble(5);
                     double celsius = resultSet.getDouble(6);
                     double volumeWater = resultSet.getDouble(7);
@@ -44,7 +44,7 @@ public class ItemsDB {
         return items;
     }
 
-    public static void saveItem(String Date, int numberMachine, String round, double dissolvedOxygen,double celsius,double VolumeWater,double VolumeSludge,boolean WasteWaterMachine, boolean WaterPump, boolean Aerator, boolean sludgeDewateringMachine) {
+    public static void saveItem(String Date, int numberMachine, int round, double dissolvedOxygen,double celsius,double VolumeWater,double VolumeSludge,boolean WasteWaterMachine, boolean WaterPump, boolean Aerator, boolean sludgeDewateringMachine) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -78,12 +78,12 @@ public class ItemsDB {
         }
     }
 
-    public static void editItem(int no,String date, String dissolvedOxygen,String celsius,String volume) {
+    public static void editItem(int no,String date,int numberMachine,int round, double dissolvedOxygen,double celsius,double volumeWater,double volumeSludge,boolean wasteWaterMachine, boolean waterPump, boolean aerator, boolean sludgeDewateringMachine) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "update Item set Date=\'" + date + "\' ,DissolvedOxygen=\'" + dissolvedOxygen + "\' ,Celsius=\'" + celsius + "\' ,Volume=\'" + volume + "\' where No == \'" + no + "\'";
+                String query = "Update Item set Date=\'" + date + "\',NumberMachine=\'" + numberMachine + "\',round=\'"+ round +"\' ,DissolvedOxygen=\'" + dissolvedOxygen + "\' ,Celsius=\'" + celsius + "\' ,VolumeWater=\'" + volumeWater + "\' ,VolumeSludge=\'" + volumeSludge + "\' ,WasteWaterMachine=\'" + wasteWaterMachine +"\' ,WaterPump=\'" + waterPump + "\' ,Aerator=\'" + aerator + "\' ,SludgeDewateringMachine=\'" + sludgeDewateringMachine + "\' where No == \'" + no + "\'";
                 System.out.println(query);
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
