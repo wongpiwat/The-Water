@@ -11,7 +11,7 @@
    <Label layoutX="14.0" styleClass="homeTitle" text="About"><font><Font size="40.0" /></font></Label>
    <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
    <Label layoutX="300.0" layoutY="115.0" text="The Water"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="300.0" layoutY="179.0" text="Version 1.5"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="300.0" layoutY="179.0" text="Version 1.5.1"><font><Font size="30.0" /></font></Label>
    <Label layoutX="300.0" layoutY="243.0" text="Copyright © 2017 The Water. All rights reserved. "><font><Font size="30.0" /></font></Label>
    <ImageView fitHeight="216.0" fitWidth="231.0" layoutX="68.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true"><Image url="@water.png" /></ImageView>
 </Pane>
