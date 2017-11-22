@@ -1,10 +1,5 @@
-
 .theBackground {
     -fx-background-color : #FFFFFF;
-    }
-
-.loginTitle {
-    -fx-text-fill   : #FFFFFF;
     }
 
 .homeTitle {
@@ -25,7 +20,7 @@
     }
 
 .button:hover {
-    -fx-background-color : #01579B;
+    -fx-background-color : #0288D1;
 }
 
 .text-field {

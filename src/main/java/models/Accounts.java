@@ -1,7 +1,6 @@
 package models;
 
 public class Accounts {
-
     private int id = 0;
     private String department = "";
     private String firstname = "";

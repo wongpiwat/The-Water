@@ -14,10 +14,10 @@ public class AccountsDB {
         ObservableList<Accounts> accounts = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
-            Connection conn = DriverManager.getConnection(dbURL);
-            if (conn != null) {
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
                 String query = "select * from Accounts";
-                Statement statement = conn.createStatement();
+                Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     int id = resultSet.getInt(1);
@@ -28,7 +28,7 @@ public class AccountsDB {
                     String password = resultSet.getString(6);
                     accounts.add(new Accounts(id, department, firstName, lastName, username, password));
                 }
-                conn.close();
+                connection.close();
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -38,12 +38,12 @@ public class AccountsDB {
         return accounts;
     }
 
-    public static void saveAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void saveAccount(int id, String department, String firstname, String lastname, String username, String password) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (id, department, firstName, lastName, userName, password) values (\'" + id + "\', \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
+                String query = "insert into Accounts (ID, Department, FirstName, LastName, Username, Password) values (\'" + id + "\', \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -55,12 +55,12 @@ public class AccountsDB {
         }
     }
 
-    public static void deleteAccountsDB(int id) {
+    public static void deleteAccount(int id) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Accounts where id == \'" + id + "\'";
+                String query = "Delete from Accounts where ID == \'" + id + "\'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -72,7 +72,7 @@ public class AccountsDB {
         }
     }
 
-    public static int getCreateAccountsID() {
+    public static int getAccountID() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -92,13 +92,13 @@ public class AccountsDB {
         return 1;
     }
 
-    public static void editAccountsDB(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void editAccount(int id, String department, String firstname, String lastname, String username, String password) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "update Accounts set id=\'" + id + "\' ,department=\'" + department + "\' ,firstname=\'" + firstname +
-                        "\' ,lastname=\'" + lastname + "\' ,username=\'" + username + "\' ,password=\'" + password + "\' where ID == \'" + id + "\'";
+                String query = "update Accounts set ID=\'" + id + "\' ,Department=\'" + department + "\' ,FirstName=\'" + firstname +
+                        "\' ,LastName=\'" + lastname + "\' ,Username=\'" + username + "\' ,Password=\'" + password + "\' where ID == \'" + id + "\'";
                 System.out.println(query);
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();

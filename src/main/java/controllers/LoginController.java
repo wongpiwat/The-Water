@@ -20,26 +20,26 @@ import java.io.IOException;
 
 public class LoginController {
     private AccountsDB accountsDB = new AccountsDB();
+    private ObservableList<Accounts> accounts;
     @FXML private Text warningText;
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
     @FXML private Button loginBtn;
-    private ObservableList<Accounts> accounts;
 
     public void initialize(){
         accounts = accountsDB.loadAccounts();
-        loginBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        userPassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.ENTER){
-                Button button = (Button) event.getSource();
-                Stage stage = (Stage) button.getScene().getWindow();
-                try {
-                    checkUsernameAndPassword(stage);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (event.getCode() == KeyCode.ENTER){
+                    PasswordField passwordField  = (PasswordField) event.getSource();
+                    Stage stage = (Stage) passwordField.getScene().getWindow();
+                    try {
+                        checkUsernameAndPassword(stage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
             }
         });
     }
@@ -59,8 +59,8 @@ public class LoginController {
                 break;
             }
         }
-        if(loginSuccess == false){
-            warningText.setText("The username or password provided is incorrect.");
+        if(!loginSuccess){
+            warningText.setText("The username or password is incorrect.");
         }
     }
 

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Accounts;
@@ -13,8 +14,9 @@ import models.Accounts;
 import java.io.IOException;
 
 public class AddAccountController {
-    Accounts accounts;
-    @FXML TextField department,firstName,lastName,userName,password;
+    private Accounts accounts;
+    @FXML private TextField department,firstName,lastName,userName,password;
+    @FXML private Label titleLabel;
 
     public void setEditAccounts(Accounts accounts){
         this.accounts = accounts;
@@ -24,10 +26,11 @@ public class AddAccountController {
         userName.setText(this.accounts.getUsername());
         password.setText(this.accounts.getPassword());
     }
-    public void editAccount(ActionEvent event){
-        if (accounts==null) {
+
+    public void saveAccount(ActionEvent event){
+        if (accounts == null) {
             if (!department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty()) {
-                AccountsDB.saveAccountsDB(AccountsDB.getCreateAccountsID(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
+                AccountsDB.saveAccount(AccountsDB.getAccountID(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 this.department.setText("");
                 this.firstName.setText("");
                 this.lastName.setText("");
@@ -41,7 +44,7 @@ public class AddAccountController {
             this.accounts.setLastname(lastName.getText());
             this.accounts.setUsername(userName.getText());
             this.accounts.setPassword(password.getText());
-            AccountsController.accountsDB.editAccountsDB(this.accounts.getId(), this.accounts.getDepartment(), this.accounts.getFirstname(), this.accounts.getLastname(), this.accounts.getUsername(), this.accounts.getPassword());
+            AccountsController.accountsDB.editAccount(this.accounts.getId(), this.accounts.getDepartment(), this.accounts.getFirstname(), this.accounts.getLastname(), this.accounts.getUsername(), this.accounts.getPassword());
             this.backToAccounts(event);
         }
     }
@@ -60,5 +63,9 @@ public class AddAccountController {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void setTitleLabel(String titleLabel) {
+        this.titleLabel.setText(titleLabel);
     }
 }

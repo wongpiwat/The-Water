@@ -17,9 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagementController implements Initializable {
-
-    public static ItemsDB ItemsDB = new ItemsDB();
-
+    static ItemsDB ItemsDB = new ItemsDB();
     @FXML private TableView<Item> tableView;
     @FXML private Button deleteButton,editButton;
 
@@ -27,7 +25,7 @@ public class ManagementController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         editButton.setDisable(true);
         deleteButton.setDisable(true);
-        tableView.setItems(ItemsDB.loadDB());
+        tableView.setItems(ItemsDB.loadItems());
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
             @Override
             public void changed(ObservableValue<? extends Item> observable, Item oldValue, Item newValue) {
@@ -42,13 +40,15 @@ public class ManagementController implements Initializable {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
         stage.setScene(new Scene(loader.load()));
+        AddItemController addItemController = loader.getController();
+        addItemController.setTitleLabel("Create");
         stage.show();
     }
 
     public void deleteItem() {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
-            ItemsDB.deleteDB(tableView.getSelectionModel().getSelectedItem().getNo());
-            tableView.setItems(ItemsDB.loadDB());
+            ItemsDB.deleteItem(tableView.getSelectionModel().getSelectedItem().getNo());
+            tableView.setItems(ItemsDB.loadItems());
         }
     }
 
@@ -58,8 +58,9 @@ public class ManagementController implements Initializable {
             Stage stage = (Stage) button.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
             stage.setScene(new Scene(loader.load()));
-            AddDataController addDataController = loader.getController();
-            addDataController.setEditMenu(tableView.getSelectionModel().getSelectedItem());
+            AddItemController addItemController = loader.getController();
+            addItemController.setTitleLabel("Edit");
+            addItemController.setEditMenu(tableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }
@@ -71,5 +72,4 @@ public class ManagementController implements Initializable {
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
-
 }

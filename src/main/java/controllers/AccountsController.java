@@ -16,14 +16,9 @@ import java.io.IOException;
 
 
 public class AccountsController {
-
     static AccountsDB accountsDB = new AccountsDB();
-
-    @FXML
-    private TableView<Accounts> accountsTableView;
-    @FXML
-    private Button deleteButton,editButton;
-
+    @FXML private TableView<Accounts> accountsTableView;
+    @FXML private Button deleteButton,editButton;
 
     public void initialize() {
         editButton.setDisable(true);
@@ -38,22 +33,22 @@ public class AccountsController {
         });
     }
 
-    public void addAccount(ActionEvent event) throws IOException {
+    public void createAccount(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-add.fxml"));
         stage.setScene(new Scene(loader.load()));
+        AddAccountController addAccountController = loader.getController();
+        addAccountController.setTitleLabel("Create");
         stage.show();
     }
 
-
     public void deleteAccount() {
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
-            accountsDB.deleteAccountsDB(accountsTableView.getSelectionModel().getSelectedItem().getId());
+            accountsDB.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
             accountsTableView.setItems(accountsDB.loadAccounts());
         }
     }
-
 
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
@@ -70,9 +65,9 @@ public class AccountsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-add.fxml"));
             stage.setScene(new Scene(loader.load()));
             AddAccountController addAccountController = loader.getController();
+            addAccountController.setTitleLabel("Edit");
             addAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }
-
 }

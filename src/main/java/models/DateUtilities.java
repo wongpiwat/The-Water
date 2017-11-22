@@ -11,5 +11,4 @@ public class DateUtilities {
 		Date date = new Date();
 		return dateTimeFormat.format(date);
 	}
-
 }

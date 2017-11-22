@@ -10,7 +10,7 @@ public class ItemsDB {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadDB() {
+    public static ObservableList loadItems() {
         ObservableList<Item> items = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
@@ -37,7 +37,7 @@ public class ItemsDB {
         return items;
     }
 
-    public static void saveDB(String Date, String dissolvedOxygen,String celsius,String volume) {
+    public static void saveItem(String Date, String dissolvedOxygen,String celsius,String volume) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -55,7 +55,7 @@ public class ItemsDB {
         }
     }
 
-    public static void deleteDB(int no) {
+    public static void deleteItem(int no) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -72,7 +72,7 @@ public class ItemsDB {
         }
     }
 
-    public static void editDB(int no,String date, String dissolvedOxygen,String celsius,String volume) {
+    public static void editItem(int no,String date, String dissolvedOxygen,String celsius,String volume) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
