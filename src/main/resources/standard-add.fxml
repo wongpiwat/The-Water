@@ -4,28 +4,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddStandardController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="230.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="620.0" />
     <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Edit"><font><Font size="40.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="60.0" prefHeight="50.0" prefWidth="241.0" text="pH (range 0-14)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="107.0" prefHeight="50.0" prefWidth="193.0" text="BOD (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="299.0" prefHeight="50.0" prefWidth="394.0" text="Suspended Soilds  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="205.0" prefHeight="50.0" prefWidth="376.0" text="Settleable Solids  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="252.0" prefHeight="50.0" prefWidth="431.0" text="Total Dissolved Solid  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="154.0" prefHeight="50.0" prefWidth="241.0" text="Sulfide  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="396.0" prefHeight="50.0" prefWidth="462.0" text="Total Kjeldahl Nitrogen  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="193.0" layoutY="346.0" prefHeight="50.0" prefWidth="422.0" text="Fat , Oil and Grease  (kg/m3)"><font><Font size="30.0" /></font></Label>
-    <TextField fx:id="pHTextField" layoutX="434.0" layoutY="63.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="bodTextField" layoutX="434.0" layoutY="110.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="sulfideTextField" layoutX="434.0" layoutY="157.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="settleableSolidsTextField" layoutX="655.0" layoutY="208.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="totalDissolvedSolidTextField" layoutX="655.0" layoutY="255.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="suspendedSoildsTextField" layoutX="655.0" layoutY="302.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="fatOilGreaseTextField" layoutX="655.0" layoutY="349.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="totalKjeldahlNitrogenTextField" layoutX="655.0" layoutY="399.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <Label layoutX="252.0" layoutY="64.0" prefHeight="50.0" prefWidth="241.0" text="pH (range 0-14)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="111.0" prefHeight="50.0" prefWidth="193.0" text="BOD (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="303.0" prefHeight="50.0" prefWidth="394.0" text="Suspended Soilds  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="209.0" prefHeight="50.0" prefWidth="376.0" text="Settleable Solids  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="256.0" prefHeight="50.0" prefWidth="431.0" text="Total Dissolved Solid  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="158.0" prefHeight="50.0" prefWidth="241.0" text="Sulfide  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="400.0" prefHeight="50.0" prefWidth="462.0" text="Total Kjeldahl Nitrogen  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="252.0" layoutY="350.0" prefHeight="50.0" prefWidth="422.0" text="Fat , Oil and Grease  (kg/m3)"><font><Font size="30.0" /></font></Label>
+    <TextField fx:id="pHTextField" layoutX="493.0" layoutY="67.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="bodTextField" layoutX="493.0" layoutY="114.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="sulfideTextField" layoutX="493.0" layoutY="161.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="settleableSolidsTextField" layoutX="714.0" layoutY="212.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="totalDissolvedSolidTextField" layoutX="714.0" layoutY="259.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="suspendedSoildsTextField" layoutX="714.0" layoutY="306.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="fatOilGreaseTextField" layoutX="714.0" layoutY="353.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="totalKjeldahlNitrogenTextField" layoutX="714.0" layoutY="403.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
 
-    <Button layoutX="650.0" layoutY="480.0" mnemonicParsing="false" onAction="#saveStandard" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
-    <Button layoutX="255.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancelToStandard" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
+    <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveStandard" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
+    <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelToStandard" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
     
 </Pane>

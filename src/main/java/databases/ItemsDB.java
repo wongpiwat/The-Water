@@ -22,10 +22,17 @@ public class ItemsDB {
                 while (resultSet.next()) {
                     int no = resultSet.getInt(1);
                     String date = resultSet.getString(2);
-                    String dissolvedOxygen = resultSet.getString(3);
-                    String celsius = resultSet.getString(4);
-                    String volume = resultSet.getString(5);
-                    items.add(new Item(no, date, dissolvedOxygen,celsius,volume));
+                    int numberMachine = resultSet.getInt(3);
+                    String round = resultSet.getString(4);
+                    double dissolvedOxygen = resultSet.getDouble(5);
+                    double celsius = resultSet.getDouble(6);
+                    double volumeWater = resultSet.getDouble(7);
+                    double volumeSludge = resultSet.getDouble(8);
+                    String wasteWaterMachine = resultSet.getString(9);
+                    String waterPump = resultSet.getString(10);
+                    String aerator = resultSet.getString(11);
+                    String sludgeDewateringMachine = resultSet.getString(12);
+                    items.add(new Item(no, date, numberMachine, round, dissolvedOxygen,celsius,volumeWater,volumeSludge,Boolean.parseBoolean(wasteWaterMachine),Boolean.parseBoolean(waterPump),Boolean.parseBoolean(aerator),Boolean.parseBoolean(sludgeDewateringMachine)));
                 }
                 conn.close();
             }
@@ -37,13 +44,12 @@ public class ItemsDB {
         return items;
     }
 
-    public static void saveItem(String Date, String dissolvedOxygen,String celsius,String volume) {
+    public static void saveItem(String Date, int numberMachine, String round, double dissolvedOxygen,double celsius,double VolumeWater,double VolumeSludge,boolean WasteWaterMachine, boolean WaterPump, boolean Aerator, boolean sludgeDewateringMachine) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Item(Date, DissolvedOxygen, Celsius, Volume) values (\'" + Date + "\',\'" + dissolvedOxygen + "\',\'" + celsius + "\',\'" + volume + "\')";
-                System.out.println(query);
+                String query = "insert into Item (Date, NumberMachine, Round, DissolvedOxygen, Celsius, VolumeWater, VolumeSludge, WasteWaterMachine, WaterPump, Aerator, SludgeDewateringMachine) values (\'" + Date + "\', \'" + numberMachine + " \', \'" + round + " \', \' " + dissolvedOxygen + " \' , \' " + celsius + "\', \'" + VolumeWater + "\' , \'" + VolumeSludge + "\' ,\'" + WasteWaterMachine + "\' ,\'" + WaterPump + "\' ,\'" + Aerator + "\' ,\'" + sludgeDewateringMachine + "\')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

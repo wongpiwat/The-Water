@@ -4,24 +4,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddAccountController">
-    <TextField fx:id="department" layoutX="494.0" layoutY="96.0" prefHeight="44.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="firstName" layoutX="494.0" layoutY="161.0" prefHeight="44.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="lastName" layoutX="494.0" layoutY="226.0" prefHeight="44.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="userName" layoutX="494.0" layoutY="288.0" prefHeight="44.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="password" layoutX="494.0" layoutY="357.0" prefHeight="44.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
+<Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddAccountController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="451.0" layoutX="255.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="565.0" />
+    <TextField fx:id="department" layoutX="539.0" layoutY="63.0" prefHeight="68.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="firstName" layoutX="539.0" layoutY="153.0" prefHeight="68.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="lastName" layoutX="539.0" layoutY="243.0" prefHeight="68.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="userName" layoutX="539.0" layoutY="333.0" prefHeight="68.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="password" layoutX="539.0" layoutY="423.0" prefHeight="68.0" prefWidth="222.0"><font><Font size="20.0" /></font></TextField>
 
-    <Button layoutX="650.0" layoutY="480.0" mnemonicParsing="false" onAction="#saveAccount" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
-    <Button layoutX="255.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancelToAccounts" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
+    <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveAccount" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
+    <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelToAccounts" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
 
     <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Edit"><font><Font size="40.0" /></font></Label>
-    <Label layoutX="266.0" layoutY="96.0" prefHeight="45.0" prefWidth="175.0" text="Department"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="266.0" layoutY="161.0" prefHeight="45.0" prefWidth="175.0" text="Firstname"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="266.0" layoutY="225.0" prefHeight="45.0" prefWidth="175.0" text="Lastname"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="266.0" layoutY="288.0" prefHeight="45.0" prefWidth="175.0" text="Username"><font><Font size="30.0" /></font></Label>
-   <Label layoutX="266.0" layoutY="356.0" prefHeight="45.0" prefWidth="175.0" text="Password"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="310.0" layoutY="75.0" prefHeight="45.0" prefWidth="175.0" text="Department"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="310.0" layoutY="165.0" prefHeight="45.0" prefWidth="175.0" text="First Name"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="310.0" layoutY="255.0" prefHeight="45.0" prefWidth="175.0" text="Last Name"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="310.0" layoutY="345.0" prefHeight="45.0" prefWidth="175.0" text="Username"><font><Font size="30.0" /></font></Label>
+   <Label layoutX="310.0" layoutY="435.0" prefHeight="45.0" prefWidth="175.0" text="Password"><font><Font size="30.0" /></font></Label>
 
 
 </Pane>

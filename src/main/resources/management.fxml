@@ -11,20 +11,20 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManagementController">
       <TableView fx:id="tableView" layoutX="5.0" layoutY="58.0" prefHeight="460.0" prefWidth="1070.0">
         <columns>
-            <TableColumn minWidth="0.0" prefWidth="40.0" text="ลำดับ"><cellValueFactory><PropertyValueFactory property="No" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="140.0" text="วัน/เดือน/ปี เวลา"><cellValueFactory><PropertyValueFactory property="Date" /></cellValueFactory></TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="160.0" text="ปริมาณออกซิเจนในน้ำ (DO)"><cellValueFactory><PropertyValueFactory property="DissolvedOxygen" /></cellValueFactory></TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="100.0" text="อุณหภูมิน้ำ °C"><cellValueFactory><PropertyValueFactory property="Celsius" /></cellValueFactory></TableColumn>
-            <TableColumn minWidth="0.0" prefWidth="70.0" text="ปริมาตรน้ํา"><cellValueFactory><PropertyValueFactory property="Volume" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="90.0" text="ปริมาตรตะกอน" />
+            <TableColumn minWidth="0.0" prefWidth="40.0" text="ลำดับ"><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="140.0" text="วัน/เดือน/ปี เวลา"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="50.0" text="เครื่อง"><cellValueFactory><PropertyValueFactory property="numberMachine" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="50.0" text="รอบ"><cellValueFactory><PropertyValueFactory property="round" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="130.0" text="ปริมาณออกซิเจนในน้ำ"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="100.0" text="อุณหภูมิน้ำ °C"><cellValueFactory><PropertyValueFactory property="celsius" /></cellValueFactory></TableColumn>
+            <TableColumn minWidth="0.0" prefWidth="70.0" text="ปริมาตรน้ํา"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="90.0" text="ปริมาตรตะกอน"><cellValueFactory><PropertyValueFactory property="volumeSludge" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="463.0" text="การทำงานของระบบ (ปกติ/ไม่ปกติ)">
-
             <columns>
-                <TableColumn prefWidth="90.0" text="เครื่องบำบัดน้ำ" />
-                <TableColumn prefWidth="70.0" text="เครื่องสูบน้ำ" />
-                <TableColumn prefWidth="100.0" text="เครื่องเติมอากาศ" />
-                <TableColumn prefWidth="100.0" text="เครื่องสูบตะกอน" />
-                <TableColumn prefWidth="90.0" text="เครื่องรีดตะกอน" />
+                <TableColumn prefWidth="90.0" text="เครื่องบำบัดน้ำ"><cellValueFactory><PropertyValueFactory property="wasteWaterMachine" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="70.0" text="เครื่องสูบน้ำ"><cellValueFactory><PropertyValueFactory property="waterPump" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="100.0" text="เครื่องเติมอากาศ"><cellValueFactory><PropertyValueFactory property="aerator" /></cellValueFactory></TableColumn>
+                <TableColumn prefWidth="100.0" text="เครื่องรีดตะกอน"><cellValueFactory><PropertyValueFactory property="sludgeDewateringMachine" /></cellValueFactory></TableColumn>
             </columns></TableColumn>
 
       </columns>

@@ -1,56 +1,124 @@
 package models;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class Item {
-    private SimpleIntegerProperty no = new SimpleIntegerProperty();
-    private SimpleStringProperty date = new SimpleStringProperty();
-    private SimpleStringProperty dissolvedOxygen = new SimpleStringProperty();
-    private SimpleStringProperty celsius = new SimpleStringProperty();
-    private SimpleStringProperty volume = new SimpleStringProperty();
+    private int no;
+    private String date;
+    private int numberMachine;
+    private String round;
+    private double dissolvedOxygen;
+    private double celsius;
+    private double volumeWater;
+    private double volumeSludge;
+    private boolean wasteWaterMachine;
+    private boolean waterPump;
+    private boolean aerator;
+    private boolean sludgeDewateringMachine;
 
-    public Item(int no, String date, String dissolvedOxygen,String celsius,String volume) {
-        setNo(no);
-        setDate(date);
-        setDissolvedOxygen(dissolvedOxygen);
-        setCelsius(celsius);
-        setVolume(volume);
+    public Item(int no, String date, int numberMachine, String round, double dissolvedOxygen, double celsius, double volumeWater, double volumeSludge, boolean wasteWaterMachine, boolean waterPump, boolean aerator, boolean sludgeDewateringMachine) {
+        this.no = no;
+        this.date = date;
+        this.numberMachine = numberMachine;
+        this.round = round;
+        this.dissolvedOxygen = dissolvedOxygen;
+        this.celsius = celsius;
+        this.volumeWater = volumeWater;
+        this.volumeSludge = volumeSludge;
+        this.wasteWaterMachine = wasteWaterMachine;
+        this.waterPump = waterPump;
+        this.aerator = aerator;
+        this.sludgeDewateringMachine = sludgeDewateringMachine;
     }
 
     public int getNo() {
-        return no.get();
+        return no;
     }
 
-    public void setNo(int id) { this.no.set(id); }
 
-    public String getDate() { return date.get(); }
-
-    public void setDate(String nameFood) {
-        this.date.set(nameFood);
+    public String getDate() {
+        return date;
     }
 
-    public String getDissolvedOxygen() {
-        return dissolvedOxygen.get();
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setDissolvedOxygen(String dissolvedOxygen) {
-        this.dissolvedOxygen.set(dissolvedOxygen);
+    public int getNumberMachine() {
+        return numberMachine;
     }
 
-    public String getCelsius() {
-        return celsius.get();
+    public void setNumberMachine(int numberMachine) {
+        this.numberMachine = numberMachine;
     }
 
-    public void setCelsius(String celsius) {
-        this.celsius.set(celsius);
+    public String getRound() {
+        return round;
     }
 
-    public String getVolume() {
-        return volume.get();
+    public void setRound(String round) {
+        this.round = round;
     }
 
-    public void setVolume(String volume) {
-        this.volume.set(volume);
+    public double getDissolvedOxygen() {
+        return dissolvedOxygen;
+    }
+
+    public void setDissolvedOxygen(double dissolvedOxygen) {
+        this.dissolvedOxygen = dissolvedOxygen;
+    }
+
+    public double getCelsius() {
+        return celsius;
+    }
+
+    public void setCelsius(double celsius) {
+        this.celsius = celsius;
+    }
+
+    public double getVolumeWater() {
+        return volumeWater;
+    }
+
+    public void setVolumeWater(double volumeWater) {
+        this.volumeWater = volumeWater;
+    }
+
+    public double getVolumeSludge() {
+        return volumeSludge;
+    }
+
+    public void setVolumeSludge(double volumeSludge) {
+        this.volumeSludge = volumeSludge;
+    }
+
+    public boolean isWasteWaterMachine() {
+        return wasteWaterMachine;
+    }
+
+    public void setWasteWaterMachine(boolean wasteWaterMachine) {
+        this.wasteWaterMachine = wasteWaterMachine;
+    }
+
+    public boolean isWaterPump() {
+        return waterPump;
+    }
+
+    public void setWaterPump(boolean waterPump) {
+        this.waterPump = waterPump;
+    }
+
+    public boolean isAerator() {
+        return aerator;
+    }
+
+    public void setAerator(boolean aerator) {
+        this.aerator = aerator;
+    }
+
+    public boolean isSludgeDewateringMachine() {
+        return sludgeDewateringMachine;
+    }
+
+    public void setSludgeDewateringMachine(boolean sludgeDewateringMachine) {
+        this.sludgeDewateringMachine = sludgeDewateringMachine;
     }
 }
