@@ -3,21 +3,22 @@ package controllers;
 import databases.ItemsDB;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import models.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import models.Item;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ManagementController implements Initializable {
-    static ItemsDB ItemsDB = new ItemsDB();
+public class PreTreatmentController implements Initializable {
+    static databases.ItemsDB ItemsDB = new ItemsDB();
     @FXML private TableView<Item> tableView;
     @FXML private Button deleteButton,editButton;
 
@@ -38,11 +39,11 @@ public class ManagementController implements Initializable {
     public void createItem(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pre-treatment-add.fxml"));
         stage.setScene(new Scene(loader.load()));
-        AddItemController addItemController = loader.getController();
-        addItemController.setTitleLabel("Create");
-        addItemController.setCreate();
+        AddPreItemController addPreItemController = loader.getController();
+        addPreItemController.setTitleLabel("Create");
+        addPreItemController.setCreate();
         stage.show();
     }
 
@@ -59,11 +60,11 @@ public class ManagementController implements Initializable {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
             Button button = (Button) event.getSource();
             Stage stage = (Stage) button.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/management-add.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pre-treatment-add.fxml"));
             stage.setScene(new Scene(loader.load()));
-            AddItemController addItemController = loader.getController();
-            addItemController.setTitleLabel("Edit");
-            addItemController.setEdit(tableView.getSelectionModel().getSelectedItem());
+            AddPostItemController addPostItemController = loader.getController();
+            addPostItemController.setTitleLabel("Edit");
+            addPostItemController.setEdit(tableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
     }

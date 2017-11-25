@@ -12,15 +12,17 @@ import models.Standard;
 import java.io.IOException;
 
 public class HomeController {
-    @FXML private Button managementButton,accountsButton,reportButton;
+    @FXML private Button preTreatmentButton,postTreatmentButton,accountsButton,reportButton;
     public void initialize() {
         Standard standard = StandardDB.loadStandard();
         if (standard==null) {
-            managementButton.setDisable(true);
+            preTreatmentButton.setDisable(true);
+            postTreatmentButton.setDisable(true);
             accountsButton.setDisable(true);
             reportButton.setDisable(true);
         } else {
-            managementButton.setDisable(false);
+            preTreatmentButton.setDisable(false);
+            postTreatmentButton.setDisable(false);
             accountsButton.setDisable(false);
             reportButton.setDisable(false);
         }
@@ -34,10 +36,18 @@ public class HomeController {
         stage.show();
     }
 
-    public void managementOnClick(ActionEvent event) throws IOException{
+    public void preTreatmentOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/management.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pre-treatment.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
+    }
+
+    public void postTreatmentOnClick(ActionEvent event) throws IOException{
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/post-treatment.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
