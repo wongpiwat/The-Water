@@ -1,7 +1,6 @@
 package controllers;
 
-import databases.PostTreatmentDatabase;
-import databases.PreTreatmentDatabase;
+import databases.TreatmentDBConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
@@ -28,14 +27,14 @@ public class TreatmentController {
         tableView = preTreatmentTableView;
         tab = preTreatmentTab;
         deleteButton.setDisable(true);
-        preTreatmentTableView.setItems(PreTreatmentDatabase.loadPreTreatmentToTable());
+        preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
         preTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
                 deleteButton.setDisable(false);
             }
         });
-        postTreatmentTableView.setItems(PostTreatmentDatabase.loadPostTreatmentToTable());
+        postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
         postTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
@@ -88,8 +87,8 @@ public class TreatmentController {
                 informationAlert.setHeaderText("Look, an Information Dialog");
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
-                PreTreatmentDatabase.deleteItem(tableView.getSelectionModel().getSelectedItem().getId());
-                preTreatmentTableView.setItems(PreTreatmentDatabase.loadPreTreatmentToTable());
+                TreatmentDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
                 deleteButton.setDisable(true);
             } else if (optional.get() == ButtonType.OK && tab.getText().equals("Post Treatment")) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -97,8 +96,8 @@ public class TreatmentController {
                 informationAlert.setHeaderText("Look, an Information Dialog");
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
-                PostTreatmentDatabase.deleteItem(tableView.getSelectionModel().getSelectedItem().getId());
-                postTreatmentTableView.setItems(PostTreatmentDatabase.loadPostTreatmentToTable());
+                TreatmentDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
                 deleteButton.setDisable(true);
             }
         }

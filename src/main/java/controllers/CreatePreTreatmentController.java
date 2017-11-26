@@ -1,7 +1,7 @@
 package controllers;
 
+import databases.TreatmentDBConnector;
 import utilities.DateUtilities;
-import databases.PreTreatmentDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +30,7 @@ public class CreatePreTreatmentController {
                 informationAlert.setHeaderText("Look, an Information Dialog");
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
-                PreTreatmentDatabase.saveItem(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(mlss.getText()));
+                TreatmentDBConnector.savePreTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(mlss.getText()));
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");

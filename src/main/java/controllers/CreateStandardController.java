@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.StandardDB;
+import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class CreateStandardController {
                     informationAlert.setHeaderText("Look, an Information Dialog");
                     informationAlert.setContentText("I have a great message for you!");
                     informationAlert.showAndWait();
-                    StandardDB.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
+                    StandardDBConnector.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
                     backToStandard(event);
                 } else {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");

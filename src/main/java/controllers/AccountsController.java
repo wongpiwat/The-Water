@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.AccountsDB;
+import databases.AccountsDBConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -21,13 +21,13 @@ import java.util.Optional;
 
 public class AccountsController {
     private Account account;
-    static AccountsDB accountsDB = new AccountsDB();
+    static AccountsDBConnector accountsDBConnector = new AccountsDBConnector();
     @FXML private TableView<Account> accountsTableView;
     @FXML private Button deleteButton;
 
     public void initialize() {
         deleteButton.setDisable(true);
-        accountsTableView.setItems(accountsDB.loadAccountsToTable());
+        accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
         accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
@@ -98,8 +98,8 @@ public class AccountsController {
                                 e.printStackTrace();
                             }
                         }
-                        accountsDB.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
-                        accountsTableView.setItems(accountsDB.loadAccountsToTable());
+                        accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
+                        accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
                         deleteButton.setDisable(true);
                     }
                 } else {

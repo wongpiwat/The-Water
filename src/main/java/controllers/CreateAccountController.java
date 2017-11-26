@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.AccountsDB;
+import databases.AccountsDBConnector;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +34,7 @@ public class CreateAccountController {
                 informationAlert.setHeaderText("Look, an Information Dialog");
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
-                AccountsDB.saveAccount(AccountsDB.getAccountID(), accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
+                AccountsDBConnector.saveAccount(AccountsDBConnector.getAccountID(), accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 this.department.setText("");
                 this.firstName.setText("");
                 this.lastName.setText("");

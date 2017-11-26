@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.StandardDB;
+import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class HomeController {
     @FXML private Button treatmentButton,reportButton,accountsButton,standardButton;
 
     public void initialize() {
-        Standard standard = StandardDB.loadStandardToTable();
+        Standard standard = StandardDBConnector.loadStandardToTable();
         if (standard == null) {
             treatmentButton.setDisable(true);
             reportButton.setDisable(true);
@@ -91,10 +91,10 @@ public class HomeController {
         this.account = account;
         firstNameLabel.setText(account.getFirstName());
         lastNameLabel.setText(account.getLastName());
-        if (account.getType().equals(" User ")) {
+        if (account.getType().equals("User")) {
             System.out.println(account.getType());
             accountsButton.setDisable(true);
-        } else if (account.getType().equals(" Administrator ")) {
+        } else if (account.getType().equals("Administrator")) {
             treatmentButton.setDisable(true);
             standardButton.setDisable(true);
         }

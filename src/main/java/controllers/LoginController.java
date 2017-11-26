@@ -1,5 +1,5 @@
 package controllers;
-import databases.AccountsDB;
+import databases.AccountsDBConnector;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,14 +19,14 @@ import models.Account;
 import java.io.IOException;
 
 public class LoginController {
-    private AccountsDB accountsDB = new AccountsDB();
+    private AccountsDBConnector accountsDBConnector = new AccountsDBConnector();
     private ObservableList<Account> accounts;
     @FXML private Text warningText;
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
 
     public void initialize() {
-        accounts = accountsDB.loadAccountsToTable();
+        accounts = accountsDBConnector.loadAccountsToTable();
 
         userName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

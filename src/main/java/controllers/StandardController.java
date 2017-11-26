@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.StandardDB;
+import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class StandardController {
     @FXML private Button deleteButton,createButton;
 
     public void initialize() {
-        standard = StandardDB.loadStandardToTable();
+        standard = StandardDBConnector.loadStandardToTable();
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);
@@ -61,7 +61,7 @@ public class StandardController {
             informationAlert.setHeaderText("Look, an Information Dialog");
             informationAlert.setContentText("I have a great message for you!");
             informationAlert.showAndWait();
-            StandardDB.deleteStandard();
+            StandardDBConnector.deleteStandard();
             pH.setText("");
             bod.setText("");
             sulfide.setText("");

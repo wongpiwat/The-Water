@@ -1,9 +1,9 @@
 package controllers;
 
+import databases.TreatmentDBConnector;
 import models.Report;
 import utilities.CalculateUtilities;
 import utilities.DateUtilities;
-import databases.PreTreatmentDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ReportController {
     private Account account;
-    private List<Treatment> preTreatments = PreTreatmentDatabase.getAllPreTreatment();
+    private List<Treatment> preTreatments = TreatmentDBConnector.getAllPreTreatment();
     //private List<Treatment> postTreatments = new ArrayList<>();
     private List<Treatment> allTreatments = new ArrayList<>();
     private List<Treatment> oneWeekTreatments = new ArrayList<>();
@@ -35,6 +35,7 @@ public class ReportController {
     private List<Treatment> fourWeekTreatments = new ArrayList<>();
     private List<Treatment> fiveWeekTreatments = new ArrayList<>();
     ObservableList<Report> preReport = FXCollections.observableArrayList();
+    ObservableList<Report> clearReport = FXCollections.observableArrayList();
     private String year,month;
     @FXML private TableView preReportTableView,postReportTableView;
     @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
@@ -56,7 +57,8 @@ public class ReportController {
 
                 //allTreatments.clear();
                 preReport.clear();
-                preReportTableView.refresh();
+                preReportTableView.getItems().clear();
+                preReportTableView.setItems(clearReport);
                 for (int index = 0 ; index< preTreatments.size() ; index++) {
                     Date date = DateUtilities.getDateForm(preTreatments.get(index).getDate());
                     if (yearNewValue.equals(DateUtilities.getYear(date))) {
@@ -72,10 +74,10 @@ public class ReportController {
         monthChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue monthObservable, Object monthOldValue, Object monthNewValue) {
-                preReport.clear();
-                preReportTableView.refresh();
                 //allTreatments.clear();
-//                preReportTableView.getItems().clear();
+                //preReport.clear();
+                //preReportTableView.getItems().clear();
+                //preReportTableView.setItems(clearReport);
                 if (year != null && monthNewValue != null) {
                     month = monthNewValue.toString();
                     for (int index = 0;index < preTreatments.size() ; index++) {
@@ -101,19 +103,22 @@ public class ReportController {
                     preReport.add(new Report(3,CalculateUtilities.getAverageVolumeWater(threeWeekTreatments),CalculateUtilities.getAverageTemperature(threeWeekTreatments),CalculateUtilities.getAveragePH(threeWeekTreatments),CalculateUtilities.getAverageMLSS(threeWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(threeWeekTreatments)));
                     preReport.add(new Report(4,CalculateUtilities.getAverageVolumeWater(fourWeekTreatments),CalculateUtilities.getAverageTemperature(fourWeekTreatments),CalculateUtilities.getAveragePH(fourWeekTreatments),CalculateUtilities.getAverageMLSS(fourWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fourWeekTreatments)));
                     preReport.add(new Report(5,CalculateUtilities.getAverageVolumeWater(fiveWeekTreatments),CalculateUtilities.getAverageTemperature(fiveWeekTreatments),CalculateUtilities.getAveragePH(fiveWeekTreatments),CalculateUtilities.getAverageMLSS(fiveWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fiveWeekTreatments)));
-
-
+                    preReportTableView.setItems(preReport);
 
 //                    CalculateUtilities.getAverageVolumeWater(allTreatments);
 //                    CalculateUtilities.getAverageTemperature(allTreatments);
 //                    CalculateUtilities.getAveragePH(allTreatments);
 //                    CalculateUtilities.getAverageMLSS(allTreatments);
 //                    CalculateUtilities.getAverageDissolvedOxygen(allTreatments);
-                    preReportTableView.setItems(preReport);
-
                 }
             }
         });
+    }
+
+    public void clearOnAction() {
+        //preReportTableView.setItems(clearReport);
+        preReport.removeAll();
+        preReportTableView.getItems().clear();
     }
 
     public void backOnAction(ActionEvent event) throws IOException {
@@ -129,5 +134,6 @@ public class ReportController {
     public void setUser(Account account) {
         this.account = account;
     }
+
 
 }

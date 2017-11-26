@@ -4,7 +4,7 @@ import models.Standard;
 
 import java.sql.*;
 
-public class StandardDB {
+public class StandardDBConnector {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 

@@ -1,7 +1,7 @@
 package controllers;
 
 import utilities.DateUtilities;
-import databases.PostTreatmentDatabase;
+import databases.TreatmentDBConnector;
 import models.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class CreatePostTreatmentController {
                 informationAlert.setHeaderText("Look, an Information Dialog");
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
-                PostTreatmentDatabase.saveItem(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(volumeSediment.getText()),Double.parseDouble(mlss.getText()),Double.parseDouble(electricity.getText()),Double.parseDouble(deodorizerSystem.getText()));
+                TreatmentDBConnector.savePostTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(volumeSediment.getText()),Double.parseDouble(mlss.getText()),Double.parseDouble(electricity.getText()),Double.parseDouble(deodorizerSystem.getText()));
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");
