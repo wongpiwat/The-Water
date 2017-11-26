@@ -5,13 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CreateStandardController {
     private Account account;
@@ -19,32 +22,26 @@ public class CreateStandardController {
     @FXML private TextField pHTextField,bodTextField,sulfideTextField,settleableSolidsTextField,totalDissolvedSolidTextField,suspendedSoildsTextField,fatOilGreaseTextField,totalKjeldahlNitrogenTextField;
 
     public void saveStandard(ActionEvent event) throws IOException {
-        if (standard == null) {
-            if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
-                StandardDB.saveStandard(Double.parseDouble(pHTextField.getText()),Double.parseDouble(bodTextField.getText()),Double.parseDouble(sulfideTextField.getText()),Double.parseDouble(settleableSolidsTextField.getText()),Double.parseDouble(totalDissolvedSolidTextField.getText()),Double.parseDouble(suspendedSoildsTextField.getText()),Double.parseDouble(fatOilGreaseTextField.getText()),Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
-                pHTextField.setText("");
-                bodTextField.setText("");
-                sulfideTextField.setText("");
-                settleableSolidsTextField.setText("");
-                totalDissolvedSolidTextField.setText("");
-                suspendedSoildsTextField.setText("");
-                fatOilGreaseTextField.setText("");
-                totalKjeldahlNitrogenTextField.setText("");
-                backToStandard(event);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
+        Optional optional = alert.showAndWait();
+        if (optional.get() == ButtonType.OK) {
+                if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+                    informationAlert.setTitle("Information Dialog");
+                    informationAlert.setHeaderText("Look, an Information Dialog");
+                    informationAlert.setContentText("I have a great message for you!");
+                    informationAlert.showAndWait();
+                    StandardDB.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
+                    backToStandard(event);
+                } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");
+                    errorAlert.setTitle("Error Dialog");
+                    errorAlert.setHeaderText("Look, an Error Dialog");
+                    errorAlert.showAndWait();
+                }
             }
-        } else {
-            standard.setpH(Double.parseDouble(pHTextField.getText()));
-            standard.setBod(Double.parseDouble(bodTextField.getText()));
-            standard.setSulfide(Double.parseDouble(sulfideTextField.getText()));
-            standard.setSettleableSolids(Double.parseDouble(settleableSolidsTextField.getText()));
-            standard.setTotalDissolvedSolid(Double.parseDouble(totalDissolvedSolidTextField.getText()));
-            standard.setSuspendedSoilds(Double.parseDouble(suspendedSoildsTextField.getText()));
-            standard.setFatOilGrease(Double.parseDouble(fatOilGreaseTextField.getText()));
-            standard.setTotalKjeldahlNitrogen(Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
-            StandardDB.saveStandard(standard.getpH(),standard.getBod(),standard.getSulfide(),standard.getSettleableSolids(),standard.getTotalDissolvedSolid(),standard.getSuspendedSoilds(),standard.getFatOilGrease(),standard.getTotalKjeldahlNitrogen());
-            backToStandard(event);
         }
-    }
+
 
     public void cancelToStandard(ActionEvent event) throws IOException {
         this.backToStandard(event);

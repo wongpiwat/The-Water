@@ -5,13 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class StandardController {
     private Account account;
@@ -50,17 +53,26 @@ public class StandardController {
     }
 
     public void deleteStandard() {
-        StandardDB.deleteStandard();
-        pH.setText("");
-        bod.setText("");
-        sulfide.setText("");
-        settleableSolids.setText("");
-        totalDissolvedSolid.setText("");
-        suspendedSoilds.setText("");
-        fatOilGrease.setText("");
-        totalKjeldahlNitrogen.setText("");
-        deleteButton.setDisable(true);
-        createButton.setDisable(false);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete ?", ButtonType.OK, ButtonType.CANCEL);
+        Optional optional = alert.showAndWait();
+        if (optional.get() == ButtonType.OK) {
+            Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+            informationAlert.setTitle("Information Dialog");
+            informationAlert.setHeaderText("Look, an Information Dialog");
+            informationAlert.setContentText("I have a great message for you!");
+            informationAlert.showAndWait();
+            StandardDB.deleteStandard();
+            pH.setText("");
+            bod.setText("");
+            sulfide.setText("");
+            settleableSolids.setText("");
+            totalDissolvedSolid.setText("");
+            suspendedSoilds.setText("");
+            fatOilGrease.setText("");
+            totalKjeldahlNitrogen.setText("");
+            deleteButton.setDisable(true);
+            createButton.setDisable(false);
+        }
     }
 
     public void backOnAction(ActionEvent event) throws IOException {

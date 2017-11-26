@@ -23,6 +23,11 @@ public class CreateAccountController {
             ConfirmationAlert.setHeaderText("..");
             Optional optional = ConfirmationAlert.showAndWait();
             if (optional.get() == ButtonType.OK) {
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+                informationAlert.setTitle("Information Dialog");
+                informationAlert.setHeaderText("Look, an Information Dialog");
+                informationAlert.setContentText("I have a great message for you!");
+                informationAlert.showAndWait();
                 AccountsDB.saveAccount(AccountsDB.getAccountID(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 this.department.setText("");
                 this.firstName.setText("");

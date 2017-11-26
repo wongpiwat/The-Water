@@ -8,8 +8,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -70,12 +68,9 @@ public class ReportController {
                             System.out.println(preTreatments.get(index).getDate());
                         }
                     }
-
                 }
-
             }
         });
-
     }
 
     public void backOnAction(ActionEvent event) throws IOException {
