@@ -79,7 +79,7 @@ public class LoginController {
     }
 
     private void loginToHome(Stage stage,Account account) throws IOException {
-        FXMLLoader loader = new FXMLLoader( getClass().getResource("/home.fxml" ));
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
         HomeController homeController = loader.getController();
         homeController.setUser(account);

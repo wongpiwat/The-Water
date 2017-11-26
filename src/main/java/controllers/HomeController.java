@@ -32,7 +32,7 @@ public class HomeController {
     public void standardOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StandardView.fxml"));
         stage.setScene(new Scene(loader.load()));
         StandardController standardController = loader.getController();
         standardController.setUser(account);
@@ -42,7 +42,7 @@ public class HomeController {
     public void treatmentOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/treatment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         TreatmentController treatmentController = loader.getController();
         treatmentController.setUser(account);
@@ -52,7 +52,7 @@ public class HomeController {
     public void accountsOnClick(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccountsView.fxml"));
         stage.setScene(new Scene(loader.load()));
         AccountsController accountsController = loader.getController();
         accountsController.setUser(account);
@@ -62,7 +62,7 @@ public class HomeController {
     public void reportOnClick(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/report.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReportView.fxml"));
         stage.setScene(new Scene(loader.load()));
         ReportController reportController = loader.getController();
         reportController.setUser(account);
@@ -72,7 +72,7 @@ public class HomeController {
     public void aboutOnClick(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/about.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AboutView.fxml"));
         stage.setScene(new Scene(loader.load()));
         AboutController aboutController = loader.getController();
         aboutController.setUser(account);
@@ -82,7 +82,7 @@ public class HomeController {
     public void logoutOnClick(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }

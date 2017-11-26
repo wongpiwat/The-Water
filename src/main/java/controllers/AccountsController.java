@@ -39,7 +39,7 @@ public class AccountsController {
     public void createAccount(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts-create.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccountView.fxml"));
         stage.setScene(new Scene(loader.load()));
         CreateAccountController createAccountController = loader.getController();
         createAccountController.setUser(account);
@@ -115,7 +115,7 @@ public class AccountsController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
         HomeController homeController = loader.getController();
         homeController.setUser(account);
@@ -124,7 +124,7 @@ public class AccountsController {
 
     public void backToLoginOnAction() throws IOException {
         Stage stage = (Stage) accountsTableView.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }

@@ -44,7 +44,7 @@ public class StandardController {
     public void createStandard(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard-create.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateStandardView.fxml"));
         stage.setScene(new Scene(loader.load()));
         CreateStandardController createStandardController = loader.getController();
         createStandardController.setStandard(standard);
@@ -78,7 +78,7 @@ public class StandardController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
         HomeController homeController = loader.getController();
         homeController.setUser(account);

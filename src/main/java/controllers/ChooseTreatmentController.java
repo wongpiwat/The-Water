@@ -15,7 +15,7 @@ public class ChooseTreatmentController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/treatment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         TreatmentController treatmentController = loader.getController();
         treatmentController.setUser(account);
@@ -25,7 +25,7 @@ public class ChooseTreatmentController {
     public void preTreatmentOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pre-treatment-create.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreatePreTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         CreatePreTreatmentController createPreTreatmentController = loader.getController();
         createPreTreatmentController.setUser(account);
@@ -35,7 +35,7 @@ public class ChooseTreatmentController {
     public void postTreatmentOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/post-treatment-create.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreatePostTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         CreatePostTreatmentController createPostTreatmentController = loader.getController();
         createPostTreatmentController.setUser(account);

@@ -53,7 +53,7 @@ public class CreateAccountController {
     public void backToAccounts(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/accounts.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccountsView.fxml"));
         stage.setScene(new Scene(loader.load(), 1080,600));
         AccountsController accountsController = loader.getController();
         accountsController.setUser(account);

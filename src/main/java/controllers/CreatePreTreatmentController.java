@@ -49,7 +49,7 @@ public class CreatePreTreatmentController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button cancelToMenu = (Button) event.getSource();
         Stage stage = (Stage) cancelToMenu.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/choose-treatment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         ChooseTreatmentController chooseTreatmentController = loader.getController();
         chooseTreatmentController.setUser(account);
@@ -59,7 +59,7 @@ public class CreatePreTreatmentController {
     public void backToTreatmentOnAction(ActionEvent event) throws IOException {
         Button cancelToMenu = (Button) event.getSource();
         Stage stage = (Stage) cancelToMenu.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/treatment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         TreatmentController treatmentController = loader.getController();
         treatmentController.setUser(account);

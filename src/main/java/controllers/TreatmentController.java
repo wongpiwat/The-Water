@@ -11,7 +11,6 @@ import models.Treatment;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -72,7 +71,7 @@ public class TreatmentController {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = null;
-        loader = new FXMLLoader(getClass().getResource("/choose-treatment.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/ChooseTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         ChooseTreatmentController chooseTreatmentController = loader.getController();
         chooseTreatmentController.setUser(account);
@@ -108,7 +107,7 @@ public class TreatmentController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
         HomeController homeController = loader.getController();
         homeController.setUser(account);

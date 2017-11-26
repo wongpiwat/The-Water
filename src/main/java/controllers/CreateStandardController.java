@@ -50,7 +50,7 @@ public class CreateStandardController {
     public void backToStandard(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StandardView.fxml"));
         stage.setScene(new Scene(loader.load(), 1080,600));
         StandardController standardController = loader.getController();
         standardController.setUser(account);
