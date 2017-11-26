@@ -1,7 +1,6 @@
 package controllers;
 
-import Utilities.DateUtilities;
-import databases.PostTreatmentDatabase;
+import utilities.DateUtilities;
 import databases.PreTreatmentDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

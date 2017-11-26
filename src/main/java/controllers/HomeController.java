@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HomeController {
     private Account account;
     @FXML private Label firstNameLabel, lastNameLabel;
-    @FXML private Button treatmentButton,reportButton;
+    @FXML private Button treatmentButton,reportButton,accountsButton,standardButton;
 
     public void initialize() {
         Standard standard = StandardDB.loadStandardToTable();
@@ -89,7 +89,14 @@ public class HomeController {
 
     public void setUser(Account account) {
         this.account = account;
-        firstNameLabel.setText(account.getFirstname());
-        lastNameLabel.setText(account.getLastname());
+        firstNameLabel.setText(account.getFirstName());
+        lastNameLabel.setText(account.getLastName());
+        if (account.getType().equals(" User ")) {
+            System.out.println(account.getType());
+            accountsButton.setDisable(true);
+        } else if (account.getType().equals(" Administrator ")) {
+            treatmentButton.setDisable(true);
+            standardButton.setDisable(true);
+        }
     }
 }

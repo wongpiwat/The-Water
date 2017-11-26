@@ -25,7 +25,7 @@ public class LoginController {
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
 
-    public void initialize(){
+    public void initialize() {
         accounts = accountsDB.loadAccountsToTable();
 
         userName.setOnKeyPressed(new EventHandler<KeyEvent>() {

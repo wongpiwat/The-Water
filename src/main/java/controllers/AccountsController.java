@@ -81,7 +81,7 @@ public class AccountsController {
             Optional<Pair<String, String>> result = dialog.showAndWait();
             result.ifPresent(usernamePassword -> {
                 if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(usernamePassword.getKey()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(usernamePassword.getValue())) {
-                    Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete " + accountsTableView.getSelectionModel().getSelectedItem().getFirstname() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastname() + " ?", ButtonType.OK, ButtonType.CANCEL);
+                    Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " ?", ButtonType.OK, ButtonType.CANCEL);
                     ConfirmationAlert.setTitle("..");
                     ConfirmationAlert.setHeaderText("..");
                     Optional optional = ConfirmationAlert.showAndWait();

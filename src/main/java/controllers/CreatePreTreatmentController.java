@@ -1,6 +1,6 @@
 package controllers;
 
-import Utilities.DateUtilities;
+import utilities.DateUtilities;
 import databases.PreTreatmentDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

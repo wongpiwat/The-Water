@@ -20,13 +20,14 @@ public class AccountsDB {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                    int id = resultSet.getInt(1);
-                    String department = resultSet.getString(2);
-                    String firstName = resultSet.getString(3);
-                    String lastName = resultSet.getString(4);
-                    String username = resultSet.getString(5);
-                    String password = resultSet.getString(6);
-                    accounts.add(new Account(id, department, firstName, lastName, username, password));
+                    int id = resultSet.getInt("ID");
+                    String type = resultSet.getString("Type");
+                    String department = resultSet.getString("Department");
+                    String firstName = resultSet.getString("FirstName");
+                    String lastName = resultSet.getString("LastName");
+                    String username = resultSet.getString("Username");
+                    String password = resultSet.getString("Password");
+                    accounts.add(new Account(id,type, department, firstName, lastName, username, password));
                 }
                 connection.close();
             }
@@ -38,12 +39,12 @@ public class AccountsDB {
         return accounts;
     }
 
-    public static void saveAccount(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void saveAccount(int id, String type, String department, String firstname, String lastname, String username, String password) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (ID, Department, FirstName, LastName, Username, Password) values (\'" + id + "\', \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
+                String query = "insert into Accounts (ID, Type, Department, FirstName, LastName, Username, Password) values (\'" + id + "\', \' " +  type + " \' , \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

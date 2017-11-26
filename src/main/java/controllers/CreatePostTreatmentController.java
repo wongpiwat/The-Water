@@ -1,6 +1,6 @@
 package controllers;
 
-import Utilities.DateUtilities;
+import utilities.DateUtilities;
 import databases.PostTreatmentDatabase;
 import models.Account;
 import javafx.event.ActionEvent;
