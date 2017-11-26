@@ -1,6 +1,6 @@
 package models;
 
-public class Accounts {
+public class Account {
     private int id = 0;
     private String department = "";
     private String firstname = "";
@@ -8,7 +8,7 @@ public class Accounts {
     private String username = "";
     private String password = "";
 
-    public Accounts(int id, String department, String firstname, String lastname, String username, String password) {
+    public Account(int id, String department, String firstname, String lastname, String username, String password) {
         this.id = id;
         this.department = department;
         this.firstname = firstname;

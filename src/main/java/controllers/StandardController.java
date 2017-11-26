@@ -8,19 +8,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.Account;
 import models.Standard;
 
 import java.io.IOException;
 
 public class StandardController {
-    @FXML private Label pH,bod,sulfide,settleableSolids,totalDissolvedSolid,suspendedSoilds,fatOilGrease,totalKjeldahlNitrogen;
-    @FXML private Button deleteButton;
+    private Account account;
     private Standard standard;
+    @FXML private Label pH,bod,sulfide,settleableSolids,totalDissolvedSolid,suspendedSoilds,fatOilGrease,totalKjeldahlNitrogen;
+    @FXML private Button deleteButton,createButton;
 
     public void initialize() {
         standard = StandardDB.loadStandard();
         if (standard != null) {
             deleteButton.setDisable(false);
+            createButton.setDisable(true);
             pH.setText(standard.getpH()+"");
             bod.setText(standard.getBod()+"");
             sulfide.setText(standard.getSulfide()+"");
@@ -31,26 +34,18 @@ public class StandardController {
             totalKjeldahlNitrogen.setText(standard.getTotalKjeldahlNitrogen()+"");
         } else {
             deleteButton.setDisable(true);
+            createButton.setDisable(false);
         }
-
     }
 
-    public void backOnAction(ActionEvent event) throws IOException {
+    public void createStandard(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard-create.fxml"));
         stage.setScene(new Scene(loader.load()));
-        stage.show();
-    }
-
-    public void editStandard(ActionEvent event) throws IOException {
-        Button button = (Button) event.getSource();
-        Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard-add.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        AddStandardController addStandardController = loader.getController();
-        addStandardController.setTitleLabel("Edit");
-        addStandardController.setStandard(standard);
+        CreateStandardController createStandardController = loader.getController();
+        createStandardController.setStandard(standard);
+        createStandardController.setUser(account);
         stage.show();
     }
 
@@ -65,6 +60,21 @@ public class StandardController {
         fatOilGrease.setText("");
         totalKjeldahlNitrogen.setText("");
         deleteButton.setDisable(true);
+        createButton.setDisable(false);
+    }
+
+    public void backOnAction(ActionEvent event) throws IOException {
+        Button button = (Button) event.getSource();
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/home.fxml"));
+        stage.setScene(new Scene(loader.load()));
+        HomeController homeController = loader.getController();
+        homeController.setUser(account);
+        stage.show();
+    }
+
+    public void setUser(Account account) {
+        this.account = account;
     }
 }
 

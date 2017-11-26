@@ -2,48 +2,49 @@ package databases;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import models.Account;
+import models.Treatment;
 
 import java.sql.*;
 
-public class AccountsDB {
+public class PreTreatmentDatabase {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadAccounts() {
-        ObservableList<Account> accounts = FXCollections.observableArrayList();
+    public static ObservableList loadItems() {
+        ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "select * from Accounts";
-                Statement statement = connection.createStatement();
+            Connection conn = DriverManager.getConnection(dbURL);
+            if (conn != null) {
+                String query = "select * from PreTreatment";
+                Statement statement = conn.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                    int id = resultSet.getInt(1);
-                    String department = resultSet.getString(2);
-                    String firstName = resultSet.getString(3);
-                    String lastName = resultSet.getString(4);
-                    String username = resultSet.getString(5);
-                    String password = resultSet.getString(6);
-                    accounts.add(new Account(id, department, firstName, lastName, username, password));
+                    int id = resultSet.getInt("ID");
+                    String date = resultSet.getString("Date");
+                    double volumeWater = resultSet.getDouble("VolumeWater");
+                    double temperature = resultSet.getDouble("Temperature");
+                    double pH = resultSet.getDouble("pH");
+                    double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
+                    double mlss = resultSet.getDouble("MLSS");
+                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,mlss));
                 }
-                connection.close();
+                conn.close();
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return accounts;
+        return treatments;
     }
 
-    public static void saveAccount(int id, String department, String firstname, String lastname, String username, String password) {
+    public static void saveItem(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double mlss) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (ID, Department, FirstName, LastName, Username, Password) values (\'" + id + "\', \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
+                String query = "insert into PreTreatment (Date, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -55,12 +56,13 @@ public class AccountsDB {
         }
     }
 
-    public static void deleteAccount(int id) {
+    public static void deleteItem(int id) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Accounts where ID == \'" + id + "\'";
+                String query = "Delete from PreTreatment where ID == \'" + id + "\'";
+                System.out.println(query);
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -72,24 +74,24 @@ public class AccountsDB {
         }
     }
 
-    public static int getAccountID() {
+    public static int getCreateID() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Select max(id) from Accounts";
+                String query = "Select max(seq) from sqlite_sequence";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int minID = resultSet.getInt(1);
                 connection.close();
                 return minID + 1;
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return 1;
     }
-
 }
+

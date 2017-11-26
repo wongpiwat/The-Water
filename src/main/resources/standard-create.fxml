@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddStandardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateStandardController">
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="230.0" layoutY="54.0" stroke="BLACK" strokeType="INSIDE" width="620.0" />
-    <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Edit"><font><Font size="40.0" /></font></Label>
+    <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Create"><font><Font size="40.0" /></font></Label>
     <Label layoutX="252.0" layoutY="64.0" prefHeight="50.0" prefWidth="241.0" text="pH (range 0-14)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="252.0" layoutY="111.0" prefHeight="50.0" prefWidth="193.0" text="BOD (kg/m3)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="252.0" layoutY="303.0" prefHeight="50.0" prefWidth="394.0" text="Suspended Soilds  (kg/m3)"><font><Font size="30.0" /></font></Label>

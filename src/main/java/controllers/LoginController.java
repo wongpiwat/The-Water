@@ -14,20 +14,34 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import models.Accounts;
+import models.Account;
 
 import java.io.IOException;
 
 public class LoginController {
     private AccountsDB accountsDB = new AccountsDB();
-    private ObservableList<Accounts> accounts;
+    private ObservableList<Account> accounts;
     @FXML private Text warningText;
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
-    @FXML private Button loginBtn;
 
     public void initialize(){
         accounts = accountsDB.loadAccounts();
+
+        userName.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER){
+                    TextField userName  = (TextField) event.getSource();
+                    Stage stage = (Stage) userName.getScene().getWindow();
+                    try {
+                        checkUsernameAndPassword(stage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
         userPassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -52,10 +66,10 @@ public class LoginController {
 
     private void checkUsernameAndPassword(Stage stage) throws IOException {
         boolean loginSuccess = false;
-        for (Accounts i : accounts){
-            if (i.getUsername().equals(userName.getText()) && i.getPassword().equals(userPassword.getText())){
-                this.loginToHome(stage);
+        for (Account account : accounts){
+            if (account.getUsername().equals(userName.getText()) && account.getPassword().equals(userPassword.getText())){
                 loginSuccess = true;
+                this.loginToHome(stage,account);
                 break;
             }
         }
@@ -64,9 +78,11 @@ public class LoginController {
         }
     }
 
-    private void loginToHome(Stage stage) throws IOException {
+    private void loginToHome(Stage stage,Account account) throws IOException {
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/home.fxml" ));
         stage.setScene(new Scene(loader.load()));
+        HomeController homeController = loader.getController();
+        homeController.setUser(account);
         stage.show();
         warningText.setText("");
     }

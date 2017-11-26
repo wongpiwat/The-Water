@@ -6,19 +6,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Account;
 import models.Standard;
 
 import java.io.IOException;
 
-public class AddStandardController {
+public class CreateStandardController {
+    private Account account;
     private Standard standard;
-    @FXML private Label titleLabel;
     @FXML private TextField pHTextField,bodTextField,sulfideTextField,settleableSolidsTextField,totalDissolvedSolidTextField,suspendedSoildsTextField,fatOilGreaseTextField,totalKjeldahlNitrogenTextField;
 
-    public void saveStandard(ActionEvent event) {
+    public void saveStandard(ActionEvent event) throws IOException {
         if (standard == null) {
             if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
                 StandardDB.saveStandard(Double.parseDouble(pHTextField.getText()),Double.parseDouble(bodTextField.getText()),Double.parseDouble(sulfideTextField.getText()),Double.parseDouble(settleableSolidsTextField.getText()),Double.parseDouble(totalDissolvedSolidTextField.getText()),Double.parseDouble(suspendedSoildsTextField.getText()),Double.parseDouble(fatOilGreaseTextField.getText()),Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
@@ -46,27 +46,25 @@ public class AddStandardController {
         }
     }
 
-
-    public void cancelToStandard(ActionEvent event){
+    public void cancelToStandard(ActionEvent event) throws IOException {
         this.backToStandard(event);
     }
 
-    public void backToStandard(ActionEvent event){
+    public void backToStandard(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/standard.fxml"));
-        try{
-            stage.setScene(new Scene(loader.load(), 1080,600));
-            stage.show();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    public void setTitleLabel(String titleLabel) {
-        this.titleLabel.setText(titleLabel);
+        stage.setScene(new Scene(loader.load(), 1080,600));
+        StandardController standardController = loader.getController();
+        standardController.setUser(account);
+        stage.show();
     }
 
     public void setStandard(Standard standard) {
         this.standard = standard;
+    }
+
+    public void setUser(Account account) {
+        this.account = account;
     }
 }
