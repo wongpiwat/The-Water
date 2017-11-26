@@ -8,7 +8,7 @@ public class StandardDB {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static Standard loadStandard() {
+    public static Standard loadStandardToTable() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);

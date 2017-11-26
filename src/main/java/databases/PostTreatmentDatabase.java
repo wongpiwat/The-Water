@@ -10,14 +10,14 @@ public class PostTreatmentDatabase {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadItems() {
+    public static ObservableList loadPostTreatmentToTable() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
-            Connection conn = DriverManager.getConnection(dbURL);
-            if (conn != null) {
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
                 String query = "select * from PostTreatment";
-                Statement statement = conn.createStatement();
+                Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     int id = resultSet.getInt("ID");
@@ -32,7 +32,7 @@ public class PostTreatmentDatabase {
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
                     treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem));
                 }
-                conn.close();
+                connection.close();
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -76,24 +76,5 @@ public class PostTreatmentDatabase {
         }
     }
 
-    public static int getCreateID() {
-        try {
-            Class.forName(dbName);
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "Select max(seq) from sqlite_sequence";
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                int minID = resultSet.getInt(1);
-                connection.close();
-                return minID + 1;
-            }
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 1;
-    }
 }
 

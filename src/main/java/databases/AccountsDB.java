@@ -10,7 +10,7 @@ public class AccountsDB {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadAccounts() {
+    public static ObservableList loadAccountsToTable() {
         ObservableList<Account> accounts = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);

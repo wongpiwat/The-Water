@@ -19,7 +19,7 @@ public class HomeController {
     @FXML private Button treatmentButton,reportButton;
 
     public void initialize() {
-        Standard standard = StandardDB.loadStandard();
+        Standard standard = StandardDB.loadStandardToTable();
         if (standard == null) {
             treatmentButton.setDisable(true);
             reportButton.setDisable(true);

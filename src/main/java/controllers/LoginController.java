@@ -26,7 +26,7 @@ public class LoginController {
     @FXML private PasswordField userPassword;
 
     public void initialize(){
-        accounts = accountsDB.loadAccounts();
+        accounts = accountsDB.loadAccountsToTable();
 
         userName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

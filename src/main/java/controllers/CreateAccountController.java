@@ -15,7 +15,6 @@ import java.util.Optional;
 public class CreateAccountController {
     private Account account;
     @FXML private TextField department,firstName,lastName,userName,password;
-    @FXML private Label titleLabel;
 
     public void saveAccount(ActionEvent event) throws IOException {
         if (!department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty()) {
@@ -43,10 +42,6 @@ public class CreateAccountController {
         AccountsController accountsController = loader.getController();
         accountsController.setUser(account);
         stage.show();
-    }
-
-    public void setTitleLabel(String titleLabel) {
-        this.titleLabel.setText(titleLabel);
     }
 
     public void setUser(Account account) {

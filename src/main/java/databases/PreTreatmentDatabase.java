@@ -5,19 +5,21 @@ import javafx.collections.ObservableList;
 import models.Treatment;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PreTreatmentDatabase {
     public static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadItems() {
+    public static ObservableList loadPreTreatmentToTable() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
-            Connection conn = DriverManager.getConnection(dbURL);
-            if (conn != null) {
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
                 String query = "select * from PreTreatment";
-                Statement statement = conn.createStatement();
+                Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     int id = resultSet.getInt("ID");
@@ -29,7 +31,7 @@ public class PreTreatmentDatabase {
                     double mlss = resultSet.getDouble("MLSS");
                     treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,mlss));
                 }
-                conn.close();
+                connection.close();
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -74,24 +76,58 @@ public class PreTreatmentDatabase {
         }
     }
 
-    public static int getCreateID() {
+
+//    public static List getDateInData() {
+//        ArrayList<Date> dates = new ArrayList<>();
+//        try {
+//            Class.forName(dbName);
+//            Connection connection = DriverManager.getConnection(dbURL);
+//            if (connection != null) {
+//                String query = "Select Date from PreTreatment";
+//                System.out.println(query);
+//                Statement statement = connection.createStatement();
+//                ResultSet resultSet = statement.executeQuery(query);
+//                while (resultSet.next()) {
+//                    String getDate = resultSet.getString("Date");
+//                    dates.add(DateUtilities.getDateForm(getDate));
+//                }
+//                connection.close();
+//            }
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return dates;
+//    }
+
+    public static List getAllPreTreatment() {
+        List<Treatment> treatments = new ArrayList<>();
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Select max(seq) from sqlite_sequence";
+                String query = "select * from PreTreatment";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                int minID = resultSet.getInt(1);
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("ID");
+                    String date = resultSet.getString("Date");
+                    double volumeWater = resultSet.getDouble("VolumeWater");
+                    double temperature = resultSet.getDouble("Temperature");
+                    double pH = resultSet.getDouble("pH");
+                    double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
+                    double mlss = resultSet.getDouble("MLSS");
+                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,mlss));
+                }
                 connection.close();
-                return minID + 1;
             }
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return 1;
+        return treatments;
     }
 }
 

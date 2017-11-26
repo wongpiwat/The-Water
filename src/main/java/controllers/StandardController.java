@@ -20,7 +20,7 @@ public class StandardController {
     @FXML private Button deleteButton,createButton;
 
     public void initialize() {
-        standard = StandardDB.loadStandard();
+        standard = StandardDB.loadStandardToTable();
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);

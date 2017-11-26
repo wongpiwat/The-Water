@@ -17,31 +17,26 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
-public class TreatmentController implements Initializable {
+public class TreatmentController {
     private Account account;
-    static PreTreatmentDatabase PreTreatmentDatabase = new PreTreatmentDatabase();
-    static PostTreatmentDatabase postTreatmentDatabase = new PostTreatmentDatabase();
     @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
     @FXML private Button deleteButton;
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         tableView = preTreatmentTableView;
         tab = preTreatmentTab;
         deleteButton.setDisable(true);
-        preTreatmentTableView.setItems(PreTreatmentDatabase.loadItems());
+        preTreatmentTableView.setItems(PreTreatmentDatabase.loadPreTreatmentToTable());
         preTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
                 deleteButton.setDisable(false);
             }
         });
-        postTreatmentTableView.setItems(postTreatmentDatabase.loadItems());
+        postTreatmentTableView.setItems(PostTreatmentDatabase.loadPostTreatmentToTable());
         postTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
@@ -95,7 +90,7 @@ public class TreatmentController implements Initializable {
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
                 PreTreatmentDatabase.deleteItem(tableView.getSelectionModel().getSelectedItem().getId());
-                preTreatmentTableView.setItems(PreTreatmentDatabase.loadItems());
+                preTreatmentTableView.setItems(PreTreatmentDatabase.loadPreTreatmentToTable());
                 deleteButton.setDisable(true);
             } else if (optional.get() == ButtonType.OK && tab.getText().equals("Post Treatment")) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -104,7 +99,7 @@ public class TreatmentController implements Initializable {
                 informationAlert.setContentText("I have a great message for you!");
                 informationAlert.showAndWait();
                 PostTreatmentDatabase.deleteItem(tableView.getSelectionModel().getSelectedItem().getId());
-                postTreatmentTableView.setItems(postTreatmentDatabase.loadItems());
+                postTreatmentTableView.setItems(PostTreatmentDatabase.loadPostTreatmentToTable());
                 deleteButton.setDisable(true);
             }
         }

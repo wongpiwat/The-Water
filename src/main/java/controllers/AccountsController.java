@@ -27,7 +27,7 @@ public class AccountsController {
 
     public void initialize() {
         deleteButton.setDisable(true);
-        accountsTableView.setItems(accountsDB.loadAccounts());
+        accountsTableView.setItems(accountsDB.loadAccountsToTable());
         accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
@@ -99,7 +99,7 @@ public class AccountsController {
                             }
                         }
                         accountsDB.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
-                        accountsTableView.setItems(accountsDB.loadAccounts());
+                        accountsTableView.setItems(accountsDB.loadAccountsToTable());
                         deleteButton.setDisable(true);
                     }
                 } else {

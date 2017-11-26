@@ -21,7 +21,7 @@
          <content>
            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <TableView prefHeight="355.0" prefWidth="1070.0">
+                     <TableView fx:id="preReportTableView" prefHeight="355.0" prefWidth="1070.0">
                        <columns>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Week"><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
@@ -39,7 +39,7 @@
          <content>
            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="1070.0">
                   <children>
-                     <TableView prefHeight="355.0" prefWidth="1070.0">
+                     <TableView fx:id="postReportTableView" prefHeight="355.0" prefWidth="1070.0">
                        <columns>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Week"><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
