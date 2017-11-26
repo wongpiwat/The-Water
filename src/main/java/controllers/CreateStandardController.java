@@ -27,16 +27,16 @@ public class CreateStandardController {
         if (optional.get() == ButtonType.OK) {
                 if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
-                    informationAlert.setTitle("Information Dialog");
-                    informationAlert.setHeaderText("Look, an Information Dialog");
-                    informationAlert.setContentText("I have a great message for you!");
+                    informationAlert.setTitle("The Water");
+                    informationAlert.setHeaderText("Save");
+                    informationAlert.setContentText("Save Complete");
                     informationAlert.showAndWait();
                     StandardDBConnector.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
                     backToStandard(event);
                 } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");
-                    errorAlert.setTitle("Error Dialog");
-                    errorAlert.setHeaderText("Look, an Error Dialog");
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save because you fill in a form not complete.");
+                    errorAlert.setTitle("The Water");
+                    errorAlert.setHeaderText("Error");
                     errorAlert.showAndWait();
                 }
             }

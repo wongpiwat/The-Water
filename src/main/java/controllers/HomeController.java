@@ -91,9 +91,9 @@ public class HomeController {
         this.account = account;
         firstNameLabel.setText(account.getFirstName());
         lastNameLabel.setText(account.getLastName());
-        if (account.getType().equals("User")) {
+        if (account.getType().equals("Staff")) {
             accountsButton.setDisable(true);
-        } else if (account.getType().equals("Administrator")) {
+        } else if (account.getType().equals("Supervisor")) {
             treatmentButton.setDisable(true);
             standardButton.setDisable(true);
         }

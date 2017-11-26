@@ -57,9 +57,9 @@ public class StandardController {
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
             Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
-            informationAlert.setTitle("Information Dialog");
-            informationAlert.setHeaderText("Look, an Information Dialog");
-            informationAlert.setContentText("I have a great message for you!");
+            informationAlert.setTitle("The Water");
+            informationAlert.setHeaderText("Delete");
+            informationAlert.setContentText("Delete Complete");
             informationAlert.showAndWait();
             StandardDBConnector.deleteStandard();
             pH.setText("");
