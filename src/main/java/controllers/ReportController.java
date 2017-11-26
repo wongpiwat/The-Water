@@ -75,8 +75,8 @@ public class ReportController {
             @Override
             public void changed(ObservableValue monthObservable, Object monthOldValue, Object monthNewValue) {
                 //allTreatments.clear();
-                //preReport.clear();
-                //preReportTableView.getItems().clear();
+                preReport.clear();
+                preReportTableView.getItems().clear();
                 //preReportTableView.setItems(clearReport);
                 if (year != null && monthNewValue != null) {
                     month = monthNewValue.toString();

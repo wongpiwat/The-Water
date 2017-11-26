@@ -61,5 +61,4 @@
    <Label layoutX="273.0" layoutY="78.0" prefHeight="38.0" prefWidth="70.0" text="Year:"><font><Font size="25.0" /></font></Label>
    <Label layoutX="568.0" layoutY="82.0" prefHeight="30.0" prefWidth="89.0" text="Month:"><font><Font size="25.0" /></font></Label>
    <Label layoutX="400.0" layoutY="27.0" text="Water Treatment"><font><Font size="35.0" /></font></Label>
-   <Button fx:id="clearButton" layoutX="969.0" layoutY="57.0" mnemonicParsing="false" onAction="#clearOnAction" text="Button" />
 </Pane>
