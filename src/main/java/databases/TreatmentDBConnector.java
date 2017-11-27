@@ -172,5 +172,37 @@ public class TreatmentDBConnector {
         return treatments;
     }
 
+
+    public static List getAllPostTreatment() {
+        List<Treatment> treatments = new ArrayList<>();
+        try {
+            Class.forName(dbName);
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "select * from Treatment where type = 'post'";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("ID");
+                    String date = resultSet.getString("Date");
+                    double volumeWater = resultSet.getDouble("VolumeWater");
+                    double temperature = resultSet.getDouble("Temperature");
+                    double pH = resultSet.getDouble("pH");
+                    double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
+                    double volumeSediment = resultSet.getDouble("VolumeSediment");
+                    double mlss = resultSet.getDouble("MLSS");
+                    double electricity = resultSet.getDouble("Electricity");
+                    double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
+                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem));
+                }
+                connection.close();
+            }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return treatments;
+    }
 }
 
