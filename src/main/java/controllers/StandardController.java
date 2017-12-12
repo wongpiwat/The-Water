@@ -53,13 +53,14 @@ public class StandardController {
     }
 
     public void deleteStandard() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete ?", ButtonType.OK, ButtonType.CANCEL);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete standard?", ButtonType.OK, ButtonType.CANCEL);
+        alert.setTitle("The Water");
+        alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+            Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
             informationAlert.setTitle("The Water");
-            informationAlert.setHeaderText("Delete");
-            informationAlert.setContentText("Delete Complete");
+            informationAlert.setHeaderText("");
             informationAlert.showAndWait();
             StandardDBConnector.deleteStandard();
             pH.setText("");

@@ -6,7 +6,8 @@ public class Report {
     private int week;
     private double volumeWater;
     private double temperature;
-    private SimpleDoubleProperty pH = new SimpleDoubleProperty();    private double dissolvedOxygen;
+    private SimpleDoubleProperty pH = new SimpleDoubleProperty();
+    private double dissolvedOxygen;
     private double volumeSediment;
     private double mlss;
     private double electricity;
@@ -66,9 +67,7 @@ public class Report {
         return deodorizerSystem;
     }
 
-    public double getpH() {
-        return pH.get();
-    }
+    public double getpH() { return pH.get(); }
 
     public SimpleDoubleProperty pHProperty() {
         return pH;

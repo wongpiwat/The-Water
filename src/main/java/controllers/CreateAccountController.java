@@ -19,20 +19,19 @@ public class CreateAccountController {
     @FXML private ChoiceBox accountTypeChoiceBox;
 
     public void initialize() {
-        accountTypeChoiceBox.setItems(FXCollections.observableArrayList("Administrator",new Separator(), "User"));
+        accountTypeChoiceBox.setItems(FXCollections.observableArrayList("Staff",new Separator(), "Supervisor"));
     }
 
     public void saveAccount(ActionEvent event) throws IOException {
             Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to Create Account " + firstName.getText() + " " + lastName.getText() + " ?", ButtonType.OK, ButtonType.CANCEL);
-            ConfirmationAlert.setTitle("..");
-            ConfirmationAlert.setHeaderText("..");
+            ConfirmationAlert.setTitle("The Water");
+            ConfirmationAlert.setHeaderText("");
             Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
             if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && !department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty()) {
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
-                informationAlert.setTitle("Information Dialog");
-                informationAlert.setHeaderText("Look, an Information Dialog");
-                informationAlert.setContentText("I have a great message for you!");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Created");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
                 AccountsDBConnector.saveAccount(AccountsDBConnector.getAccountID(), accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 this.department.setText("");
@@ -42,9 +41,9 @@ public class CreateAccountController {
                 this.password.setText("");
                 this.backToAccounts(event);
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");
-                errorAlert.setTitle("Error Dialog");
-                errorAlert.setHeaderText("Look, an Error Dialog");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save. Please fill out these fields and click save changes.");
+                errorAlert.setTitle("The Water");
+                errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
             }
         }

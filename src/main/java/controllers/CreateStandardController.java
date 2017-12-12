@@ -23,20 +23,20 @@ public class CreateStandardController {
 
     public void saveStandard(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
+        alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
                 if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                     informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("Save");
-                    informationAlert.setContentText("Save Complete");
+                    informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
                     StandardDBConnector.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
                     backToStandard(event);
                 } else {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save because you fill in a form not complete.");
                     errorAlert.setTitle("The Water");
-                    errorAlert.setHeaderText("Error");
+                    errorAlert.setHeaderText("");
                     errorAlert.showAndWait();
                 }
             }

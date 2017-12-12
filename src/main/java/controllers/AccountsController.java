@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -49,8 +48,8 @@ public class AccountsController {
     public void deleteAccount() {
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
             Dialog<Pair<String, String>> dialog = new Dialog<>();
-            dialog.setTitle("Login");
-            dialog.setHeaderText("Login Dialog");
+            dialog.setTitle("The Water");
+            dialog.setHeaderText("Program needs your permission to continue");
             ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
             GridPane grid = new GridPane();
@@ -58,19 +57,12 @@ public class AccountsController {
             grid.setVgap(10);
             grid.setPadding(new Insets(20, 150, 10, 10));
             TextField username = new TextField();
-            username.setPromptText("Username");
             PasswordField password = new PasswordField();
-            password.setPromptText("Password");
             grid.add(new Label("Username:"), 0, 0);
             grid.add(username, 1, 0);
             grid.add(new Label("Password:"), 0, 1);
             grid.add(password, 1, 1);
-            Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-            loginButton.setDisable(true);
 
-            username.textProperty().addListener((usernameObservable, usernameOldValue, usernameNewValue) -> {
-                loginButton.setDisable(usernameNewValue.trim().isEmpty());
-            });
             dialog.getDialogPane().setContent(grid);
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == loginButtonType) {
@@ -80,16 +72,15 @@ public class AccountsController {
             });
             Optional<Pair<String, String>> result = dialog.showAndWait();
             result.ifPresent(usernamePassword -> {
-                if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(usernamePassword.getKey()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(usernamePassword.getValue())) {
-                    Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " ?", ButtonType.OK, ButtonType.CANCEL);
-                    ConfirmationAlert.setTitle("..");
-                    ConfirmationAlert.setHeaderText("..");
+                if (account.getUsername().equals(usernamePassword.getKey()) && account.getPassword().equals(usernamePassword.getValue())) {
+                    Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to permanently delete " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " ?", ButtonType.OK, ButtonType.CANCEL);
+                    ConfirmationAlert.setTitle("The Water");
+                    ConfirmationAlert.setHeaderText("");
                     Optional optional = ConfirmationAlert.showAndWait();
                     if (optional.get() == ButtonType.OK) {
-                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
-                        informationAlert.setTitle("Information Dialog");
-                        informationAlert.setHeaderText("Look, an Information Dialog");
-                        informationAlert.setContentText("I have a great message for you!");
+                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                        informationAlert.setTitle("The Water");
+                        informationAlert.setHeaderText("");
                         informationAlert.showAndWait();
                         if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(account.getUsername()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(account.getPassword())) {
                             try {
@@ -97,15 +88,16 @@ public class AccountsController {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                        } else {
+                            accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
+                            accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
+                            deleteButton.setDisable(true);
                         }
-                        accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getId());
-                        accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
-                        deleteButton.setDisable(true);
                     }
                 } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");
-                    errorAlert.setTitle("Error Dialog");
-                    errorAlert.setHeaderText("Look, an Error Dialog");
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");
+                    errorAlert.setTitle("The Water");
+                    errorAlert.setHeaderText("");
                     errorAlert.showAndWait();
                 }
             });
