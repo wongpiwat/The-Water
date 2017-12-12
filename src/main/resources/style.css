@@ -31,3 +31,11 @@
     -fx-font-weight:bold;
     -fx-font-size:18px;
  }
+
+.table-row-cell{
+    -fx-table-cell-border-color: #000000;
+}
+
+.column-header {
+    -fx-border-color: #000000;
+}

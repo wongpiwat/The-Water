@@ -41,7 +41,7 @@ public class CreateAccountController {
                 this.password.setText("");
                 this.backToAccounts(event);
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save. Please fill out these fields and click save changes.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create. Please fill out these fields and click save changes.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

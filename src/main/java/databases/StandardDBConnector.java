@@ -18,15 +18,11 @@ public class StandardDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                    double ph = resultSet.getDouble(1);
-                    double bod = resultSet.getDouble(2);
-                    double sulfide = resultSet.getDouble(3);
-                    double settleableSolids = resultSet.getDouble(4);
-                    double totalDissolvedSolid = resultSet.getDouble(5);
-                    double suspendedSoilds = resultSet.getDouble(6);
-                    double fatOilGrease = resultSet.getDouble(7);
-                    double totalKjeldahlNitrogen = resultSet.getDouble(8);
-                    standard = new Standard(ph, bod, sulfide, settleableSolids, totalDissolvedSolid, suspendedSoilds,fatOilGrease,totalKjeldahlNitrogen);
+                    double temperature = resultSet.getDouble("Temperature");
+                    int pH = resultSet.getInt("pH");
+                    double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
+                    double mlss = resultSet.getDouble("MLSS");
+                    standard = new Standard(temperature, pH, dissolvedOxygen, mlss);
                 }
                 connection.close();
                 return standard;
@@ -39,12 +35,12 @@ public class StandardDBConnector {
         return null;
     }
 
-    public static void saveStandard(double ph, double bod, double sulfide, double settleableSolids, double totalDissolvedSolid, double suspendedSoilds,double fatOilGrease,double totalKjeldahlNitrogen) {
+    public static void saveStandard(double temperature, int pH, double dissolvedOxygen, double mlss) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Standard (pH, BOD, sulfide, settleableSolids, totalDissolvedSolid, suspendedSoilds, fatOilGrease, totalKjeldahlNitrogen) values (\'" + ph + "\', \'" + bod + "\' , \'" + sulfide + "\' , \'" + settleableSolids + "\' , \'" + totalDissolvedSolid + "\' , \'" + suspendedSoilds + "\' , \'" + fatOilGrease + "\' , \'" + totalKjeldahlNitrogen + "\')";
+                String query = "insert into Standard (Temperature, pH, DissolvedOxygen, MLSS) values (\'" + temperature + "\', \'" + pH + "\' , \'" + dissolvedOxygen + "\' , \'" + mlss + "\')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

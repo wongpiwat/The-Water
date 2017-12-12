@@ -29,7 +29,6 @@ import java.util.List;
 
 public class ReportController {
     private Account account;
-    private List<Treatment> allTreatments = new ArrayList<>();
     private String year,month;
     @FXML private TableView preReportTableView,postReportTableView;
     @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
@@ -71,7 +70,8 @@ public class ReportController {
         ObservableList<Report> report = FXCollections.observableArrayList();
         ObservableList<String> months = FXCollections.observableArrayList();
         ObservableList<String> years = FXCollections.observableArrayList();
-        List<Treatment> oneWeekTreatments , twoWeekTreatments,threeWeekTreatments,fourWeekTreatments,fiveWeekTreatments;
+        List<Treatment> allTreatments, oneWeekTreatments , twoWeekTreatments,threeWeekTreatments,fourWeekTreatments,fiveWeekTreatments;
+        allTreatments = new ArrayList<>();
         oneWeekTreatments = new ArrayList<>();
         twoWeekTreatments = new ArrayList<>();
         threeWeekTreatments = new ArrayList<>();
@@ -104,7 +104,7 @@ public class ReportController {
         monthChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue monthObservable, Object monthOldValue, Object monthNewValue) {
-                //allTreatments.clear();
+                allTreatments.clear();
                 report.clear();
                 reportTableView.getItems().clear();
                 if (year != null && monthNewValue != null) {
@@ -127,23 +127,18 @@ public class ReportController {
                             allTreatments.add(treatments.get(index));
                         }
                     }
-                    report.add(new Report(1,CalculateUtilities.getAverageVolumeWater(oneWeekTreatments),CalculateUtilities.getAverageTemperature(oneWeekTreatments),CalculateUtilities.getAveragePH(oneWeekTreatments),CalculateUtilities.getAverageMLSS(oneWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(oneWeekTreatments)));
-                    report.add(new Report(2,CalculateUtilities.getAverageVolumeWater(twoWeekTreatments),CalculateUtilities.getAverageTemperature(twoWeekTreatments),CalculateUtilities.getAveragePH(twoWeekTreatments),CalculateUtilities.getAverageMLSS(twoWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(twoWeekTreatments)));
-                    report.add(new Report(3,CalculateUtilities.getAverageVolumeWater(threeWeekTreatments),CalculateUtilities.getAverageTemperature(threeWeekTreatments),CalculateUtilities.getAveragePH(threeWeekTreatments),CalculateUtilities.getAverageMLSS(threeWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(threeWeekTreatments)));
-                    report.add(new Report(4,CalculateUtilities.getAverageVolumeWater(fourWeekTreatments),CalculateUtilities.getAverageTemperature(fourWeekTreatments),CalculateUtilities.getAveragePH(fourWeekTreatments),CalculateUtilities.getAverageMLSS(fourWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fourWeekTreatments)));
-                    report.add(new Report(5,CalculateUtilities.getAverageVolumeWater(fiveWeekTreatments),CalculateUtilities.getAverageTemperature(fiveWeekTreatments),CalculateUtilities.getAveragePH(fiveWeekTreatments),CalculateUtilities.getAverageMLSS(fiveWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fiveWeekTreatments)));
+                    report.add(new Report("1",CalculateUtilities.getAverageVolumeWater(oneWeekTreatments),CalculateUtilities.getAverageTemperature(oneWeekTreatments),CalculateUtilities.getAveragePH(oneWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(oneWeekTreatments),CalculateUtilities.getAverageVolumeSediment(oneWeekTreatments),CalculateUtilities.getAverageMLSS(oneWeekTreatments),CalculateUtilities.getAverageElectricity(oneWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(oneWeekTreatments)));
+                    report.add(new Report("2",CalculateUtilities.getAverageVolumeWater(twoWeekTreatments),CalculateUtilities.getAverageTemperature(twoWeekTreatments),CalculateUtilities.getAveragePH(twoWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(twoWeekTreatments),CalculateUtilities.getAverageVolumeSediment(twoWeekTreatments),CalculateUtilities.getAverageMLSS(twoWeekTreatments),CalculateUtilities.getAverageElectricity(twoWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(twoWeekTreatments)));
+                    report.add(new Report("3",CalculateUtilities.getAverageVolumeWater(threeWeekTreatments),CalculateUtilities.getAverageTemperature(threeWeekTreatments),CalculateUtilities.getAveragePH(threeWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(threeWeekTreatments),CalculateUtilities.getAverageVolumeSediment(threeWeekTreatments),CalculateUtilities.getAverageMLSS(threeWeekTreatments),CalculateUtilities.getAverageElectricity(threeWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(threeWeekTreatments)));
+                    report.add(new Report("4",CalculateUtilities.getAverageVolumeWater(fourWeekTreatments),CalculateUtilities.getAverageTemperature(fourWeekTreatments),CalculateUtilities.getAveragePH(fourWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fourWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fourWeekTreatments),CalculateUtilities.getAverageMLSS(fourWeekTreatments),CalculateUtilities.getAverageElectricity(fourWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fourWeekTreatments)));
+                    report.add(new Report("5",CalculateUtilities.getAverageVolumeWater(fiveWeekTreatments),CalculateUtilities.getAverageTemperature(fiveWeekTreatments),CalculateUtilities.getAveragePH(fiveWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fiveWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fiveWeekTreatments),CalculateUtilities.getAverageMLSS(fiveWeekTreatments),CalculateUtilities.getAverageElectricity(fiveWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fiveWeekTreatments)));
+                    report.add(new Report("Total:",CalculateUtilities.getAverageVolumeWater(allTreatments),CalculateUtilities.getAverageTemperature(allTreatments),CalculateUtilities.getAveragePH(allTreatments),CalculateUtilities.getAverageDissolvedOxygen(allTreatments),CalculateUtilities.getAverageVolumeSediment(allTreatments),CalculateUtilities.getAverageMLSS(allTreatments),CalculateUtilities.getAverageElectricity(allTreatments),CalculateUtilities.getAverageDeodorizerSystem(allTreatments)));
                     reportTableView.setItems(report);
                     oneWeekTreatments.clear();
                     twoWeekTreatments.clear();
                     threeWeekTreatments.clear();
                     fourWeekTreatments.clear();
                     fiveWeekTreatments.clear();
-
-//                    CalculateUtilities.getAverageVolumeWater(allTreatments);
-//                    CalculateUtilities.getAverageTemperature(allTreatments);
-//                    CalculateUtilities.getAveragePH(allTreatments);
-//                    CalculateUtilities.getAverageMLSS(allTreatments);
-//                    CalculateUtilities.getAverageDissolvedOxygen(allTreatments);
                 }
             }
         });

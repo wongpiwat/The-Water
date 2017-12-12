@@ -19,19 +19,19 @@ import java.util.Optional;
 public class CreateStandardController {
     private Account account;
     private Standard standard;
-    @FXML private TextField pHTextField,bodTextField,sulfideTextField,settleableSolidsTextField,totalDissolvedSolidTextField,suspendedSoildsTextField,fatOilGreaseTextField,totalKjeldahlNitrogenTextField;
+    @FXML private TextField temperatureTextField,pHTextField,dissolvedOxygenTextField,mlssTextField;
 
     public void saveStandard(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-                if (!pHTextField.getText().equals("") && !bodTextField.getText().equals("") && !sulfideTextField.getText().equals("") && !settleableSolidsTextField.getText().equals("") && !totalDissolvedSolidTextField.getText().equals("") && !suspendedSoildsTextField.getText().equals("") && !fatOilGreaseTextField.getText().equals("") && !totalKjeldahlNitrogenTextField.getText().equals("")) {
+                if (!temperatureTextField.getText().equals("") && !pHTextField.getText().equals("") && !dissolvedOxygenTextField.getText().equals("") && !mlssTextField.getText().equals("")) {
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
-                    StandardDBConnector.saveStandard(Double.parseDouble(pHTextField.getText()), Double.parseDouble(bodTextField.getText()), Double.parseDouble(sulfideTextField.getText()), Double.parseDouble(settleableSolidsTextField.getText()), Double.parseDouble(totalDissolvedSolidTextField.getText()), Double.parseDouble(suspendedSoildsTextField.getText()), Double.parseDouble(fatOilGreaseTextField.getText()), Double.parseDouble(totalKjeldahlNitrogenTextField.getText()));
+                    StandardDBConnector.saveStandard(Double.parseDouble(temperatureTextField.getText()), Integer.parseInt(pHTextField.getText()), Double.parseDouble(dissolvedOxygenTextField.getText()), Double.parseDouble(mlssTextField.getText()));
                     backToStandard(event);
                 } else {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save because you fill in a form not complete.");

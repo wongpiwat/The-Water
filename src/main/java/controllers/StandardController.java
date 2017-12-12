@@ -19,7 +19,7 @@ import java.util.Optional;
 public class StandardController {
     private Account account;
     private Standard standard;
-    @FXML private Label pH,bod,sulfide,settleableSolids,totalDissolvedSolid,suspendedSoilds,fatOilGrease,totalKjeldahlNitrogen;
+    @FXML private Label temperature,pH,dissolvedOxygen,mlss;
     @FXML private Button deleteButton,createButton;
 
     public void initialize() {
@@ -27,14 +27,12 @@ public class StandardController {
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);
+
+            temperature.setText(standard.getTemperature()+"");
             pH.setText(standard.getpH()+"");
-            bod.setText(standard.getBod()+"");
-            sulfide.setText(standard.getSulfide()+"");
-            settleableSolids.setText(standard.getSettleableSolids()+"");
-            totalDissolvedSolid.setText(standard.getTotalDissolvedSolid()+"");
-            suspendedSoilds.setText(standard.getSuspendedSoilds()+"");
-            fatOilGrease.setText(standard.getFatOilGrease()+"");
-            totalKjeldahlNitrogen.setText(standard.getTotalKjeldahlNitrogen()+"");
+            dissolvedOxygen.setText(standard.getDissolvedOxygen()+"");
+            mlss.setText(standard.getMlss()+"");
+
         } else {
             deleteButton.setDisable(true);
             createButton.setDisable(false);
@@ -63,14 +61,12 @@ public class StandardController {
             informationAlert.setHeaderText("");
             informationAlert.showAndWait();
             StandardDBConnector.deleteStandard();
+
+            temperature.setText("");
             pH.setText("");
-            bod.setText("");
-            sulfide.setText("");
-            settleableSolids.setText("");
-            totalDissolvedSolid.setText("");
-            suspendedSoilds.setText("");
-            fatOilGrease.setText("");
-            totalKjeldahlNitrogen.setText("");
+            dissolvedOxygen.setText("");
+            mlss.setText("");
+
             deleteButton.setDisable(true);
             createButton.setDisable(false);
         }

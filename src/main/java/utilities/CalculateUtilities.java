@@ -2,11 +2,13 @@ package utilities;
 
 import models.Treatment;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CalculateUtilities {
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    public static double getAverageVolumeWater(List list) {
+    public static String getAverageVolumeWater(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getVolumeWater();
@@ -14,14 +16,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
+            return decimalFormat.format(sum/list.size());
         }
     }
 
-
-    public static double getAverageTemperature(List list) {
+    public static String getAverageTemperature(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getTemperature();
@@ -29,13 +30,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
+            return decimalFormat.format(sum/list.size());
         }
     }
 
-    public static double getAveragePH(List list) {
+    public static String getAveragePH(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getpH();
@@ -43,12 +44,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 
-    public static double getAverageDissolvedOxygen(List list) {
+    public static String getAverageDissolvedOxygen(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getDissolvedOxygen();
@@ -56,12 +58,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 
-    public static double getAverageVolumeSediment(List list) {
+    public static String getAverageVolumeSediment(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getVolumeSediment();
@@ -69,12 +72,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 
-    public static double getAverageMLSS(List list) {
+    public static String getAverageMLSS(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getMlss();
@@ -82,12 +86,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 
-    public static double getAverageElectricity(List list) {
+    public static String getAverageElectricity(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getElectricity();
@@ -95,12 +100,13 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 
-    public static double getAverageDeodorizerSystem(List list) {
+    public static String getAverageDeodorizerSystem(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
             sum += ((Treatment) list.get(i)).getDeodorizerSystem();
@@ -108,8 +114,9 @@ public class CalculateUtilities {
         double value = sum/list.size();
         String string = value+"";
         if (string.equals("NaN")) {
-            return 0;
+            return "0";
         } else {
-            return sum/list.size();
-        }    }
+            return decimalFormat.format(sum/list.size());
+        }
+    }
 }

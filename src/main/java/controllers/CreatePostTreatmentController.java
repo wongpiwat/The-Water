@@ -18,14 +18,14 @@ public class CreatePostTreatmentController {
     @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem;
 
     public void saveItem(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
-        Optional optional = alert.showAndWait();
+        Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
+        ConfirmationAlert.setHeaderText("");
+        Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
             if (!volumeWater.getText().isEmpty() && !temperature.getText().isEmpty() && !pH.getText().isEmpty() && !dissolvedOxygen.getText().isEmpty() && !volumeSediment.getText().isEmpty() && !mlss.getText().isEmpty() && !electricity.getText().isEmpty() && !deodorizerSystem.getText().isEmpty()) {
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
-                informationAlert.setTitle("Information Dialog");
-                informationAlert.setHeaderText("Look, an Information Dialog");
-                informationAlert.setContentText("I have a great message for you!");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
                 TreatmentDBConnector.savePostTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(volumeSediment.getText()),Double.parseDouble(mlss.getText()),Double.parseDouble(electricity.getText()),Double.parseDouble(deodorizerSystem.getText()));
                 volumeWater.setText("");
@@ -38,9 +38,9 @@ public class CreatePostTreatmentController {
                 deodorizerSystem.setText("");
                 backToTreatmentOnAction(event);
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Ooops, there was an error!");
-                errorAlert.setTitle("Error Dialog");
-                errorAlert.setHeaderText("Look, an Error Dialog");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save. Please fill out these fields and click save changes.");
+                errorAlert.setTitle("The Water");
+                errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
             }
         }
