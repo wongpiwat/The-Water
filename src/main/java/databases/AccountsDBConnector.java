@@ -7,7 +7,7 @@ import models.Account;
 import java.sql.*;
 
 public class AccountsDBConnector {
-    public static String dbURL = "jdbc:sqlite:Database.db";
+    private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
     public static ObservableList loadAccountsToTable() {

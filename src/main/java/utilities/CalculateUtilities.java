@@ -11,7 +11,7 @@ public class CalculateUtilities {
     public static String getAverageVolumeWater(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getVolumeWater();
+            sum += Double.parseDouble(((Treatment) list.get(i)).getVolumeWater());
         }
         double value = sum/list.size();
         String string = value+"";
@@ -25,7 +25,7 @@ public class CalculateUtilities {
     public static String getAverageTemperature(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getTemperature();
+            sum += Double.parseDouble(((Treatment) list.get(i)).getTemperature());
         }
         double value = sum/list.size();
         String string = value+"";
@@ -39,7 +39,7 @@ public class CalculateUtilities {
     public static String getAveragePH(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getpH();
+            sum += Double.parseDouble(((Treatment) list.get(i)).getpH());
         }
         double value = sum/list.size();
         String string = value+"";
@@ -53,7 +53,7 @@ public class CalculateUtilities {
     public static String getAverageDissolvedOxygen(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getDissolvedOxygen();
+            sum += Double.parseDouble(((Treatment) list.get(i)).getDissolvedOxygen());
         }
         double value = sum/list.size();
         String string = value+"";
@@ -67,7 +67,9 @@ public class CalculateUtilities {
     public static String getAverageVolumeSediment(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getVolumeSediment();
+            if ( ((Treatment) list.get(i)).getVolumeSediment() != null ) {
+                sum += Double.parseDouble(((Treatment) list.get(i)).getVolumeSediment());
+            }
         }
         double value = sum/list.size();
         String string = value+"";
@@ -81,7 +83,7 @@ public class CalculateUtilities {
     public static String getAverageMLSS(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getMlss();
+            sum += Double.parseDouble(((Treatment) list.get(i)).getMlss());
         }
         double value = sum/list.size();
         String string = value+"";
@@ -95,7 +97,9 @@ public class CalculateUtilities {
     public static String getAverageElectricity(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getElectricity();
+            if (((Treatment) list.get(i)).getElectricity() != null) {
+                sum += Double.parseDouble(((Treatment) list.get(i)).getElectricity());
+            }
         }
         double value = sum/list.size();
         String string = value+"";
@@ -109,7 +113,9 @@ public class CalculateUtilities {
     public static String getAverageDeodorizerSystem(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += ((Treatment) list.get(i)).getDeodorizerSystem();
+            if (((Treatment) list.get(i)).getDeodorizerSystem() != null) {
+                sum += Double.parseDouble(((Treatment) list.get(i)).getDeodorizerSystem());
+            }
         }
         double value = sum/list.size();
         String string = value+"";

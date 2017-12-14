@@ -2,11 +2,11 @@ package models;
 
 public class Standard {
     private double temperature;
-    private int pH;
+    private double pH;
     private double dissolvedOxygen;
     private double mlss;
 
-    public Standard(double temperature, int pH, double dissolvedOxygen, double mlss) {
+    public Standard(double temperature, double pH, double dissolvedOxygen, double mlss) {
         this.temperature = temperature;
         this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
@@ -17,7 +17,7 @@ public class Standard {
         return temperature;
     }
 
-    public int getpH() {
+    public double getpH() {
         return pH;
     }
 

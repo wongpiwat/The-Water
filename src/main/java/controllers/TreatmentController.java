@@ -34,7 +34,6 @@ public class TreatmentController {
                 }
             }
         });
-
         postTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event t) {

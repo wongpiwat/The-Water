@@ -1,35 +1,33 @@
 package models;
 
-import javafx.beans.property.SimpleDoubleProperty;
-
 public class Treatment {
     private int id;
     private String date;
-    private double volumeWater;
-    private double temperature;
-    private SimpleDoubleProperty pH = new SimpleDoubleProperty();
-    private double dissolvedOxygen;
-    private double volumeSediment;
-    private double mlss;
-    private double electricity;
-    private double deodorizerSystem;
+    private String volumeWater;
+    private String temperature;
+    private String pH;
+    private String dissolvedOxygen;
+    private String volumeSediment;
+    private String mlss;
+    private String electricity;
+    private String deodorizerSystem;
 
-    public Treatment(int id, String date, double volumeWater, double temperature, double pH, double dissolvedOxygen, double mlss) {
+    public Treatment(int id, String date, String volumeWater, String temperature, String pH, String dissolvedOxygen, String mlss) {
         this.id = id;
         this.date = date;
         this.volumeWater = volumeWater;
         this.temperature = temperature;
-        this.pH.set(pH);
+        this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
         this.mlss = mlss;
     }
 
-    public Treatment(int id, String date, double volumeWater, double temperature, double pH, double dissolvedOxygen, double volumeSediment, double mlss, double electricity, double deodorizerSystem) {
+    public Treatment(int id, String date, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem) {
         this.id = id;
         this.date = date;
         this.volumeWater = volumeWater;
         this.temperature = temperature;
-        this.pH.set(pH);
+        this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
         this.volumeSediment = volumeSediment;
         this.mlss = mlss;
@@ -49,39 +47,35 @@ public class Treatment {
         return date;
     }
 
-    public double getVolumeWater() {
+    public String getVolumeWater() {
         return volumeWater;
     }
 
-    public double getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public double getpH() {
-        return pH.get();
-    }
-
-    public SimpleDoubleProperty pHProperty() {
+    public String getpH() {
         return pH;
     }
 
-    public double getDissolvedOxygen() {
+    public String getDissolvedOxygen() {
         return dissolvedOxygen;
     }
 
-    public double getVolumeSediment() {
+    public String getVolumeSediment() {
         return volumeSediment;
     }
 
-    public double getMlss() {
+    public String getMlss() {
         return mlss;
     }
 
-    public double getElectricity() {
+    public String getElectricity() {
         return electricity;
     }
 
-    public double getDeodorizerSystem() {
+    public String getDeodorizerSystem() {
         return deodorizerSystem;
     }
 }

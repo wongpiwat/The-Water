@@ -5,13 +5,14 @@ import javafx.collections.ObservableList;
 import models.Treatment;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TreatmentDBConnector {
-    public static String dbURL = "jdbc:sqlite:Database.db";
+    private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
-
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
     public static ObservableList loadPostTreatmentToTable() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
@@ -32,7 +33,7 @@ public class TreatmentDBConnector {
                     double mlss = resultSet.getDouble("MLSS");
                     double electricity = resultSet.getDouble("Electricity");
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
-                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem)));
                 }
                 connection.close();
             }
@@ -51,7 +52,6 @@ public class TreatmentDBConnector {
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 String query = "select * from Treatment where type = 'pre'";
-                System.out.println(query);
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
@@ -62,7 +62,7 @@ public class TreatmentDBConnector {
                     double pH = resultSet.getDouble("pH");
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
-                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,mlss));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss)));
                 }
                 connection.close();
             }
@@ -160,7 +160,7 @@ public class TreatmentDBConnector {
                     double pH = resultSet.getDouble("pH");
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
-                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,mlss));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss)));
                 }
                 connection.close();
             }
@@ -193,7 +193,7 @@ public class TreatmentDBConnector {
                     double mlss = resultSet.getDouble("MLSS");
                     double electricity = resultSet.getDouble("Electricity");
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
-                    treatments.add(new Treatment(id, date, volumeWater, temperature, pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem)));
                 }
                 connection.close();
             }

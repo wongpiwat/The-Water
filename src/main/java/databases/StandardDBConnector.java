@@ -5,7 +5,7 @@ import models.Standard;
 import java.sql.*;
 
 public class StandardDBConnector {
-    public static String dbURL = "jdbc:sqlite:Database.db";
+    private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
     public static Standard loadStandardToTable() {
@@ -19,7 +19,7 @@ public class StandardDBConnector {
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
                     double temperature = resultSet.getDouble("Temperature");
-                    int pH = resultSet.getInt("pH");
+                    double pH = resultSet.getDouble("pH");
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
                     standard = new Standard(temperature, pH, dissolvedOxygen, mlss);

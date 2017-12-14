@@ -14,11 +14,13 @@ import models.Account;
 import models.Standard;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 public class StandardController {
     private Account account;
     private Standard standard;
+    private DecimalFormat decimalFormat = new DecimalFormat("#.##");
     @FXML private Label temperature,pH,dissolvedOxygen,mlss;
     @FXML private Button deleteButton,createButton;
 
@@ -27,12 +29,10 @@ public class StandardController {
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);
-
-            temperature.setText(standard.getTemperature()+"");
-            pH.setText(standard.getpH()+"");
-            dissolvedOxygen.setText(standard.getDissolvedOxygen()+"");
-            mlss.setText(standard.getMlss()+"");
-
+            temperature.setText(decimalFormat.format(standard.getTemperature()));
+            pH.setText(decimalFormat.format(standard.getpH()));
+            dissolvedOxygen.setText(decimalFormat.format(standard.getDissolvedOxygen()));
+            mlss.setText(decimalFormat.format(standard.getMlss()));
         } else {
             deleteButton.setDisable(true);
             createButton.setDisable(false);
@@ -61,12 +61,10 @@ public class StandardController {
             informationAlert.setHeaderText("");
             informationAlert.showAndWait();
             StandardDBConnector.deleteStandard();
-
             temperature.setText("");
             pH.setText("");
             dissolvedOxygen.setText("");
             mlss.setText("");
-
             deleteButton.setDisable(true);
             createButton.setDisable(false);
         }
