@@ -55,7 +55,7 @@ public class Treatment {
         return temperature;
     }
 
-    public String getpH() {
+    public String getPH() {
         return pH;
     }
 

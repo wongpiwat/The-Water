@@ -39,7 +39,7 @@ public class CalculateUtilities {
     public static String getAveragePH(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            sum += Double.parseDouble(((Treatment) list.get(i)).getpH());
+            sum += Double.parseDouble(((Treatment) list.get(i)).getPH());
         }
         double value = sum/list.size();
         String string = value+"";
