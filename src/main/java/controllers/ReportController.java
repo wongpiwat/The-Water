@@ -38,6 +38,8 @@ public class ReportController {
         List<Treatment> preTreatments = TreatmentDBConnector.getAllPreTreatment();
         List<Treatment> postTreatments = TreatmentDBConnector.getAllPostTreatment();
         setReport(preTreatments,preReportTableView);
+        preReportTableView.setMouseTransparent(true);
+        postReportTableView.setMouseTransparent(true);
         preTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {

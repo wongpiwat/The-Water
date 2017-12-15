@@ -15,41 +15,47 @@
     <Label layoutX="14.0" styleClass="homeTitle" text="Treatment"><font><Font size="40.0" /></font></Label>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
     <Button layoutX="888.0" layoutY="522.0" mnemonicParsing="false" onAction="#createItem" prefHeight="69.0" prefWidth="175.0" text="Create"><font><Font size="30.0" /></font></Button>
-    <TabPane layoutX="14.0" layoutY="59.0" prefHeight="448.0" prefWidth="1057.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane layoutX="5.0" layoutY="50.0" prefHeight="465.0" prefWidth="1070.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="preTreatmentTab" text="Pre Treatment">
                 <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="200.0" />
-                    <TableView fx:id="preTreatmentTableView" layoutX="5.0" layoutY="58.0" prefHeight="200.0" prefWidth="1070.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="200.0">
+                    <children>
+                    <TableView fx:id="preTreatmentTableView" prefHeight="430.0" prefWidth="1070.0">
                         <columns>
                             <TableColumn minWidth="0.0" prefWidth="40.0" resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="114.0" resizable="false" sortable="false" text="Volume of Water"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="119.0" resizable="false" sortable="false" text="Temperature (°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="59.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="122.0" resizable="false" sortable="false" text="Dissolved Oxygen"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="83.0" resizable="false" sortable="false" text="MLSS"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="60.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="85.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
+                    </children>
+                    </AnchorPane>
                 </content>
             </Tab>
             <Tab fx:id="postTreatmentTab" text="Post Treatment">
                 <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    <TableView fx:id="postTreatmentTableView" layoutX="5.0" layoutY="58.0" prefHeight="460.0" prefWidth="1070.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="200.0">
+                    <children>
+                    <TableView fx:id="postTreatmentTableView" prefHeight="430.0" prefWidth="1070.0">
                         <columns>
                             <TableColumn minWidth="0.0" prefWidth="40.0" resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="114.0" resizable="false" sortable="false" text="Volume of Water"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="119.0" resizable="false" sortable="false" text="Temperature (°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="59.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="122.0" resizable="false" sortable="false" text="Dissolved Oxygen"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="146.0" resizable="false" sortable="false" text="Volume of Sediment"><cellValueFactory><PropertyValueFactory property="volumeSediment" /></cellValueFactory></TableColumn>
-                            <TableColumn minWidth="0.0" prefWidth="83.0" resizable="false" sortable="false" text="MLSS"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="103.0" resizable="false" sortable="false" text="Electricity"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="131.0" resizable="false" sortable="false" text="Deodorizer System"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="60.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Sediment(kg)"><cellValueFactory><PropertyValueFactory property="volumeSediment" /></cellValueFactory></TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="85.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="110.0" resizable="false" sortable="false" text="Electricity(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="101.0" resizable="false" sortable="false" text="Deodorizer(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
+                    </children>
+                    </AnchorPane>
                 </content>
             </Tab>
         </tabs>

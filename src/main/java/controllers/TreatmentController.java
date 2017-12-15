@@ -70,4 +70,5 @@ public class TreatmentController {
     public void setUser(Account account) {
         this.account = account;
     }
+
 }

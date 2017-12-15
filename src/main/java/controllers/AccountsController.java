@@ -35,7 +35,7 @@ public class AccountsController {
         });
     }
 
-    public void createAccount(ActionEvent event) throws IOException {
+    public void createAccountOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccountView.fxml"));
@@ -45,7 +45,7 @@ public class AccountsController {
         stage.show();
     }
 
-    public void deleteAccount() {
+    public void deleteAccountOnAction() {
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
             Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("The Water");
@@ -62,7 +62,6 @@ public class AccountsController {
             grid.add(username, 1, 0);
             grid.add(new Label("Password:"), 0, 1);
             grid.add(password, 1, 1);
-
             dialog.getDialogPane().setContent(grid);
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == loginButtonType) {
