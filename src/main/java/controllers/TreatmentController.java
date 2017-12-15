@@ -111,6 +111,8 @@ public class TreatmentController {
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
                     TreatmentDBConnector.deleteAllTreatment();
+                    preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
+                    postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
                 }
             } else {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");
