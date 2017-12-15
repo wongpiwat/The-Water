@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TreatmentController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TreatmentController">
     <Label layoutX="14.0" styleClass="homeTitle" text="Treatment"><font><Font size="40.0" /></font></Label>
+    <Button layoutX="893.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="30.0" prefWidth="166.0" text="Delete All Treatment"><font><Font size="15.0" /></font></Button>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
     <Button layoutX="888.0" layoutY="522.0" mnemonicParsing="false" onAction="#createItem" prefHeight="69.0" prefWidth="175.0" text="Create"><font><Font size="30.0" /></font></Button>
     <TabPane layoutX="5.0" layoutY="50.0" prefHeight="465.0" prefWidth="1070.0" tabClosingPolicy="UNAVAILABLE">

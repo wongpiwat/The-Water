@@ -108,30 +108,12 @@ public class TreatmentDBConnector {
         }
     }
 
-    public static void deletePostTreatment(int id) {
+    public static void deleteAllTreatment() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Treatment where type == 'post' and ID == \'" + id + "\'";
-                PreparedStatement p = connection.prepareStatement(query);
-                p.executeUpdate();
-                connection.close();
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void deletePreTreatment(int id) {
-        try {
-            Class.forName(dbName);
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "Delete from Treatment where type == 'pre' and ID == \'" + id + "\'";
-                System.out.println(query);
+                String query = "Delete from Treatment";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -172,7 +154,6 @@ public class TreatmentDBConnector {
         return treatments;
     }
 
-
     public static List getAllPostTreatment() {
         List<Treatment> treatments = new ArrayList<>();
         try {
@@ -205,4 +186,3 @@ public class TreatmentDBConnector {
         return treatments;
     }
 }
-
