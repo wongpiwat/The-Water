@@ -12,35 +12,47 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
+import utilities.CheckInput;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CreateStandardController {
     private Account account;
     private Standard standard;
-    @FXML private TextField temperatureTextField,pHTextField,dissolvedOxygenTextField,mlssTextField;
+    @FXML private TextField temperature,pH,dissolvedOxygen,mlss;
 
     public void saveStandard(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-                if (!temperatureTextField.getText().equals("") && !pHTextField.getText().equals("") && !dissolvedOxygenTextField.getText().equals("") && !mlssTextField.getText().equals("")) {
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
-                    informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("");
-                    informationAlert.showAndWait();
-                    StandardDBConnector.saveStandard(Double.parseDouble(temperatureTextField.getText()), Integer.parseInt(pHTextField.getText()), Double.parseDouble(dissolvedOxygenTextField.getText()), Double.parseDouble(mlssTextField.getText()));
-                    backToStandard(event);
-                } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save because you fill in a form not complete.");
-                    errorAlert.setTitle("The Water");
-                    errorAlert.setHeaderText("");
-                    errorAlert.showAndWait();
-                }
+            boolean isTemperature = CheckInput.isAllNumber(temperature);
+            boolean isPH = CheckInput.isAllNumber(pH);
+            boolean isDissolvedOxygen = CheckInput.isAllNumber(dissolvedOxygen);
+            boolean isMLSS = CheckInput.isAllNumber(mlss);
+            List<Boolean> check = new ArrayList<>();
+            check.add(isTemperature);
+            check.add(isPH);
+            check.add(isDissolvedOxygen);
+            check.add(isMLSS);
+            if (!temperature.getText().equals("") && !pH.getText().equals("") && !dissolvedOxygen.getText().equals("") && !mlss.getText().equals("") && CheckInput.isAllCorrect(check)) {
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
+                StandardDBConnector.saveStandard(Double.parseDouble(temperature.getText()), Integer.parseInt(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()));
+                backToStandard(event);
+            } else {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save because you fill in a form not complete.");
+                errorAlert.setTitle("The Water");
+                errorAlert.setHeaderText("");
+                errorAlert.showAndWait();
             }
         }
+    }
 
 
     public void cancelToStandard(ActionEvent event) throws IOException {

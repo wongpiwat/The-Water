@@ -16,10 +16,10 @@
     <Label layoutX="193.0" layoutY="264.0" prefHeight="50.0" prefWidth="365.0" text="Dissolved Oxygen (mg/L)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="193.0" layoutY="334.0" prefHeight="50.0" prefWidth="210.0" text="MLSS  (mg/L)"><font><Font size="30.0" /></font></Label>
 
-    <TextField fx:id="temperatureTextField" layoutX="457.0" layoutY="127.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="pHTextField" layoutX="457.0" layoutY="197.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="dissolvedOxygenTextField" layoutX="560.0" layoutY="264.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="mlssTextField" layoutX="560.0" layoutY="337.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="temperature" layoutX="457.0" layoutY="127.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="pH" layoutX="457.0" layoutY="197.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="dissolvedOxygen" layoutX="560.0" layoutY="264.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="mlss" layoutX="560.0" layoutY="337.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
 
     <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveStandard" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelToStandard" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>

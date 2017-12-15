@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Account;
+import utilities.CheckInput;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CreateAccountController {
@@ -28,7 +31,14 @@ public class CreateAccountController {
             ConfirmationAlert.setHeaderText("");
             Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && !department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty()) {
+            boolean isDepartment = CheckInput.isAllCharacter(department);
+            boolean isFirstName = CheckInput.isAllCharacter(firstName);
+            boolean isLastName = CheckInput.isAllCharacter(lastName);
+            List<Boolean> check = new ArrayList<>();
+            check.add(isDepartment);
+            check.add(isFirstName);
+            check.add(isLastName);
+            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && !department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty() && CheckInput.isAllCorrect(check)) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Created");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");

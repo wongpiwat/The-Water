@@ -1,5 +1,6 @@
 package controllers;
 
+import utilities.CheckInput;
 import utilities.DateUtilities;
 import databases.TreatmentDBConnector;
 import models.Account;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CreatePostTreatmentController {
@@ -22,7 +25,24 @@ public class CreatePostTreatmentController {
         ConfirmationAlert.setHeaderText("");
         Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            if (!volumeWater.getText().isEmpty() && !temperature.getText().isEmpty() && !pH.getText().isEmpty() && !dissolvedOxygen.getText().isEmpty() && !volumeSediment.getText().isEmpty() && !mlss.getText().isEmpty() && !electricity.getText().isEmpty() && !deodorizerSystem.getText().isEmpty()) {
+            boolean isVolumeWater = CheckInput.isAllNumber(volumeWater);
+            boolean isTemperature = CheckInput.isAllNumber(temperature);
+            boolean isPH = CheckInput.isAllNumber(pH);
+            boolean isDissolvedOxygen = CheckInput.isAllNumber(dissolvedOxygen);
+            boolean isVolumeSediment = CheckInput.isAllNumber(volumeSediment);
+            boolean isMLSS = CheckInput.isAllNumber(mlss);
+            boolean isElectricity = CheckInput.isAllNumber(electricity);
+            boolean isDeodorizerSystem = CheckInput.isAllNumber(deodorizerSystem);
+            List<Boolean> check = new ArrayList<>();
+            check.add(isVolumeWater);
+            check.add(isTemperature);
+            check.add(isPH);
+            check.add(isDissolvedOxygen);
+            check.add(isVolumeSediment);
+            check.add(isMLSS);
+            check.add(isElectricity);
+            check.add(isDeodorizerSystem);
+            if (!volumeWater.getText().isEmpty() && !temperature.getText().isEmpty() && !pH.getText().isEmpty() && !dissolvedOxygen.getText().isEmpty() && !volumeSediment.getText().isEmpty() && !mlss.getText().isEmpty() && !electricity.getText().isEmpty() && !deodorizerSystem.getText().isEmpty() && CheckInput.isAllCorrect(check)) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
