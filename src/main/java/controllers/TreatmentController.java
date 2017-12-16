@@ -20,6 +20,7 @@ import java.util.Optional;
 
 public class TreatmentController {
     private Account account;
+    @FXML private Button deleteButton;
     @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
 
@@ -48,6 +49,32 @@ public class TreatmentController {
                 }
             }
         });
+    }
+
+    public void deleteItem() {
+        if (tableView.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete No." + tableView.getSelectionModel().getSelectedItem().getId() + " ?", ButtonType.OK, ButtonType.CANCEL);
+            alert.setTitle("The Water");
+            alert.setHeaderText("");
+            Optional optional = alert.showAndWait();
+            if (optional.get() == ButtonType.OK && tab.getText().equals("Pre Treatment")) {
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
+                TreatmentDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
+                deleteButton.setDisable(true);
+            } else if (optional.get() == ButtonType.OK && tab.getText().equals("Post Treatment")) {
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
+                TreatmentDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
+                deleteButton.setDisable(true);
+            }
+        }
     }
 
     public void createItem(ActionEvent event) throws IOException {
