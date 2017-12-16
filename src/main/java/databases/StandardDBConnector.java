@@ -35,7 +35,7 @@ public class StandardDBConnector {
         return null;
     }
 
-    public static void saveStandard(double temperature, int pH, double dissolvedOxygen, double mlss) {
+    public static void saveStandard(double temperature, double pH, double dissolvedOxygen, double mlss) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
