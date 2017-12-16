@@ -29,16 +29,17 @@ public class CreateStandardController {
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            boolean isTemperature = CheckInput.isAllNumber(temperature);
-            boolean isPH = CheckInput.isAllNumber(pH);
-            boolean isDissolvedOxygen = CheckInput.isAllNumber(dissolvedOxygen);
-            boolean isMLSS = CheckInput.isAllNumber(mlss);
-            List<Boolean> check = new ArrayList<>();
-            check.add(isTemperature);
-            check.add(isPH);
-            check.add(isDissolvedOxygen);
-            check.add(isMLSS);
-            if (!temperature.getText().equals("") && !pH.getText().equals("") && !dissolvedOxygen.getText().equals("") && !mlss.getText().equals("") && CheckInput.isAllCorrect(check)) {
+            List<Boolean> checkBoolean = new ArrayList<>();
+            checkBoolean.add(CheckInput.isAllNumber(temperature));
+            checkBoolean.add(CheckInput.isAllNumber(pH));
+            checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
+            checkBoolean.add(CheckInput.isAllNumber(mlss));
+            List<String> checkTextField = new ArrayList<>();
+            checkTextField.add(temperature.getText());
+            checkTextField.add(pH.getText());
+            checkTextField.add(dissolvedOxygen.getText());
+            checkTextField.add(mlss.getText());
+            if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");

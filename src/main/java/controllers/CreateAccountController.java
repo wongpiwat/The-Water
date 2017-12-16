@@ -31,14 +31,15 @@ public class CreateAccountController {
             ConfirmationAlert.setHeaderText("");
             Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            boolean isDepartment = CheckInput.isAllCharacter(department);
-            boolean isFirstName = CheckInput.isAllCharacter(firstName);
-            boolean isLastName = CheckInput.isAllCharacter(lastName);
-            List<Boolean> check = new ArrayList<>();
-            check.add(isDepartment);
-            check.add(isFirstName);
-            check.add(isLastName);
-            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && !department.getText().isEmpty() && !firstName.getText().isEmpty() && !lastName.getText().isEmpty() && !userName.getText().isEmpty() && !password.getText().isEmpty() && CheckInput.isAllCorrect(check)) {
+            List<Boolean> checkBoolean = new ArrayList<>();
+            checkBoolean.add(CheckInput.isAllCharacter(department));
+            checkBoolean.add(CheckInput.isAllCharacter(firstName));
+            checkBoolean.add(CheckInput.isAllCharacter(lastName));
+            List<String> checkTextField = new ArrayList<>();
+            checkTextField.add(department.getText());
+            checkTextField.add(firstName.getText());
+            checkTextField.add(lastName.getText());
+            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Created");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");

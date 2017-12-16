@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateStandardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateStandardController">
  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="300.0" layoutX="186.0" layoutY="108.0" stroke="BLACK" strokeType="INSIDE" width="703.0" />
     <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Create Standard"><font><Font size="40.0" /></font></Label>
 
@@ -16,10 +16,10 @@
     <Label layoutX="193.0" layoutY="264.0" prefHeight="50.0" prefWidth="365.0" text="Dissolved Oxygen (mg/L)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="193.0" layoutY="334.0" prefHeight="50.0" prefWidth="210.0" text="MLSS  (mg/L)"><font><Font size="30.0" /></font></Label>
 
-    <TextField fx:id="temperature" layoutX="457.0" layoutY="127.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="pH" layoutX="457.0" layoutY="197.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="dissolvedOxygen" layoutX="560.0" layoutY="264.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
-    <TextField fx:id="mlss" layoutX="560.0" layoutY="337.0" prefHeight="44.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="temperature" layoutX="457.0" layoutY="115.0" prefHeight="68.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="pH" layoutX="338.0" layoutY="185.0" prefHeight="68.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="dissolvedOxygen" layoutX="560.0" layoutY="255.0" prefHeight="68.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
+    <TextField fx:id="mlss" layoutX="403.0" layoutY="325.0" prefHeight="68.0" prefWidth="108.0"><font><Font size="20.0" /></font></TextField>
 
     <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveStandard" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#cancelToStandard" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>

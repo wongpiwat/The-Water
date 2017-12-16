@@ -38,9 +38,18 @@ public class CheckInput {
         return isCorrect;
     }
 
-    public static boolean isAllCorrect(List<Boolean> list) {
+    public static boolean isAllCorrectType(List<Boolean> list) {
         for (boolean i : list){
             if (!i){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isAllCorrectEmpty(List<String> list) {
+        for (String i : list) {
+            if (i.equals("") || i.equals(" ") || i.equals(".")) {
                 return false;
             }
         }

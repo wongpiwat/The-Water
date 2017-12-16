@@ -51,7 +51,7 @@ public class TreatmentController {
         });
     }
 
-    public void deleteItem() {
+    public void deleteOnAction() {
         if (tableView.getSelectionModel().getSelectedItem() != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete No." + tableView.getSelectionModel().getSelectedItem().getId() + " ?", ButtonType.OK, ButtonType.CANCEL);
             alert.setTitle("The Water");
@@ -80,8 +80,7 @@ public class TreatmentController {
     public void createItem(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = null;
-        loader = new FXMLLoader(getClass().getResource("/ChooseTreatmentView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
         ChooseTreatmentController chooseTreatmentController = loader.getController();
         chooseTreatmentController.setUser(account);
@@ -102,7 +101,7 @@ public class TreatmentController {
         this.account = account;
     }
 
-    public void deleteOnAction() {
+    public void deleteAllTreatmentOnAction() {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("The Water");
         dialog.setHeaderText("Program needs your permission to continue");
@@ -138,6 +137,7 @@ public class TreatmentController {
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
                     TreatmentDBConnector.deleteAllTreatment();
+                    TreatmentDBConnector.resetSequence();
                     preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
                     postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
                 }

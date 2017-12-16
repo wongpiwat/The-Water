@@ -24,24 +24,24 @@ public class CreatePreTreatmentController {
     @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,mlss;
 
     public void saveItem(ActionEvent event) throws IOException {
-
         Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         ConfirmationAlert.setTitle("The Water");
         ConfirmationAlert.setHeaderText("");
         Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            boolean isVolumeWater = CheckInput.isAllNumber(volumeWater);
-            boolean isTemperature = CheckInput.isAllNumber(temperature);
-            boolean isPH = CheckInput.isAllNumber(pH);
-            boolean isDissolvedOxygen = CheckInput.isAllNumber(dissolvedOxygen);
-            boolean isMLSS = CheckInput.isAllNumber(mlss);
-            List<Boolean> check = new ArrayList<>();
-            check.add(isVolumeWater);
-            check.add(isTemperature);
-            check.add(isPH);
-            check.add(isDissolvedOxygen);
-            check.add(isMLSS);
-            if (!volumeWater.getText().isEmpty() && !temperature.getText().isEmpty() && !pH.getText().isEmpty() && !dissolvedOxygen.getText().isEmpty() && !mlss.getText().isEmpty() && CheckInput.isAllCorrect(check)) {
+            List<Boolean> checkBoolean = new ArrayList<>();
+            checkBoolean.add(CheckInput.isAllNumber(volumeWater));
+            checkBoolean.add(CheckInput.isAllNumber(temperature));
+            checkBoolean.add(CheckInput.isAllNumber(pH));
+            checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
+            checkBoolean.add(CheckInput.isAllNumber(mlss));
+            List<String> checkTextField = new ArrayList<>();
+            checkTextField.add(volumeWater.getText());
+            checkTextField.add(temperature.getText());
+            checkTextField.add(pH.getText());
+            checkTextField.add(dissolvedOxygen.getText());
+            checkTextField.add(mlss.getText());
+            if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");

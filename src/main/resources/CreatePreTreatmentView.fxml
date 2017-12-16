@@ -9,11 +9,11 @@
 
 <Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreatePreTreatmentController">
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="289.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-    <TextField fx:id="volumeWater" layoutX="602.0" layoutY="68.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="temperature" layoutX="602.0" layoutY="154.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="pH" layoutX="602.0" layoutY="240.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="dissolvedOxygen" layoutX="602.0" layoutY="326.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="mlss" layoutX="602.0" layoutY="412.0" prefHeight="68.0" prefWidth="150.0">
+    <TextField fx:id="volumeWater" layoutX="557.0" layoutY="68.0" prefHeight="68.0" prefWidth="205.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="temperature" layoutX="566.0" layoutY="154.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="pH" layoutX="360.0" layoutY="240.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="dissolvedOxygen" layoutX="575.0" layoutY="326.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="mlss" layoutX="407.0" layoutY="412.0" prefHeight="68.0" prefWidth="150.0">
       <font>
          <Font size="30.0" />
       </font>
@@ -24,6 +24,6 @@
     <Label layoutX="304.0" layoutY="335.0" prefHeight="50.0" prefWidth="262.0" text="Dissolved Oxygen"><font><Font size="30.0" /></font></Label>
     <Label layoutX="304.0" layoutY="163.0" prefHeight="50.0" prefWidth="253.0" text="Temperature (°C)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="304.0" layoutY="77.0" prefHeight="50.0" prefWidth="253.0" text="Volume of Water"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="304.0" layoutY="249.0" prefHeight="50.0" prefWidth="262.0" text="pH"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="304.0" layoutY="421.0" prefHeight="50.0" prefWidth="253.0" text="MLSS"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="304.0" layoutY="249.0" prefHeight="50.0" prefWidth="52.0" text="pH"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="304.0" layoutY="421.0" prefHeight="50.0" prefWidth="97.0" text="MLSS"><font><Font size="30.0" /></font></Label>
 </Pane>
