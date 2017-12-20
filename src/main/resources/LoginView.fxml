@@ -25,12 +25,9 @@
                 <Label alignment="CENTER" prefHeight="65.0" prefWidth="290.0" text="The Water" textAlignment="CENTER" textFill="#29b6f6" textOverrun="WORD_ELLIPSIS"><font><Font size="44.0" /></font></Label>
                 <TextField fx:id="userName" alignment="CENTER" prefHeight="15.0" prefWidth="250.0" promptText="Username" styleClass="inputSection" GridPane.rowIndex="1"><font><Font size="25.0" /></font></TextField>
                 <PasswordField fx:id="userPassword" alignment="CENTER" prefHeight="10.0" prefWidth="250.0" promptText="Password" styleClass="inputSection" GridPane.rowIndex="2"><font><Font size="25.0" /></font></PasswordField>
-                <Button mnemonicParsing="false" onAction="#loginOnClick" prefHeight="51.0" prefWidth="290.0" text="Log in" GridPane.rowIndex="3"><font><Font name="System Bold" size="24.0" /></font></Button>
+                <Button mnemonicParsing="false" onAction="#loginOnAction" prefHeight="51.0" prefWidth="290.0" text="Log in" GridPane.rowIndex="3"><font><Font name="System Bold" size="24.0" /></font></Button>
         </GridPane>
-        <Text fx:id="warningText" layoutX="600.0" layoutY="428.0" strokeWidth="0.0" styleClass="warningText" wrappingWidth="477.0000025033951" GridPane.rowIndex="6">
-         <font>
-            <Font size="25.0" />
-         </font></Text>
+        <Text fx:id="warningText" layoutX="600.0" layoutY="428.0" strokeWidth="0.0" styleClass="warningText" wrappingWidth="477.0000025033951" GridPane.rowIndex="6"><font><Font size="25.0" /></font></Text>
         <ImageView fitHeight="478.0" fitWidth="458.0" layoutX="82.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true"><Image url="@water.png" /></ImageView>
-      <Label layoutX="594.0" layoutY="538.0" text="Copyright © 2017 The Water. All rights reserved. "><font><Font size="20.0" /></font></Label>
+        <Label layoutX="594.0" layoutY="538.0" text="Copyright © 2017 The Water. All rights reserved. "><font><Font size="20.0" /></font></Label>
 </Pane>

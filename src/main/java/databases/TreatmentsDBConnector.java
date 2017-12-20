@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreatmentDBConnector {
+public class TreatmentsDBConnector {
     private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
     private static DecimalFormat decimalFormat = new DecimalFormat("#.##");

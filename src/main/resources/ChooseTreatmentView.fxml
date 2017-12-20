@@ -7,23 +7,10 @@
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="600.0" prefWidth="1080.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseTreatmentController">
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="290.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="573.0" />
-
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="450.0" layoutX="290.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="573.0" />
    <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
-    <Label fx:id="titleLabel" layoutX="14.0" styleClass="homeTitle" text="Create"><font><Font size="40.0" /></font></Label>
-   <Button layoutX="305.0" layoutY="200.0" mnemonicParsing="false" onAction="#preTreatmentOnAction" prefHeight="150.0" prefWidth="260.0" text="Pre Treatment">
-      <font>
-         <Font size="30.0" />
-      </font>
-   </Button>
-   <Button layoutX="590.0" layoutY="200.0" mnemonicParsing="false" onAction="#postTreatmentOnAction" prefHeight="150.0" prefWidth="260.0" text="Post Treatment">
-      <font>
-         <Font size="30.0" />
-      </font>
-   </Button>
-   <Label fx:id="titleLabel1" layoutX="373.0" layoutY="102.0" styleClass="homeTitle" text="Choose an Treatment">
-      <font>
-         <Font size="40.0" />
-      </font>
-   </Label>
+   <Label layoutX="14.0" styleClass="homeTitle" text="Create"><font><Font size="40.0" /></font></Label>
+   <Button layoutX="305.0" layoutY="200.0" mnemonicParsing="false" onAction="#preTreatmentOnAction" prefHeight="150.0" prefWidth="260.0" text="Pre Treatment"><font><Font size="30.0" /></font></Button>
+   <Button layoutX="590.0" layoutY="200.0" mnemonicParsing="false" onAction="#postTreatmentOnAction" prefHeight="150.0" prefWidth="260.0" text="Post Treatment"><font><Font size="30.0" /></font></Button>
+   <Label layoutX="373.0" layoutY="102.0" styleClass="homeTitle" text="Choose an Treatment"><font><Font size="40.0" /></font></Label>
 </Pane>

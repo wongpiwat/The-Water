@@ -11,14 +11,12 @@
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="300.0" layoutX="658.0" layoutY="108.0" stroke="BLACK" strokeType="INSIDE" width="231.0" />
     <Label layoutX="14.0" styleClass="homeTitle" text="Standard"><font><Font size="40.0" /></font></Label>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
-    <Button fx:id="createButton" layoutX="888.0" layoutY="522.0" mnemonicParsing="false" onAction="#createStandard" prefHeight="69.0" prefWidth="175.0" text="Create"><font><Font size="30.0" /></font></Button>
-    <Button fx:id="deleteButton" layoutX="450.0" layoutY="522.0" mnemonicParsing="false" onAction="#deleteStandard" prefHeight="69.0" prefWidth="175.0" text="Delete"><font><Font size="30.0" /></font></Button>
-
+    <Button fx:id="createButton" layoutX="888.0" layoutY="522.0" mnemonicParsing="false" onAction="#createOnAction" prefHeight="69.0" prefWidth="175.0" text="Create"><font><Font size="30.0" /></font></Button>
+    <Button fx:id="deleteButton" layoutX="450.0" layoutY="522.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="69.0" prefWidth="175.0" text="Delete"><font><Font size="30.0" /></font></Button>
     <Label layoutX="193.0" layoutY="124.0" prefHeight="50.0" prefWidth="456.0" text="Temperature (°C)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="193.0" layoutY="194.0" prefHeight="50.0" prefWidth="456.0" text="pH (0-14)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="193.0" layoutY="264.0" prefHeight="50.0" prefWidth="456.0" text="Dissolved Oxygen (mg/L)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="193.0" layoutY="334.0" prefHeight="50.0" prefWidth="456.0" text="MLSS  (mg/L)"><font><Font size="30.0" /></font></Label>
-
     <Label fx:id="temperature" alignment="CENTER" layoutX="664.0" layoutY="124.0" prefHeight="44.0" prefWidth="220.0"><font><Font size="30.0" /></font></Label>
     <Label fx:id="pH" alignment="CENTER" layoutX="664.0" layoutY="194.0" prefHeight="44.0" prefWidth="220.0"><font><Font size="30.0" /></font></Label>
     <Label fx:id="mlss" alignment="CENTER" layoutX="664.0" layoutY="334.0" prefHeight="44.0" prefWidth="220.0"><font><Font size="30.0" /></font></Label>

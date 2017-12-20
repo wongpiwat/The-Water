@@ -2,7 +2,7 @@ package controllers;
 
 import utilities.CheckInput;
 import utilities.DateUtilities;
-import databases.TreatmentDBConnector;
+import databases.TreatmentsDBConnector;
 import models.Account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ public class CreatePostTreatmentController {
     private Account account;
     @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem;
 
-    public void saveItem(ActionEvent event) throws IOException {
+    public void saveOnAction(ActionEvent event) throws IOException {
         Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         ConfirmationAlert.setHeaderText("");
         Optional optional = ConfirmationAlert.showAndWait();
@@ -48,7 +48,7 @@ public class CreatePostTreatmentController {
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                TreatmentDBConnector.savePostTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(volumeSediment.getText()),Double.parseDouble(mlss.getText()),Double.parseDouble(electricity.getText()),Double.parseDouble(deodorizerSystem.getText()));
+                TreatmentsDBConnector.savePostTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(volumeSediment.getText()),Double.parseDouble(mlss.getText()),Double.parseDouble(electricity.getText()),Double.parseDouble(deodorizerSystem.getText()));
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");
@@ -80,9 +80,9 @@ public class CreatePostTreatmentController {
     public void backToTreatmentOnAction(ActionEvent event) throws IOException {
         Button cancelToMenu = (Button) event.getSource();
         Stage stage = (Stage) cancelToMenu.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentsView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        TreatmentController treatmentController = loader.getController();
+        TreatmentsController treatmentController = loader.getController();
         treatmentController.setUser(account);
         stage.show();
     }

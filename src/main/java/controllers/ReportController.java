@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.TreatmentDBConnector;
+import databases.TreatmentsDBConnector;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Tab;
@@ -35,8 +35,8 @@ public class ReportController {
     @FXML private Tab preTreatmentTab,postTreatmentTab;
 
     public void initialize() {
-        List<Treatment> preTreatments = TreatmentDBConnector.getAllPreTreatment();
-        List<Treatment> postTreatments = TreatmentDBConnector.getAllPostTreatment();
+        List<Treatment> preTreatments = TreatmentsDBConnector.getAllPreTreatment();
+        List<Treatment> postTreatments = TreatmentsDBConnector.getAllPostTreatment();
         setReport(preTreatments,preReportTableView);
         preReportTableView.setMouseTransparent(true);
         postReportTableView.setMouseTransparent(true);

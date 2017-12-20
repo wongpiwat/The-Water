@@ -1,6 +1,6 @@
 package controllers;
 
-import databases.TreatmentDBConnector;
+import databases.TreatmentsDBConnector;
 import utilities.CheckInput;
 import utilities.DateUtilities;
 import javafx.event.ActionEvent;
@@ -23,7 +23,7 @@ public class CreatePreTreatmentController {
     private Account account;
     @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,mlss;
 
-    public void saveItem(ActionEvent event) throws IOException {
+    public void saveOnAction(ActionEvent event) throws IOException {
         Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         ConfirmationAlert.setTitle("The Water");
         ConfirmationAlert.setHeaderText("");
@@ -46,7 +46,7 @@ public class CreatePreTreatmentController {
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                TreatmentDBConnector.savePreTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(mlss.getText()));
+                TreatmentsDBConnector.savePreTreatment(DateUtilities.getDateNumber(),Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(mlss.getText()));
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");
@@ -75,9 +75,9 @@ public class CreatePreTreatmentController {
     public void backToTreatmentOnAction(ActionEvent event) throws IOException {
         Button cancelToMenu = (Button) event.getSource();
         Stage stage = (Stage) cancelToMenu.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentsView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        TreatmentController treatmentController = loader.getController();
+        TreatmentsController treatmentController = loader.getController();
         treatmentController.setUser(account);
         stage.show();
     }

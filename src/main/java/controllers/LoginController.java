@@ -20,14 +20,13 @@ import java.io.IOException;
 
 public class LoginController {
     private AccountsDBConnector accountsDBConnector = new AccountsDBConnector();
-    private ObservableList<Account> accounts;
+    //private ObservableList<Account> accounts;
     @FXML private Text warningText;
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
 
     public void initialize() {
-        accounts = accountsDBConnector.loadAccountsToTable();
-
+        //accounts = accountsDBConnector.loadAccountsToTable();
         userName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -58,7 +57,7 @@ public class LoginController {
         });
     }
 
-    public void loginOnClick(ActionEvent event) throws IOException{
+    public void loginOnAction(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         this.checkUsernameAndPassword(stage);
@@ -66,12 +65,12 @@ public class LoginController {
 
     private void checkUsernameAndPassword(Stage stage) throws IOException {
         boolean loginSuccess = false;
-        for (Account account : accounts){
-            if (account.getUsername().equals(userName.getText()) && account.getPassword().equals(userPassword.getText())){
-                loginSuccess = true;
-                this.loginToHome(stage,account);
-                break;
-            }
+        userName.getText();
+        userPassword.getText();
+        Account account = AccountsDBConnector.isLogin(userName.getText(),userPassword.getText());
+        if (account!=null) {
+            loginSuccess = true;
+            this.loginToHome(stage,account);
         }
         if(!loginSuccess){
             warningText.setText("The username or password is incorrect.");

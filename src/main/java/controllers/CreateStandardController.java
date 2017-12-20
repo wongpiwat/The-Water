@@ -24,7 +24,7 @@ public class CreateStandardController {
     private Standard standard;
     @FXML private TextField temperature,pH,dissolvedOxygen,mlss;
 
-    public void saveStandard(ActionEvent event) throws IOException {
+    public void saveOnAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
@@ -56,7 +56,7 @@ public class CreateStandardController {
     }
 
 
-    public void cancelToStandard(ActionEvent event) throws IOException {
+    public void backOnAction(ActionEvent event) throws IOException {
         this.backToStandard(event);
     }
 

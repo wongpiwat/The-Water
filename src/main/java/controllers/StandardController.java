@@ -39,7 +39,7 @@ public class StandardController {
         }
     }
 
-    public void createStandard(ActionEvent event) throws IOException {
+    public void createOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateStandardView.fxml"));
@@ -50,7 +50,7 @@ public class StandardController {
         stage.show();
     }
 
-    public void deleteStandard() {
+    public void deleteOnAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete standard?", ButtonType.OK, ButtonType.CANCEL);
         alert.setTitle("The Water");
         alert.setHeaderText("");

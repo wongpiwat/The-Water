@@ -15,9 +15,9 @@ public class ChooseTreatmentController {
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentsView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        TreatmentController treatmentController = loader.getController();
+        TreatmentsController treatmentController = loader.getController();
         treatmentController.setUser(account);
         stage.show();
     }

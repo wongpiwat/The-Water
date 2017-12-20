@@ -25,7 +25,7 @@ public class CreateAccountController {
         accountTypeChoiceBox.setItems(FXCollections.observableArrayList("Staff",new Separator(), "Supervisor"));
     }
 
-    public void saveAccount(ActionEvent event) throws IOException {
+    public void saveAccountOnAction(ActionEvent event) throws IOException {
             Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to Create Account " + firstName.getText() + " " + lastName.getText() + " ?", ButtonType.OK, ButtonType.CANCEL);
             ConfirmationAlert.setTitle("The Water");
             ConfirmationAlert.setHeaderText("");
@@ -44,13 +44,13 @@ public class CreateAccountController {
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                AccountsDBConnector.saveAccount(AccountsDBConnector.getAccountID(), accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
+                AccountsDBConnector.saveAccount(accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 this.department.setText("");
                 this.firstName.setText("");
                 this.lastName.setText("");
                 this.userName.setText("");
                 this.password.setText("");
-                this.backToAccounts(event);
+                this.backOnAction(event);
             } else {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create. Please fill out these fields and click save changes.");
                 errorAlert.setTitle("The Water");
@@ -60,7 +60,7 @@ public class CreateAccountController {
         }
     }
 
-    public void backToAccounts(ActionEvent event) throws IOException {
+    public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AccountsView.fxml"));
