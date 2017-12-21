@@ -20,14 +20,13 @@ public class AccountsDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
-                    int no = resultSet.getInt("No");
                     String type = resultSet.getString("Type");
                     String department = resultSet.getString("Department");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
                     String username = resultSet.getString("Username");
                     String password = resultSet.getString("Password");
-                    accounts.add(new Account(no,type, department, firstName, lastName, username, password));
+                    accounts.add(new Account(type, department, firstName, lastName, username, password));
                 }
                 connection.close();
             }
@@ -81,7 +80,6 @@ public class AccountsDBConnector {
                 String query = "Select * from Accounts where Username=='"+username+"' and Password=='"+password+"'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
-                int no = resultSet.getInt("No");
                 String type = resultSet.getString("Type");
                 String department = resultSet.getString("Department");
                 String firstName = resultSet.getString("FirstName");
@@ -89,7 +87,7 @@ public class AccountsDBConnector {
                 String userName = resultSet.getString("Username");
                 String passWord = resultSet.getString("Password");
                 connection.close();
-                return new Account(no,type,department,firstName,lastName,userName,passWord);
+                return new Account(type,department,firstName,lastName,userName,passWord);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

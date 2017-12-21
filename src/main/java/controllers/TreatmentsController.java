@@ -28,8 +28,8 @@ public class TreatmentsController {
     public void initialize() {
         deleteButton.setDisable(true);
         tableView = preTreatmentTableView;
-        preTreatmentTableView.setItems(TreatmentsDBConnector.loadPreTreatmentToTable());
-        postTreatmentTableView.setItems(TreatmentsDBConnector.loadPostTreatmentToTable());
+        preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
+        postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
         preTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
@@ -87,7 +87,7 @@ public class TreatmentsController {
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
                 TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                preTreatmentTableView.setItems(TreatmentsDBConnector.loadPreTreatmentToTable());
+                preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
                 deleteButton.setDisable(true);
             } else if (optional.get() == ButtonType.OK && tab.getText().equals("Post Treatment")) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
@@ -95,7 +95,7 @@ public class TreatmentsController {
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
                 TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                postTreatmentTableView.setItems(TreatmentsDBConnector.loadPostTreatmentToTable());
+                postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
                 deleteButton.setDisable(true);
             }
         }
@@ -159,8 +159,8 @@ public class TreatmentsController {
                     informationAlert.showAndWait();
                     TreatmentsDBConnector.deleteAllTreatment();
                     TreatmentsDBConnector.resetSequence();
-                    preTreatmentTableView.setItems(TreatmentsDBConnector.loadPreTreatmentToTable());
-                    postTreatmentTableView.setItems(TreatmentsDBConnector.loadPostTreatmentToTable());
+                    preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
+                    postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
                 }
             } else {
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");

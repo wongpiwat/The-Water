@@ -1,7 +1,6 @@
 package models;
 
 public class Account {
-    private int id;
     private String type;
     private String department;
     private String firstName;
@@ -9,18 +8,13 @@ public class Account {
     private String username;
     private String password;
 
-    public Account(int id, String type, String department, String firstName, String lastName, String username, String password) {
-        this.id = id;
+    public Account(String type, String department, String firstName, String lastName, String username, String password) {
         this.type = type;
         this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getType() {

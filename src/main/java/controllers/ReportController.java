@@ -35,8 +35,8 @@ public class ReportController {
     @FXML private Tab preTreatmentTab,postTreatmentTab;
 
     public void initialize() {
-        List<Treatment> preTreatments = TreatmentsDBConnector.getAllPreTreatment();
-        List<Treatment> postTreatments = TreatmentsDBConnector.getAllPostTreatment();
+        List<Treatment> preTreatments = TreatmentsDBConnector.getAllPreTreatments();
+        List<Treatment> postTreatments = TreatmentsDBConnector.getAllPostTreatments();
         setReport(preTreatments,preReportTableView);
         preReportTableView.setMouseTransparent(true);
         postReportTableView.setMouseTransparent(true);
