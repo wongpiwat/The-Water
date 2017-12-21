@@ -81,11 +81,10 @@ public class TreatmentsDBConnector {
                 String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
-                query = "select max(TreatmentID) from PreTreatment";
+                query = "select max(TreatmentID) from Treatment";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int max = resultSet.getInt(1);
-                max+=1;
                 query = "insert into PreTreatment (TreatmentID) values ("+max+")";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
@@ -103,14 +102,14 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, VolumeSediment, MLSS, Electricity, DeodorizerSystem) values (\'post\' , \'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' "+ volumeSediment + "\' , \' " + mlss + " \' , \' " + electricity + " \' , \' " + deodorizerSystem + " \')";
+                //String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, VolumeSediment, MLSS, Electricity, DeodorizerSystem) values (\'post\' , \'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' "+ volumeSediment + "\' , \' " + mlss + " \' , \' " + electricity + " \' , \' " + deodorizerSystem + " \')";
+                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
-                query = "select max(TreatmentID) from PostTreatment";
+                query = "select max(TreatmentID) from Treatment";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int max = resultSet.getInt(1);
-                max+=1;
                 query = "insert into PostTreatment (TreatmentID) values ("+max+")";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
