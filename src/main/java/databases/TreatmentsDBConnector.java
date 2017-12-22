@@ -18,7 +18,7 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "select * from PreTreatment , Treatment where PreTreatment.TreatmentID == Treatment.TreatmentID";
+                String query = "select * from PreTreatment , Treatment, Accounts where PreTreatment.TreatmentID == Treatment.TreatmentID and Treatment.Account == Accounts.Username";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
@@ -30,8 +30,9 @@ public class TreatmentsDBConnector {
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
                     String dateForm = resultSet.getString("DateForm");
-                    String account = resultSet.getString("Account");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,account));
+                    String firstName = resultSet.getString("FirstName");
+                    String lastName = resultSet.getString("LastName");
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,firstName+" "+lastName));
                 }
                 connection.close();
             }
@@ -49,7 +50,7 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "select * from PostTreatment , Treatment where PostTreatment.TreatmentID == Treatment.TreatmentID";
+                String query = "select * from PostTreatment, Treatment, Accounts where PostTreatment.TreatmentID == Treatment.TreatmentID and Treatment.Account == Accounts.Username";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
@@ -65,8 +66,9 @@ public class TreatmentsDBConnector {
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
                     String standard = resultSet.getString("Standard");
                     String dateForm = resultSet.getString("DateForm");
-                    String account = resultSet.getString("Account");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,account));
+                    String firstName = resultSet.getString("FirstName");
+                    String lastName = resultSet.getString("LastName");
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,firstName+" "+lastName));
                 }
                 connection.close();
             }
@@ -78,12 +80,12 @@ public class TreatmentsDBConnector {
         return treatments;
     }
 
-    public static void savePreTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double mlss) {
+    public static void savePreTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double mlss,String dateForm,String account) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \')";
+                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \', \'" +dateForm+ "\' , \'"+account+"\')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 query = "select max(TreatmentID) from Treatment";
@@ -102,20 +104,19 @@ public class TreatmentsDBConnector {
         }
     }
 
-    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricity,double deodorizerSystem) {
+    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricity,double deodorizerSystem,boolean standard,String dateForm,String account) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                //String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, VolumeSediment, MLSS, Electricity, DeodorizerSystem) values (\'post\' , \'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' "+ volumeSediment + "\' , \' " + mlss + " \' , \' " + electricity + " \' , \' " + deodorizerSystem + " \')";
-                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \')";
+                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \', \'" +dateForm+ "\' , \'"+account+"\')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 query = "select max(TreatmentID) from Treatment";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int max = resultSet.getInt(1);
-                query = "insert into PostTreatment (TreatmentID) values ("+max+")";
+                query = "insert into PostTreatment (TreatmentID, VolumeSediment, Electricity, DeodorizerSystem, Standard) values ("+max+","+volumeSediment+","+electricity+","+deodorizerSystem+",\'"+standard+"\')";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

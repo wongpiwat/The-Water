@@ -33,7 +33,7 @@
                             <TableColumn resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="90.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="110.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="account" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="250.0" sortable="false" text="Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
                     </children>
@@ -58,7 +58,7 @@
                             <TableColumn prefWidth="101.0" resizable="false" sortable="false" text="Deodorizer(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" resizable="false" sortable="false" text="Standard"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="110.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="account" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="250.0" sortable="false" text="Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
                     </children>

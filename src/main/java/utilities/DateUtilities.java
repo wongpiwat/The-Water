@@ -3,6 +3,8 @@ package utilities;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,5 +38,9 @@ public class DateUtilities {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		return cal.get(Calendar.WEEK_OF_MONTH);
+	}
+
+	public static String getFormDatePicker(LocalDate date) {
+		return date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 	}
 }

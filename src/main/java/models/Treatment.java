@@ -91,7 +91,7 @@ public class Treatment {
         return dateWater;
     }
 
-    public String getAccountUsername() {
+    public String getName() {
         return accountUsername;
     }
 }
