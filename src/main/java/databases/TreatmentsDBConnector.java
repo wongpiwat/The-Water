@@ -29,7 +29,9 @@ public class TreatmentsDBConnector {
                     double pH = resultSet.getDouble("pH");
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss)));
+                    String dateForm = resultSet.getString("DateForm");
+                    String account = resultSet.getString("Account");
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,account));
                 }
                 connection.close();
             }
@@ -61,7 +63,10 @@ public class TreatmentsDBConnector {
                     double mlss = resultSet.getDouble("MLSS");
                     double electricity = resultSet.getDouble("Electricity");
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem)));
+                    String standard = resultSet.getString("Standard");
+                    String dateForm = resultSet.getString("DateForm");
+                    String account = resultSet.getString("Account");
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,account));
                 }
                 connection.close();
             }
@@ -127,8 +132,15 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Treatment where type == 'pre' and ID == \'" + id + "\'";
+                String query = "select TreatmentID from PreTreatment";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                int treatmentID = resultSet.getInt(1);
+                query = "Delete from Treatment where TreatmentID == \'" + treatmentID + "\'";
                 PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                query = "Delete from PreTreatment where ID == \'" + id + "\'";
+                p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
             }
@@ -144,8 +156,15 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Treatment where type == 'post' and ID == \'" + id + "\'";
+                String query = "select TreatmentID from PostTreatment";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+                int treatmentID = resultSet.getInt(1);
+                query = "Delete from Treatment where TreatmentID == \'" + treatmentID + "\'";
                 PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                query = "Delete from PostTreatment where ID == \'" + id + "\'";
+                p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
             }
@@ -163,6 +182,12 @@ public class TreatmentsDBConnector {
             if (connection != null) {
                 String query = "Delete from Treatment";
                 PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                query = "Delete from PreTreatment";
+                p = connection.prepareStatement(query);
+                p.executeUpdate();
+                query = "Delete from PostTreatment";
+                p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
             }

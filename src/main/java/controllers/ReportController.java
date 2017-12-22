@@ -80,7 +80,7 @@ public class ReportController {
         fourWeekTreatments = new ArrayList<>();
         fiveWeekTreatments = new ArrayList<>();
         for (int i = 0 ; i< treatments.size() ; i++) {
-            Date date = DateUtilities.getDateForm(treatments.get(i).getDate());
+            Date date = DateUtilities.getDateForm(treatments.get(i).getDateForm());
             if (!years.contains(DateUtilities.getYear(date))) {
                 years.add(DateUtilities.getYear(date));
             }
@@ -92,7 +92,7 @@ public class ReportController {
                 months.clear();
                 reportTableView.getItems().clear();
                 for (int index = 0 ; index< treatments.size() ; index++) {
-                    Date date = DateUtilities.getDateForm(treatments.get(index).getDate());
+                    Date date = DateUtilities.getDateForm(treatments.get(index).getDateForm());
                     if (yearNewValue != null && yearNewValue.equals(DateUtilities.getYear(date))) {
                         if (!months.contains(DateUtilities.getMonth(date))) {
                             months.add(DateUtilities.getMonth(date));
@@ -112,17 +112,17 @@ public class ReportController {
                 if (year != null && monthNewValue != null) {
                     month = monthNewValue.toString();
                     for (int index = 0;index < treatments.size() ; index++) {
-                        Date date = DateUtilities.getDateForm(treatments.get(index).getDate());
+                        Date date = DateUtilities.getDateForm(treatments.get(index).getDateForm());
                         if (year.equals(DateUtilities.getYear(date)) && month.equals(DateUtilities.getMonth(date))) {
-                            if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDate())) == 1)  {
+                            if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 1)  {
                                 oneWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDate())) == 2)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 2)  {
                                 twoWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDate())) == 3)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 3)  {
                                 threeWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDate())) == 4)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 4)  {
                                 fourWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDate())) == 5)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 5)  {
                                 fiveWeekTreatments.add(treatments.get(index));
                             }
                             allTreatments.add(treatments.get(index));

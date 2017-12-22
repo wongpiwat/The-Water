@@ -2,7 +2,7 @@ package models;
 
 public class Treatment {
     private int id;
-    private String date;
+    private String dateForm;
     private String volumeWater;
     private String temperature;
     private String pH;
@@ -11,20 +11,25 @@ public class Treatment {
     private String mlss;
     private String electricity;
     private String deodorizerSystem;
+    private String standard;
+    private String dateWater;
+    private String accountUsername;
 
-    public Treatment(int id, String date, String volumeWater, String temperature, String pH, String dissolvedOxygen, String mlss) {
+    public Treatment(int id, String dateWater, String volumeWater, String temperature, String pH, String dissolvedOxygen, String mlss, String dateForm, String accountUsername) {
         this.id = id;
-        this.date = date;
+        this.dateWater = dateWater;
         this.volumeWater = volumeWater;
         this.temperature = temperature;
         this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
         this.mlss = mlss;
+        this.dateForm = dateForm;
+        this.accountUsername = accountUsername;
     }
 
-    public Treatment(int id, String date, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem) {
+    public Treatment(int id, String dateWater, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem, String standard, String dateForm, String accountUsername) {
         this.id = id;
-        this.date = date;
+        this.dateWater = dateWater;
         this.volumeWater = volumeWater;
         this.temperature = temperature;
         this.pH = pH;
@@ -33,18 +38,17 @@ public class Treatment {
         this.mlss = mlss;
         this.electricity = electricity;
         this.deodorizerSystem = deodorizerSystem;
+        this.standard = standard;
+        this.dateForm = dateForm;
+        this.accountUsername = accountUsername;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
+    public String getDateForm() {
+        return dateForm;
     }
 
     public String getVolumeWater() {
@@ -77,5 +81,17 @@ public class Treatment {
 
     public String getDeodorizerSystem() {
         return deodorizerSystem;
+    }
+
+    public String getStandard() {
+        return standard;
+    }
+
+    public String getDateWater() {
+        return dateWater;
+    }
+
+    public String getAccountUsername() {
+        return accountUsername;
     }
 }

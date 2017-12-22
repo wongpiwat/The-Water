@@ -26,12 +26,13 @@
                     <TableView fx:id="preTreatmentTableView" prefHeight="432.0" prefWidth="1070.0">
                         <columns>
                             <TableColumn prefWidth="40.0" resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date Water"><cellValueFactory><PropertyValueFactory property="dateWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="50.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
                             <TableColumn resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="90.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="110.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="account" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
@@ -46,7 +47,7 @@
                     <TableView fx:id="postTreatmentTableView" prefHeight="432.0" prefWidth="1070.0">
                         <columns>
                             <TableColumn prefWidth="40.0" resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="dateWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="50.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
@@ -56,6 +57,7 @@
                             <TableColumn prefWidth="109.0" resizable="false" sortable="false" text="Electricity(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="101.0" resizable="false" sortable="false" text="Deodorizer(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" resizable="false" sortable="false" text="Standard"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="110.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="account" /></cellValueFactory></TableColumn>
                         </columns>
                     </TableView>
