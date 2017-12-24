@@ -56,7 +56,6 @@ public class EventLogsController {
         });
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(usernamePassword -> {
-            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all event logs");
             if (account.getPassword().equals(usernamePassword)) {
                 EventLogsDBConnector.deleteAllLogs();
                 EventLogsDBConnector.resetSequence();
@@ -71,6 +70,7 @@ public class EventLogsController {
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
+                logsTableView.setItems(EventLogsDBConnector.getEventLogs());
             }
         });
     }

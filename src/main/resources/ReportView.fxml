@@ -25,8 +25,8 @@
                        <columns>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Round"><cellValueFactory><PropertyValueFactory property="round" /></cellValueFactory></TableColumn>
-                           <TableColumn minWidth="0.0" prefWidth="170.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
-                           <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="120.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="70.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="60.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
@@ -44,14 +44,15 @@
                        <columns>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" text="Round"><cellValueFactory><PropertyValueFactory property="round" /></cellValueFactory></TableColumn>
-                           <TableColumn minWidth="0.0" prefWidth="170.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
-                           <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="120.0" resizable="false" sortable="false" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="70.0" resizable="false" sortable="false" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="60.0" resizable="false" sortable="false" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="DO(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Sediment(kg)"><cellValueFactory><PropertyValueFactory property="volumeSediment" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="150.0" resizable="false" sortable="false" text="Electricity(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Deodorizer(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
+                           <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Standard(P)"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
                        </columns>
                      </TableView>
                   </children>

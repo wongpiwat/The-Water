@@ -204,7 +204,7 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "UPDATE sqlite_sequence SET PreTreatment = 0 and PostTreatment = 0 and Treatment = 0";
+                String query = "UPDATE sqlite_sequence SET seq = 0 where name = 'PreTreatment' or name = 'PostTreatment' or name = 'Treatment'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

@@ -16,11 +16,10 @@
        <Button fx:id="deleteButton" layoutX="453.0" layoutY="522.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="69.0" prefWidth="175.0" text="Delete"><font><Font size="30.0" /></font></Button>
        <TableView fx:id="accountsTableView" layoutX="5.0" layoutY="58.0" prefHeight="460.0" prefWidth="1070.0">
            <columns>
-               <TableColumn prefWidth="80.0" resizable="false" sortable="false" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="250.0" resizable="false" sortable="false" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
                <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="First Name"><cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory></TableColumn>
                <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Last Name"><cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="250.0" resizable="false" sortable="false" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
            </columns>
        </TableView>
    </children>

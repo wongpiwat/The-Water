@@ -78,7 +78,7 @@ public class EventLogsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "UPDATE sqlite_sequence SET EventLogs = 0";
+                String query = "UPDATE sqlite_sequence  SET seq = 0 where name = 'EventLogs'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
