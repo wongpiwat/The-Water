@@ -5,17 +5,15 @@ public class Log {
     private String date;
     private String type;
     private String accountType;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String event;
 
-    public Log(String no, String date, String type, String accountType, String firstName, String lastName, String event) {
+    public Log(String no, String date, String type, String accountType, String name, String event) {
         this.no = no;
         this.date = date;
         this.type = type;
         this.accountType = accountType;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.event = event;
     }
 
@@ -36,7 +34,7 @@ public class Log {
     }
 
     public String getName() {
-        return firstName+" "+lastName;
+        return name;
     }
 
     public String getEvent() {

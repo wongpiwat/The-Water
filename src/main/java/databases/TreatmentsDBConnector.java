@@ -32,7 +32,7 @@ public class TreatmentsDBConnector {
                     String dateForm = resultSet.getString("DateForm");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,firstName+" "+lastName));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,firstName+" "+lastName.subSequence(0,1)));
                 }
                 connection.close();
             }
@@ -68,7 +68,7 @@ public class TreatmentsDBConnector {
                     String dateForm = resultSet.getString("DateForm");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,firstName+" "+lastName));
+                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,firstName+" "+lastName.subSequence(0,1)));
                 }
                 connection.close();
             }

@@ -11,8 +11,9 @@ public class Report {
     private String mlss;
     private String electricity;
     private String deodorizerSystem;
+    private String standard;
 
-    public Report(String week, int round, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem) {
+    public Report(String week, int round, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem, String standard) {
         this.week = week;
         this.round = round;
         this.volumeWater = volumeWater;
@@ -23,6 +24,7 @@ public class Report {
         this.mlss = mlss;
         this.electricity = electricity;
         this.deodorizerSystem = deodorizerSystem;
+        this.standard = standard;
     }
 
     public String getWeek() {
@@ -63,5 +65,9 @@ public class Report {
 
     public String getDeodorizerSystem() {
         return deodorizerSystem;
+    }
+
+    public String getStandard() {
+        return standard;
     }
 }

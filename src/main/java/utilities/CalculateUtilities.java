@@ -13,8 +13,7 @@ public class CalculateUtilities {
         for (int i = 0; i<list.size();i++) {
             sum += Double.parseDouble(((Treatment) list.get(i)).getVolumeWater());
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -27,8 +26,7 @@ public class CalculateUtilities {
         for (int i = 0; i<list.size();i++) {
             sum += Double.parseDouble(((Treatment) list.get(i)).getTemperature());
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -41,8 +39,7 @@ public class CalculateUtilities {
         for (int i = 0; i<list.size();i++) {
             sum += Double.parseDouble(((Treatment) list.get(i)).getPH());
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -55,8 +52,7 @@ public class CalculateUtilities {
         for (int i = 0; i<list.size();i++) {
             sum += Double.parseDouble(((Treatment) list.get(i)).getDissolvedOxygen());
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -71,8 +67,7 @@ public class CalculateUtilities {
                 sum += Double.parseDouble(((Treatment) list.get(i)).getVolumeSediment());
             }
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -85,8 +80,7 @@ public class CalculateUtilities {
         for (int i = 0; i<list.size();i++) {
             sum += Double.parseDouble(((Treatment) list.get(i)).getMlss());
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -101,8 +95,7 @@ public class CalculateUtilities {
                 sum += Double.parseDouble(((Treatment) list.get(i)).getElectricity());
             }
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
@@ -117,12 +110,26 @@ public class CalculateUtilities {
                 sum += Double.parseDouble(((Treatment) list.get(i)).getDeodorizerSystem());
             }
         }
-        double value = sum/list.size();
-        String string = value+"";
+        String string = sum/list.size()+"";
         if (string.equals("NaN")) {
             return "0";
         } else {
             return decimalFormat.format(sum/list.size());
         }
     }
+
+    public static String getCountStandard(List list) {
+        String word;
+        int count = 0;
+        for (int i = 0; i<list.size();i++) {
+            if (((Treatment) list.get(i)).getDeodorizerSystem() != null) {
+                word = (((Treatment) list.get(i)).getStandard());
+                if (word != null && word.equals("P") ) {
+                    count ++;
+                }
+            }
+        }
+        return count+"";
+    }
+
 }

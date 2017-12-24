@@ -27,7 +27,7 @@ public class EventLogsDBConnector {
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
                     String event = resultSet.getString("Event");
-                    logs.add(new Log(no, date, logType, accountType, firstName, lastName, event));
+                    logs.add(new Log(no, date, logType, accountType, firstName+" "+lastName.subSequence(0,1), event));
                 }
                 connection.close();
             }

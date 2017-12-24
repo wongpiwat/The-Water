@@ -18,7 +18,7 @@
             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Log Type"><cellValueFactory><PropertyValueFactory property="logType" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="accountType" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="250.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="130.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="300.0" resizable="false" sortable="false" text="Event"><cellValueFactory><PropertyValueFactory property="event" /></cellValueFactory></TableColumn>
         </columns>
     </TableView>
