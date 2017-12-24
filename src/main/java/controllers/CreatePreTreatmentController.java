@@ -1,5 +1,6 @@
 package controllers;
 
+import databases.EventLogsDBConnector;
 import databases.TreatmentsDBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,12 +61,18 @@ public class CreatePreTreatmentController {
             checkTextField.add(dissolvedOxygen.getText());
             checkTextField.add(mlss.getText());
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved pre treatment");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
                 String dateWater = String.format("%s %s:%s",DateUtilities.getFormDatePicker(datePicker.getValue()),hourComboBox.getValue(),minuteComboBox.getValue());
-                TreatmentsDBConnector.savePreTreatment(dateWater,Double.parseDouble(volumeWater.getText()), Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()),Double.parseDouble(mlss.getText()),DateUtilities.getDateNumber(),account.getUsername());
+                double volumeWaterValue = Double.parseDouble(volumeWater.getText());
+                double temperatureValue = Double.parseDouble(temperature.getText());
+                double pHValue = Double.parseDouble(pH.getText());
+                double dissolvedOxygenValue = Double.parseDouble(dissolvedOxygen.getText());
+                double mlssValue = Double.parseDouble(mlss.getText());
+                TreatmentsDBConnector.savePreTreatment(dateWater,volumeWaterValue, temperatureValue, pHValue, dissolvedOxygenValue,mlssValue,DateUtilities.getDateNumber(),account.getUsername());
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");
@@ -73,7 +80,8 @@ public class CreatePreTreatmentController {
                 mlss.setText("");
                 backToTreatmentOnAction(event);
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save. Please fill out these fields and click save changes.");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save a pre treatment");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save pre treatment. Please fill out these fields and click save changes.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

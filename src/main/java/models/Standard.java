@@ -13,6 +13,13 @@ public class Standard {
         this.mlss = mlss;
     }
 
+    public String checkStandard(double temperature, double pH, double dissolvedOxygen, double mlss) {
+        if (temperature <= this.temperature && pH <= this.pH && dissolvedOxygen <= this.dissolvedOxygen && mlss <= this.mlss) {
+            return "P";
+        }
+        return "F";
+    }
+
     public double getTemperature() {
         return temperature;
     }

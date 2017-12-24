@@ -26,7 +26,7 @@
         <Button fx:id="accountsButton" mnemonicParsing="false" onAction="#accountsOnAction" prefHeight="150.0" prefWidth="260.0" text="Accounts" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
         <Button mnemonicParsing="false" onAction="#aboutOnAction" prefHeight="150.0" prefWidth="260.0" text="About" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
         <Button fx:id="reportButton" mnemonicParsing="false" onAction="#reportOnAction" prefHeight="150.0" prefWidth="260.0" text="Report" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
-        <Button fx:id="eventLogButton" mnemonicParsing="false" onAction="#eventLogOnAction" prefHeight="150.0" prefWidth="260.0" text="Event Log" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
+        <Button fx:id="eventLogButton" mnemonicParsing="false" onAction="#eventLogsOnAction" prefHeight="150.0" prefWidth="260.0" text="Event Logs" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
     </GridPane>
     <Button layoutX="870.0" layoutY="55.0" mnemonicParsing="false" onAction="#logoutOnAction" prefHeight="65.0" prefWidth="170.0" text="Log out"><font><Font size="30.0" /></font></Button>
     <Label layoutX="52.0" layoutY="57.0" styleClass="homeTitle" text="Home"><font><Font size="50.0" /></font></Label>

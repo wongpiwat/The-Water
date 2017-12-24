@@ -1,6 +1,7 @@
 package controllers;
 
 import databases.AccountsDBConnector;
+import databases.EventLogsDBConnector;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Account;
 import utilities.CheckInput;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class CreateAccountController {
             checkTextField.add(firstName.getText());
             checkTextField.add(lastName.getText());
             if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" Account");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Created");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
@@ -52,7 +55,8 @@ public class CreateAccountController {
                 this.password.setText("");
                 this.backOnAction(event);
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create. Please fill out these fields and click save changes.");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not create account");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create account. Please fill out these fields and click save changes.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

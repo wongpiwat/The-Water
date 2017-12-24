@@ -1,5 +1,6 @@
 package controllers;
 
+import databases.EventLogsDBConnector;
 import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 
@@ -19,7 +21,7 @@ public class HomeController {
     @FXML private Button treatmentsButton,reportButton,accountsButton,standardButton,eventLogButton;
 
     public void initialize() {
-        Standard standard = StandardDBConnector.loadStandardToTable();
+        Standard standard = StandardDBConnector.getStandard();
         if (standard == null) {
             treatmentsButton.setDisable(true);
             reportButton.setDisable(true);
@@ -69,13 +71,13 @@ public class HomeController {
         stage.show();
     }
 
-    public void eventLogOnAction(ActionEvent event) throws IOException{
+    public void eventLogsOnAction(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/eventLogView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/EventLogsView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        EventLogController eventLogController = loader.getController();
-        eventLogController.setUser(account);
+        EventLogsController eventLogsController = loader.getController();
+        eventLogsController.setUser(account);
         stage.show();
     }
 
@@ -90,6 +92,7 @@ public class HomeController {
     }
 
     public void logoutOnAction(ActionEvent event) throws IOException {
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));

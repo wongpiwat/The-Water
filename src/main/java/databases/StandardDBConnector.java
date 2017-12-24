@@ -8,7 +8,7 @@ public class StandardDBConnector {
     private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static Standard loadStandardToTable() {
+    public static Standard getStandard() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -40,7 +40,7 @@ public class StandardDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Standard (Temperature, pH, DissolvedOxygen, MLSS) values (\'" + temperature + "\', \'" + pH + "\' , \'" + dissolvedOxygen + "\' , \'" + mlss + "\')";
+                String query = "insert into Standard (Temperature, pH, DissolvedOxygen, MLSS) values ('" + temperature + "', '" + pH + "' , '" + dissolvedOxygen + "' , '" + mlss + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

@@ -1,5 +1,6 @@
 package controllers;
 
+import databases.EventLogsDBConnector;
 import databases.TreatmentsDBConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,12 +16,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class TreatmentsController {
     private Account account;
+    private int deleteMode;
     @FXML private Button deleteButton;
     @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
@@ -28,8 +31,8 @@ public class TreatmentsController {
     public void initialize() {
         deleteButton.setDisable(true);
         tableView = preTreatmentTableView;
-        preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
-        postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
+        preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
+        postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
         preTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
             @Override
             public void changed(ObservableValue<? extends Treatment> observable, Treatment oldValue, Treatment newValue) {
@@ -76,29 +79,8 @@ public class TreatmentsController {
     }
 
     public void deleteOnAction() {
-        if (tableView.getSelectionModel().getSelectedItem() != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete No." + tableView.getSelectionModel().getSelectedItem().getId() + " ?", ButtonType.OK, ButtonType.CANCEL);
-            alert.setTitle("The Water");
-            alert.setHeaderText("");
-            Optional optional = alert.showAndWait();
-            if (optional.get() == ButtonType.OK && tab.getText().equals("Pre Treatment")) {
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                informationAlert.setTitle("The Water");
-                informationAlert.setHeaderText("");
-                informationAlert.showAndWait();
-                TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
-                deleteButton.setDisable(true);
-            } else if (optional.get() == ButtonType.OK && tab.getText().equals("Post Treatment")) {
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                informationAlert.setTitle("The Water");
-                informationAlert.setHeaderText("");
-                informationAlert.showAndWait();
-                TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
-                deleteButton.setDisable(true);
-            }
-        }
+        deleteMode = 1;
+        this.deleteAllTreatmentsOnAction();
     }
 
     public void createOnAction(ActionEvent event) throws IOException {
@@ -148,22 +130,42 @@ public class TreatmentsController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(usernamePassword -> {
             if (account.getPassword().equals(usernamePassword)) {
-                Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to permanently delete all treatment ?", ButtonType.OK, ButtonType.CANCEL);
-                ConfirmationAlert.setTitle("The Water");
-                ConfirmationAlert.setHeaderText("");
-                Optional optional = ConfirmationAlert.showAndWait();
-                if (optional.get() == ButtonType.OK) {
+                if (deleteMode == 1) {
+                    if (tab.getText().equals("Pre Treatment")) {
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment");
+                        TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                        preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
+                        deleteButton.setDisable(true);
+                        deleteMode = 0;
+                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                        informationAlert.setTitle("The Water");
+                        informationAlert.setHeaderText("");
+                        informationAlert.showAndWait();
+                    } else if (tab.getText().equals("Post Treatment")) {
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment");
+                        TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                        postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
+                        deleteButton.setDisable(true);
+                        deleteMode = 0;
+                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                        informationAlert.setTitle("The Water");
+                        informationAlert.setHeaderText("");
+                        informationAlert.showAndWait();
+                    }
+                } else {
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments");
+                    TreatmentsDBConnector.deleteAllTreatments();
+                    TreatmentsDBConnector.resetSequence();
+                    preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
+                    postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
-                    TreatmentsDBConnector.deleteAllTreatment();
-                    TreatmentsDBConnector.resetSequence();
-                    preTreatmentTableView.setItems(TreatmentsDBConnector.getAllPreTreatments());
-                    postTreatmentTableView.setItems(TreatmentsDBConnector.getAllPostTreatments());
                 }
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error: Permission denied");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error: Permission denied.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

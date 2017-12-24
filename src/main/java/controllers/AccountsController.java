@@ -19,13 +19,14 @@ import java.util.Optional;
 
 public class AccountsController {
     private Account account;
-    static AccountsDBConnector accountsDBConnector = new AccountsDBConnector();
+    private AccountsDBConnector accountsDBConnector;
     @FXML private TableView<Account> accountsTableView;
     @FXML private Button deleteButton;
 
     public void initialize() {
         deleteButton.setDisable(true);
-        accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
+        accountsDBConnector = new AccountsDBConnector();
+        accountsTableView.setItems(accountsDBConnector.getAccounts());
         accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
@@ -68,29 +69,23 @@ public class AccountsController {
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(usernamePassword -> {
                 if (AccountsDBConnector.checkUser(account.getUsername(),usernamePassword)) {
-                    Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to permanently delete " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " ?", ButtonType.OK, ButtonType.CANCEL);
-                    ConfirmationAlert.setTitle("The Water");
-                    ConfirmationAlert.setHeaderText("");
-                    Optional optional = ConfirmationAlert.showAndWait();
-                    if (optional.get() == ButtonType.OK) {
-                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                        informationAlert.setTitle("The Water");
-                        informationAlert.setHeaderText("");
-                        informationAlert.showAndWait();
-                        accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
-                        if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(account.getUsername()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(account.getPassword())) {
-                            try {
-                                backToLoginOnAction();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            accountsTableView.setItems(accountsDBConnector.loadAccountsToTable());
-                            deleteButton.setDisable(true);
+                    accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
+                    if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(account.getUsername()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(account.getPassword())) {
+                        try {
+                            backToLoginOnAction();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
+                    } else {
+                        accountsTableView.setItems(accountsDBConnector.getAccounts());
+                        deleteButton.setDisable(true);
                     }
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                    informationAlert.setTitle("The Water");
+                    informationAlert.setHeaderText("");
+                    informationAlert.showAndWait();
                 } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error: Permission denied.");
                     errorAlert.setTitle("The Water");
                     errorAlert.setHeaderText("");
                     errorAlert.showAndWait();

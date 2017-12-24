@@ -1,5 +1,6 @@
 package controllers;
 
+import databases.EventLogsDBConnector;
 import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -25,7 +27,7 @@ public class StandardController {
     @FXML private Button deleteButton,createButton;
 
     public void initialize() {
-        standard = StandardDBConnector.loadStandardToTable();
+        standard = StandardDBConnector.getStandard();
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);
@@ -56,6 +58,7 @@ public class StandardController {
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
+            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted standard");
             Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
             informationAlert.setTitle("The Water");
             informationAlert.setHeaderText("");

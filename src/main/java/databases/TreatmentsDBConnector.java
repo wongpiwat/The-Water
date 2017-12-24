@@ -12,7 +12,7 @@ public class TreatmentsDBConnector {
     private static String dbName = "org.sqlite.JDBC";
     private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    public static ObservableList getAllPreTreatments() {
+    public static ObservableList getPreTreatments() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
@@ -44,7 +44,7 @@ public class TreatmentsDBConnector {
         return treatments;
     }
 
-    public static ObservableList getAllPostTreatments() {
+    public static ObservableList getPostTreatments() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
@@ -85,7 +85,7 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \', \'" +dateForm+ "\' , \'"+account+"\')";
+                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values ('" + Date + "', '" + volumeWater + "', '" + temperature + "', '" + pH + "', '" + dissolvedOxygen + "' , '" + mlss + "', '" +dateForm+ "' , '"+account+"')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 query = "select max(TreatmentID) from Treatment";
@@ -104,19 +104,19 @@ public class TreatmentsDBConnector {
         }
     }
 
-    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricity,double deodorizerSystem,boolean standard,String dateForm,String account) {
+    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricity,double deodorizerSystem,String standard,String dateForm,String account) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values (\'" + Date + "\', \'" + volumeWater + " \', \'" + temperature + " \', \' " + pH + " \', \' " + dissolvedOxygen + " \' , \' " + mlss + " \', \'" +dateForm+ "\' , \'"+account+"\')";
+                String query = "insert into Treatment (DateWater, VolumeWater, Temperature, pH, DissolvedOxygen, MLSS, DateForm, Account) values ('" + Date + "', '" + volumeWater + " ', '" + temperature + " ', ' " + pH + " ', ' " + dissolvedOxygen + " ' , ' " + mlss + " ', '" +dateForm+ "' , '"+account+"')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 query = "select max(TreatmentID) from Treatment";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int max = resultSet.getInt(1);
-                query = "insert into PostTreatment (TreatmentID, VolumeSediment, Electricity, DeodorizerSystem, Standard) values ("+max+","+volumeSediment+","+electricity+","+deodorizerSystem+",\'"+standard+"\')";
+                query = "insert into PostTreatment (TreatmentID, VolumeSediment, Electricity, DeodorizerSystem, Standard) values ("+max+","+volumeSediment+","+electricity+","+deodorizerSystem+",'"+standard+"')";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -137,10 +137,10 @@ public class TreatmentsDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int treatmentID = resultSet.getInt(1);
-                query = "Delete from Treatment where TreatmentID == \'" + treatmentID + "\'";
+                query = "Delete from Treatment where TreatmentID == '" + treatmentID + "'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
-                query = "Delete from PreTreatment where ID == \'" + id + "\'";
+                query = "Delete from PreTreatment where ID == '" + id + "'";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -161,10 +161,10 @@ public class TreatmentsDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int treatmentID = resultSet.getInt(1);
-                query = "Delete from Treatment where TreatmentID == \'" + treatmentID + "\'";
+                query = "Delete from Treatment where TreatmentID == '" + treatmentID + "'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
-                query = "Delete from PostTreatment where ID == \'" + id + "\'";
+                query = "Delete from PostTreatment where ID == '" + id + "'";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -176,7 +176,7 @@ public class TreatmentsDBConnector {
         }
     }
 
-    public static void deleteAllTreatment() {
+    public static void deleteAllTreatments() {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -204,7 +204,7 @@ public class TreatmentsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "UPDATE sqlite_sequence SET seq = 0";
+                String query = "UPDATE sqlite_sequence SET PreTreatment = 0 and PostTreatment = 0 and Treatment = 0";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

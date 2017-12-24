@@ -10,7 +10,7 @@ public class AccountsDBConnector {
     private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
 
-    public static ObservableList loadAccountsToTable() {
+    public static ObservableList getAccounts() {
         ObservableList<Account> accounts = FXCollections.observableArrayList();
         try {
             Class.forName(dbName);
@@ -43,7 +43,7 @@ public class AccountsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (Type, Department, FirstName, LastName, Username, Password) values (\'" + type + "\' , \'" + department + "\' , \'" + firstname + "\' , \'" + lastname + "\' , \'" + username + "\' , \'" + password + "')";
+                String query = "insert into Accounts (Type, Department, FirstName, LastName, Username, Password) values ('" + type + "' , '" + department + "' , '" + firstname + "' , '" + lastname + "' , '" + username + "' , '" + password + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -60,7 +60,7 @@ public class AccountsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Delete from Accounts where Username == \'" + username + "\'";
+                String query = "Delete from Accounts where Username == '" + username + "'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

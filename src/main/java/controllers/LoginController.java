@@ -1,6 +1,6 @@
 package controllers;
 import databases.AccountsDBConnector;
-import javafx.collections.ObservableList;
+import databases.EventLogsDBConnector;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,18 +15,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.Account;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 
 public class LoginController {
-    private AccountsDBConnector accountsDBConnector = new AccountsDBConnector();
-    //private ObservableList<Account> accounts;
     @FXML private Text warningText;
     @FXML private TextField userName;
     @FXML private PasswordField userPassword;
 
     public void initialize() {
-        //accounts = accountsDBConnector.loadAccountsToTable();
         userName.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -70,6 +68,7 @@ public class LoginController {
         Account account = AccountsDBConnector.isLogin(userName.getText(),userPassword.getText());
         if (account!=null) {
             loginSuccess = true;
+            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in");
             this.loginToHome(stage,account);
         }
         if(!loginSuccess){

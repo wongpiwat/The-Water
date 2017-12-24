@@ -1,6 +1,8 @@
 package controllers;
 
+import databases.EventLogsDBConnector;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,12 +10,19 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Account;
+import models.Log;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.util.Optional;
 
-public class EventLogController {
+public class EventLogsController {
     private Account account;
+    @FXML private TableView<Log> logsTableView;
+
+    public void initialize() {
+        logsTableView.setItems(EventLogsDBConnector.getEventLogs());
+    }
 
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
@@ -25,7 +34,7 @@ public class EventLogController {
         stage.show();
     }
 
-    public void clearLogOnAction(ActionEvent event) {
+    public void deleteAllLogsOnAction(ActionEvent event) {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("The Water");
         dialog.setHeaderText("Program needs your permission to continue");
@@ -47,22 +56,18 @@ public class EventLogController {
         });
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(usernamePassword -> {
+            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all event logs");
             if (account.getPassword().equals(usernamePassword)) {
-                Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to permanently delete all treatment ?", ButtonType.OK, ButtonType.CANCEL);
-                ConfirmationAlert.setTitle("The Water");
-                ConfirmationAlert.setHeaderText("");
-                Optional optional = ConfirmationAlert.showAndWait();
-                if (optional.get() == ButtonType.OK) {
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                    informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("");
-                    informationAlert.showAndWait();
-
-//                    preTreatmentTableView.setItems(TreatmentDBConnector.loadPreTreatmentToTable());
-//                    postTreatmentTableView.setItems(TreatmentDBConnector.loadPostTreatmentToTable());
-                }
+                EventLogsDBConnector.deleteAllLogs();
+                EventLogsDBConnector.resetSequence();
+                logsTableView.setItems(EventLogsDBConnector.getEventLogs());
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
             } else {
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not login. Please try again later.");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error: Permission denied");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error: Permission denied.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
