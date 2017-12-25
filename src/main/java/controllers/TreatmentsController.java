@@ -133,7 +133,7 @@ public class TreatmentsController {
                 if (deleteMode == 1) {
                     if (tab.getText().equals("Pre Treatment")) {
                         TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment","Treatment");
                         preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -143,7 +143,7 @@ public class TreatmentsController {
                         informationAlert.showAndWait();
                     } else if (tab.getText().equals("Post Treatment")) {
                         TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment","Treatment");
                         postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -155,7 +155,7 @@ public class TreatmentsController {
                 } else {
                     TreatmentsDBConnector.deleteAllTreatments();
                     TreatmentsDBConnector.resetSequence();
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments","Treatment");
                     preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                     postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
@@ -164,7 +164,7 @@ public class TreatmentsController {
                     informationAlert.showAndWait();
                 }
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error: Permission denied");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Treatment");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");

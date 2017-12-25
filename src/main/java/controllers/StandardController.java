@@ -58,7 +58,7 @@ public class StandardController {
         alert.setHeaderText("");
         Optional optional = alert.showAndWait();
         if (optional.get() == ButtonType.OK) {
-            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted standard");
+            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted standard","Standard");
             StandardDBConnector.deleteStandard();
             Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
             informationAlert.setTitle("The Water");

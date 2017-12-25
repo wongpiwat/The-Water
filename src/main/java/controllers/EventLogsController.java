@@ -65,7 +65,7 @@ public class EventLogsController {
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Event Logs");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");

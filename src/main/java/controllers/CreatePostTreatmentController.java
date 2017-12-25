@@ -79,7 +79,7 @@ public class CreatePostTreatmentController {
                 double electricityValue = Double.parseDouble(electricity.getText());
                 double deodorizerSystemValue = Double.parseDouble(deodorizerSystem.getText());
                 TreatmentsDBConnector.savePostTreatment(dateWater,volumeWaterValue, temperatureValue, pHValue, dissolvedOxygenValue,volumeSedimentValue,mlssValue,electricityValue,deodorizerSystemValue,standard.checkStandard(temperatureValue,pHValue,dissolvedOxygenValue,mlssValue),DateUtilities.getDateNumber(),account.getUsername());
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved a post treatment");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved a post treatment","Create Post Treatment");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
@@ -94,7 +94,7 @@ public class CreatePostTreatmentController {
                 deodorizerSystem.setText("");
                 backToTreatmentOnAction(event);
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save post treatment");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save post treatment","Create Post Treatment");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save post treatment. Please fill out these fields and click save changes.");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");

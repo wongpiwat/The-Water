@@ -27,7 +27,8 @@ public class EventLogsDBConnector {
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
                     String event = resultSet.getString("Event");
-                    logs.add(new Log(no, date, logType, accountType, firstName+" "+lastName.subSequence(0,1), event));
+                    String source = resultSet.getString("Source");
+                    logs.add(new Log(no, date, logType, accountType, firstName+" "+lastName.subSequence(0,1), event, source));
                 }
                 connection.close();
             }
@@ -39,12 +40,12 @@ public class EventLogsDBConnector {
         return logs;
     }
 
-    public static void saveLog(String date, String type, String username, String event) {
+    public static void saveLog(String date, String type, String username, String event, String source) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into EventLogs (Date, LogType, Account, Event) values ('" + date + "' , '" + type + "' , '" + username + "' , '" + event + "')";
+                String query = "insert into EventLogs (Date, LogType, Account, Event, Source) values ('" + date + "' , '" + type + "' , '" + username + "' , '" + event + "' , '"+ source +"')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

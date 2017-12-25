@@ -7,14 +7,16 @@ public class Log {
     private String accountType;
     private String name;
     private String event;
+    private String source;
 
-    public Log(String no, String date, String type, String accountType, String name, String event) {
+    public Log(String no, String date, String type, String accountType, String name, String event, String source) {
         this.no = no;
         this.date = date;
         this.type = type;
         this.accountType = accountType;
         this.name = name;
         this.event = event;
+        this.source = source;
     }
 
     public String getNo() {
@@ -39,5 +41,9 @@ public class Log {
 
     public String getEvent() {
         return event;
+    }
+
+    public String getSource() {
+        return source;
     }
 }

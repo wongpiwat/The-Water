@@ -72,7 +72,7 @@ public class AccountsController {
             result.ifPresent(usernamePassword -> {
                 if (AccountsDBConnector.checkUser(account.getUsername(),usernamePassword)) {
                     accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
@@ -89,7 +89,7 @@ public class AccountsController {
                     }
 
                 } else {
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Account");
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                     errorAlert.setTitle("The Water");
                     errorAlert.setHeaderText("");
@@ -114,7 +114,7 @@ public class AccountsController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
-        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out","Account");
     }
 
     public void setUser(Account account) {

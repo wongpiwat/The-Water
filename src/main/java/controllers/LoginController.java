@@ -68,7 +68,7 @@ public class LoginController {
         Account account = AccountsDBConnector.isLogin(userName.getText(),userPassword.getText());
         if (account!=null) {
             loginSuccess = true;
-            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in");
+            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in","Login");
             this.loginToHome(stage,account);
         }
         if(!loginSuccess){

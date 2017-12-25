@@ -97,7 +97,7 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
-        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out","Home");
     }
 
     public void setUser(Account account) {

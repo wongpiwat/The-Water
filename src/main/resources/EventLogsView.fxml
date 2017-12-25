@@ -14,12 +14,14 @@
     <Button layoutX="919.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteAllLogsOnAction" prefHeight="34.0" prefWidth="155.0" text="Delete All Logs"><font><Font size="17.0" /></font></Button>
     <TableView fx:id="logsTableView" layoutX="5.0" layoutY="58.0" prefHeight="460.0" prefWidth="1070.0">
         <columns>
-            <TableColumn resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="40.0" resizable="false" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Log Type"><cellValueFactory><PropertyValueFactory property="logType" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Log Type"><cellValueFactory><PropertyValueFactory property="logType" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="accountType" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="130.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="300.0" resizable="false" sortable="false" text="Event"><cellValueFactory><PropertyValueFactory property="event" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="220.0" resizable="false" sortable="false" text="Source"><cellValueFactory><PropertyValueFactory property="source" /></cellValueFactory></TableColumn>
+
         </columns>
     </TableView>
 </Pane>
