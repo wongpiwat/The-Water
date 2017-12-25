@@ -68,7 +68,6 @@ public class LoginController {
         Account account = AccountsDBConnector.isLogin(userName.getText(),userPassword.getText());
         if (account!=null) {
             loginSuccess = true;
-            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in");
             this.loginToHome(stage,account);
         }
         if(!loginSuccess){
@@ -82,6 +81,7 @@ public class LoginController {
         HomeController homeController = loader.getController();
         homeController.setUser(account);
         stage.show();
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in");
         warningText.setText("");
     }
 }

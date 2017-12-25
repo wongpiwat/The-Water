@@ -69,11 +69,6 @@ public class CreatePostTreatmentController {
             checkTextField.add(electricity.getText());
             checkTextField.add(deodorizerSystem.getText());
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved a post treatment");
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
-                informationAlert.setTitle("The Water");
-                informationAlert.setHeaderText("");
-                informationAlert.showAndWait();
                 String dateWater = String.format("%s %s:%s",DateUtilities.getFormDatePicker(datePicker.getValue()),hourComboBox.getValue(),minuteComboBox.getValue());
                 double volumeWaterValue = Double.parseDouble(volumeWater.getText());
                 double temperatureValue = Double.parseDouble(temperature.getText());
@@ -84,6 +79,11 @@ public class CreatePostTreatmentController {
                 double electricityValue = Double.parseDouble(electricity.getText());
                 double deodorizerSystemValue = Double.parseDouble(deodorizerSystem.getText());
                 TreatmentsDBConnector.savePostTreatment(dateWater,volumeWaterValue, temperatureValue, pHValue, dissolvedOxygenValue,volumeSedimentValue,mlssValue,electricityValue,deodorizerSystemValue,standard.checkStandard(temperatureValue,pHValue,dissolvedOxygenValue,mlssValue),DateUtilities.getDateNumber(),account.getUsername());
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved a post treatment");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
                 volumeWater.setText("");
                 temperature.setText("");
                 pH.setText("");

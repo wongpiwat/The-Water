@@ -1,6 +1,7 @@
 package controllers;
 
 import databases.AccountsDBConnector;
+import databases.EventLogsDBConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Account;
+import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -70,6 +72,11 @@ public class AccountsController {
             result.ifPresent(usernamePassword -> {
                 if (AccountsDBConnector.checkUser(account.getUsername(),usernamePassword)) {
                     accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account");
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
+                    informationAlert.setTitle("The Water");
+                    informationAlert.setHeaderText("");
+                    informationAlert.showAndWait();
                     if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(account.getUsername()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(account.getPassword())) {
                         try {
                             backToLoginOnAction();
@@ -80,11 +87,9 @@ public class AccountsController {
                         accountsTableView.setItems(accountsDBConnector.getAccounts());
                         deleteButton.setDisable(true);
                     }
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                    informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("");
-                    informationAlert.showAndWait();
+
                 } else {
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error: Permission denied");
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error: Permission denied.");
                     errorAlert.setTitle("The Water");
                     errorAlert.setHeaderText("");
@@ -109,6 +114,7 @@ public class AccountsController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
     }
 
     public void setUser(Account account) {

@@ -42,12 +42,12 @@ public class CreateStandardController {
             checkTextField.add(dissolvedOxygen.getText());
             checkTextField.add(mlss.getText());
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+                StandardDBConnector.saveStandard(Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()));
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved standard");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                StandardDBConnector.saveStandard(Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()));
                 backToStandard(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save standard");

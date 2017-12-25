@@ -132,8 +132,8 @@ public class TreatmentsController {
             if (account.getPassword().equals(usernamePassword)) {
                 if (deleteMode == 1) {
                     if (tab.getText().equals("Pre Treatment")) {
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment");
                         TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment");
                         preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -142,8 +142,8 @@ public class TreatmentsController {
                         informationAlert.setHeaderText("");
                         informationAlert.showAndWait();
                     } else if (tab.getText().equals("Post Treatment")) {
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment");
                         TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment");
                         postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -153,9 +153,9 @@ public class TreatmentsController {
                         informationAlert.showAndWait();
                     }
                 } else {
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments");
                     TreatmentsDBConnector.deleteAllTreatments();
                     TreatmentsDBConnector.resetSequence();
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments");
                     preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                     postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");

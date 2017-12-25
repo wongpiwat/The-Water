@@ -92,12 +92,12 @@ public class HomeController {
     }
 
     public void logoutOnAction(ActionEvent event) throws IOException {
-        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
+        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out");
     }
 
     public void setUser(Account account) {
