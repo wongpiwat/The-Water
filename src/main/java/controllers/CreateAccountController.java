@@ -44,7 +44,7 @@ public class CreateAccountController {
             if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 AccountsDBConnector.saveAccount(accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" Account","Create Account");
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Created");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();

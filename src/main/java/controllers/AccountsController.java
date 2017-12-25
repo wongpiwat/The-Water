@@ -73,6 +73,8 @@ public class AccountsController {
                 if (AccountsDBConnector.checkUser(account.getUsername(),usernamePassword)) {
                     accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
+                    accountsTableView.setItems(accountsDBConnector.getAccounts());
+                    deleteButton.setDisable(true);
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
@@ -83,11 +85,7 @@ public class AccountsController {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else {
-                        accountsTableView.setItems(accountsDBConnector.getAccounts());
-                        deleteButton.setDisable(true);
                     }
-
                 } else {
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Account");
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
