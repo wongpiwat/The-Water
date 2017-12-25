@@ -165,7 +165,7 @@ public class TreatmentsController {
                 }
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error: Permission denied");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error: Permission denied.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
