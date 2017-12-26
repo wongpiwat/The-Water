@@ -54,12 +54,18 @@ public class CreatePreTreatmentController {
             checkBoolean.add(CheckInput.isAllNumber(pH));
             checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
             checkBoolean.add(CheckInput.isAllNumber(mlss));
+            checkBoolean.add(CheckInput.isCorrectDate(datePicker));
+            checkBoolean.add(CheckInput.isCorrectTime(hourComboBox,minuteComboBox));
+            checkBoolean.add(CheckInput.isCorrectWater(volumeWater));
+            checkBoolean.add(CheckInput.isCorrectTemp(temperature));
+            checkBoolean.add(CheckInput.isCorrectPH(pH));
             List<String> checkTextField = new ArrayList<>();
             checkTextField.add(volumeWater.getText());
             checkTextField.add(temperature.getText());
             checkTextField.add(pH.getText());
             checkTextField.add(dissolvedOxygen.getText());
             checkTextField.add(mlss.getText());
+            CheckInput.isCorrectDate(datePicker);
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 String dateWater = String.format("%s %s:%s",DateUtilities.getFormDatePicker(datePicker.getValue()),hourComboBox.getValue(),minuteComboBox.getValue());
                 double volumeWaterValue = Double.parseDouble(volumeWater.getText());
@@ -81,7 +87,7 @@ public class CreatePreTreatmentController {
                 backToTreatmentOnAction(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save a pre treatment","Create Pre Treatment");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save pre treatment. Please fill out these fields and click save changes.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save pre treatment");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

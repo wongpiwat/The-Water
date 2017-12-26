@@ -36,6 +36,8 @@ public class CreateStandardController {
             checkBoolean.add(CheckInput.isAllNumber(pH));
             checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
             checkBoolean.add(CheckInput.isAllNumber(mlss));
+            checkBoolean.add(CheckInput.isCorrectTemp(temperature));
+            checkBoolean.add(CheckInput.isCorrectPH(pH));
             List<String> checkTextField = new ArrayList<>();
             checkTextField.add(temperature.getText());
             checkTextField.add(pH.getText());
@@ -51,7 +53,7 @@ public class CreateStandardController {
                 backToStandard(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save standard","Create Standard");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save standard. Please fill out these fields and click save changes.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save standard");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

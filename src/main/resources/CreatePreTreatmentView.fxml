@@ -26,7 +26,7 @@
     <Label layoutX="49.0" layoutY="433.0" prefHeight="50.0" prefWidth="52.0" text="pH"><font><Font size="30.0" /></font></Label>
     <Label layoutX="577.0" layoutY="167.0" prefHeight="50.0" prefWidth="97.0" text="MLSS"><font><Font size="30.0" /></font></Label>
     <Label layoutX="47.0" layoutY="77.0" prefHeight="50.0" prefWidth="253.0" text="Water In"><font><Font size="30.0" /></font></Label>
-    <DatePicker fx:id="datePicker" layoutX="309.0" layoutY="68.0" prefHeight="68.0" prefWidth="211.0" />
+    <DatePicker fx:id="datePicker" layoutX="309.0" layoutY="68.0" prefHeight="68.0" prefWidth="211.0" showWeekNumbers="true" />
     <Label layoutX="47.0" layoutY="162.0" prefHeight="50.0" prefWidth="253.0" text="Time"><font><Font size="30.0" /></font></Label>
     <ComboBox fx:id="hourComboBox" layoutX="309.0" layoutY="162.0" prefHeight="50.0" prefWidth="97.0" />
     <ComboBox fx:id="minuteComboBox" layoutX="424.0" layoutY="162.0" prefHeight="50.0" prefWidth="97.0" />

@@ -20,10 +20,12 @@ import java.util.Optional;
 
 public class CreateAccountController {
     private Account account;
+    private AccountsDBConnector accountsDBConnector;
     @FXML private TextField department,firstName,lastName,userName,password;
     @FXML private ChoiceBox accountTypeChoiceBox;
 
     public void initialize() {
+        accountsDBConnector = new AccountsDBConnector();
         accountTypeChoiceBox.setItems(FXCollections.observableArrayList("Staff",new Separator(), "Supervisor"));
     }
 
@@ -41,7 +43,7 @@ public class CreateAccountController {
             checkTextField.add(department.getText());
             checkTextField.add(firstName.getText());
             checkTextField.add(lastName.getText());
-            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+            if (accountTypeChoiceBox.getSelectionModel().getSelectedItem()!=null && CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean) && CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
                 AccountsDBConnector.saveAccount(accountTypeChoiceBox.getSelectionModel().getSelectedItem().toString(), this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" Account","Create Account");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
@@ -56,7 +58,7 @@ public class CreateAccountController {
                 this.backOnAction(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not create account","Create Account");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create account. Please fill out these fields and click save changes.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create account");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();

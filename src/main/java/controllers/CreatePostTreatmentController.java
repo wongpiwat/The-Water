@@ -59,6 +59,11 @@ public class CreatePostTreatmentController {
             checkBoolean.add(CheckInput.isAllNumber(mlss));
             checkBoolean.add(CheckInput.isAllNumber(electricity));
             checkBoolean.add(CheckInput.isAllNumber(deodorizerSystem));
+            checkBoolean.add(CheckInput.isCorrectDate(datePicker));
+            checkBoolean.add(CheckInput.isCorrectTime(hourComboBox,minuteComboBox));
+            checkBoolean.add(CheckInput.isCorrectWater(volumeWater));
+            checkBoolean.add(CheckInput.isCorrectTemp(temperature));
+            checkBoolean.add(CheckInput.isCorrectPH(pH));
             List<String> checkTextField = new ArrayList<>();
             checkTextField.add(volumeWater.getText());
             checkTextField.add(temperature.getText());
@@ -95,7 +100,7 @@ public class CreatePostTreatmentController {
                 backToTreatmentOnAction(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save post treatment","Create Post Treatment");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save post treatment. Please fill out these fields and click save changes.");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save post treatment");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
@@ -126,5 +131,4 @@ public class CreatePostTreatmentController {
     public void setUser(Account account) {
         this.account = account;
     }
-
 }
