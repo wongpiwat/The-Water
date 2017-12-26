@@ -5,12 +5,16 @@ public class Standard {
     private double pH;
     private double dissolvedOxygen;
     private double mlss;
+    private String name;
+    private String date;
 
-    public Standard(double temperature, double pH, double dissolvedOxygen, double mlss) {
+    public Standard(double temperature, double pH, double dissolvedOxygen, double mlss, String name, String date) {
         this.temperature = temperature;
         this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
         this.mlss = mlss;
+        this.name = name;
+        this.date = date;
     }
 
     public String checkStandard(double temperature, double pH, double dissolvedOxygen, double mlss) {
@@ -34,5 +38,13 @@ public class Standard {
 
     public double getMlss() {
         return mlss;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

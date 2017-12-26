@@ -14,7 +14,7 @@ public class StandardDBConnector {
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
                 Standard standard = null;
-                String query = "select * from Standard";
+                String query = "select * from Standard , Accounts where Standard.Account == Accounts.Username";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 while (resultSet.next()) {
@@ -22,7 +22,11 @@ public class StandardDBConnector {
                     double pH = resultSet.getDouble("pH");
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double mlss = resultSet.getDouble("MLSS");
-                    standard = new Standard(temperature, pH, dissolvedOxygen, mlss);
+                    String firstName = resultSet.getString("FirstName");
+                    String lastName = resultSet.getString("LastName");
+                    String date = resultSet.getString("Date");
+                    String[] dateStrings = date.split(" ");
+                    standard = new Standard(temperature, pH, dissolvedOxygen, mlss,firstName+" "+lastName,dateStrings[0]);
                 }
                 connection.close();
                 return standard;
@@ -35,12 +39,12 @@ public class StandardDBConnector {
         return null;
     }
 
-    public static void saveStandard(double temperature, double pH, double dissolvedOxygen, double mlss) {
+    public static void saveStandard(double temperature, double pH, double dissolvedOxygen, double mlss, String name, String date) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Standard (Temperature, pH, DissolvedOxygen, MLSS) values ('" + temperature + "', '" + pH + "' , '" + dissolvedOxygen + "' , '" + mlss + "')";
+                String query = "insert into Standard (Temperature, pH, DissolvedOxygen, MLSS, Account, Date) values ('" + temperature + "', '" + pH + "' , '" + dissolvedOxygen + "' , '" + mlss + "' , '" + name + "' , '" + date + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

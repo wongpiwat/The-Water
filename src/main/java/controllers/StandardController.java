@@ -23,7 +23,7 @@ public class StandardController {
     private Account account;
     private Standard standard;
     private DecimalFormat decimalFormat = new DecimalFormat("#.##");
-    @FXML private Label temperature,pH,dissolvedOxygen,mlss;
+    @FXML private Label temperature,pH,dissolvedOxygen,mlss,name,date;
     @FXML private Button deleteButton,createButton;
 
     public void initialize() {
@@ -31,6 +31,8 @@ public class StandardController {
         if (standard != null) {
             deleteButton.setDisable(false);
             createButton.setDisable(true);
+            name.setText(standard.getName());
+            date.setText(standard.getDate());
             temperature.setText(decimalFormat.format(standard.getTemperature()));
             pH.setText(decimalFormat.format(standard.getpH()));
             dissolvedOxygen.setText(decimalFormat.format(standard.getDissolvedOxygen()));
@@ -60,6 +62,8 @@ public class StandardController {
         if (optional.get() == ButtonType.OK) {
             EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted standard","Standard");
             StandardDBConnector.deleteStandard();
+            name.setText("");
+            date.setText("");
             temperature.setText("");
             pH.setText("");
             dissolvedOxygen.setText("");
