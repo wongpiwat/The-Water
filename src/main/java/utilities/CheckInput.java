@@ -31,7 +31,7 @@ public class CheckInput {
         boolean isCorrect = true;
         for (int i = 0; i < textField.getText().length(); i++) {
             if (isCorrect) {
-                if ((textField.getText().charAt(i) + "").matches("[a-zA-Z]")) {
+                if ((textField.getText().charAt(i) + "").matches("[a-zA-Z ]")) {
                 } else {
                     isCorrect = false;
                     textField.setStyle("-fx-border-color: red");

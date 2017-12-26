@@ -35,21 +35,19 @@ public class ReportController {
     @FXML private Tab preTreatmentTab,postTreatmentTab;
 
     public void initialize() {
-        List<Treatment> preTreatments = TreatmentsDBConnector.getPreTreatments();
-        List<Treatment> postTreatments = TreatmentsDBConnector.getPostTreatments();
-        setReport(preTreatments,preReportTableView);
+        setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);
         preReportTableView.setMouseTransparent(true);
         postReportTableView.setMouseTransparent(true);
         preTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
-                setReport(preTreatments,preReportTableView);
+                setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);
             }
         });
         postTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
-                setReport(postTreatments,postReportTableView);
+                setReport(TreatmentsDBConnector.getPostTreatments(),postReportTableView);
             }
         });
     }
@@ -80,7 +78,7 @@ public class ReportController {
         fourWeekTreatments = new ArrayList<>();
         fiveWeekTreatments = new ArrayList<>();
         for (int i = 0 ; i< treatments.size() ; i++) {
-            Date date = DateUtilities.getDateForm(treatments.get(i).getDateForm());
+            Date date = DateUtilities.getDate(treatments.get(i).getDateWater());
             if (!years.contains(DateUtilities.getYear(date))) {
                 years.add(DateUtilities.getYear(date));
             }
@@ -92,7 +90,7 @@ public class ReportController {
                 months.clear();
                 reportTableView.getItems().clear();
                 for (int index = 0 ; index < treatments.size() ; index++) {
-                    Date date = DateUtilities.getDateForm(treatments.get(index).getDateForm());
+                    Date date = DateUtilities.getDate(treatments.get(index).getDateWater());
                     if (yearNewValue != null && yearNewValue.equals(DateUtilities.getYear(date))) {
                         if (!months.contains(DateUtilities.getMonth(date))) {
                             months.add(DateUtilities.getMonth(date));
@@ -112,17 +110,17 @@ public class ReportController {
                 if (year != null && monthNewValue != null) {
                     month = monthNewValue.toString();
                     for (int index = 0 ; index < treatments.size() ; index++) {
-                        Date date = DateUtilities.getDateForm(treatments.get(index).getDateForm());
+                        Date date = DateUtilities.getDate(treatments.get(index).getDateWater());
                         if (year.equals(DateUtilities.getYear(date)) && month.equals(DateUtilities.getMonth(date))) {
-                            if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 1)  {
+                            if (DateUtilities.getWeek(DateUtilities.getDate(treatments.get(index).getDateWater())) == 1)  {
                                 oneWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 2)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDate(treatments.get(index).getDateWater())) == 2)  {
                                 twoWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 3)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDate(treatments.get(index).getDateWater())) == 3)  {
                                 threeWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 4)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDate(treatments.get(index).getDateWater())) == 4)  {
                                 fourWeekTreatments.add(treatments.get(index));
-                            } else if (DateUtilities.getWeek(DateUtilities.getDateForm(treatments.get(index).getDateForm())) == 5)  {
+                            } else if (DateUtilities.getWeek(DateUtilities.getDate(treatments.get(index).getDateWater())) == 5)  {
                                 fiveWeekTreatments.add(treatments.get(index));
                             }
                             allTreatments.add(treatments.get(index));

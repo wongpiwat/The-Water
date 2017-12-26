@@ -16,7 +16,7 @@ public class DateUtilities {
 		return dateTimeFormat.format(date);
 	}
 
-	public static Date getDateForm(String string) {
+	public static Date getDate(String string) {
 		DateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
 		try {
 			return dateTimeFormat.parse(string);
