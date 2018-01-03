@@ -79,11 +79,6 @@ public class CreatePreTreatmentController {
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                volumeWater.setText("");
-                temperature.setText("");
-                pH.setText("");
-                dissolvedOxygen.setText("");
-                mlss.setText("");
                 backToTreatmentOnAction(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save a pre treatment","Create Pre Treatment");

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CreateStandardController {
+public class EditStandardController {
     private Account account;
     private Standard standard;
     @FXML private TextField temperature,pH,dissolvedOxygen,mlss;
@@ -70,7 +70,7 @@ public class CreateStandardController {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/StandardView.fxml"));
-        stage.setScene(new Scene(loader.load(), 1080,600));
+        stage.setScene(new Scene(loader.load()));
         StandardController standardController = loader.getController();
         standardController.setUser(account);
         stage.show();
@@ -78,6 +78,12 @@ public class CreateStandardController {
 
     public void setStandard(Standard standard) {
         this.standard = standard;
+        if (standard != null) {
+            this.temperature.setText(standard.getTemperature()+"");
+            this.pH.setText(standard.getpH()+"");
+            this.dissolvedOxygen.setText(standard.getDissolvedOxygen()+"");
+            this.mlss.setText(standard.getMlss()+"");
+        }
     }
 
     public void setUser(Account account) {

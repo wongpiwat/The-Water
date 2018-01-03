@@ -2,12 +2,9 @@ package utilities;
 
 import models.Treatment;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class CalculateUtilities {
-    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
     public static String getAverageVolumeWater(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
@@ -17,7 +14,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -30,7 +27,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -43,7 +40,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -56,7 +53,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -71,7 +68,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -84,7 +81,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -99,7 +96,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 
@@ -114,7 +111,7 @@ public class CalculateUtilities {
         if (string.equals("NaN")) {
             return "0";
         } else {
-            return decimalFormat.format(sum/list.size());
+            return String.format("%.2f",sum/list.size());
         }
     }
 

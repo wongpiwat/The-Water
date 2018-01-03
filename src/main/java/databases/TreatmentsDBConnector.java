@@ -5,12 +5,10 @@ import javafx.collections.ObservableList;
 import models.Treatment;
 
 import java.sql.*;
-import java.text.DecimalFormat;
 
 public class TreatmentsDBConnector {
     private static String dbURL = "jdbc:sqlite:Database.db";
     private static String dbName = "org.sqlite.JDBC";
-    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public static ObservableList getPreTreatments() {
         ObservableList<Treatment> treatments = FXCollections.observableArrayList();
@@ -32,7 +30,7 @@ public class TreatmentsDBConnector {
                     String dateForm = resultSet.getString("DateForm");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(mlss),dateForm,firstName+" "+lastName.subSequence(0,1)));
+                    treatments.add(new Treatment(id, date, String.format("%.2f",volumeWater), String.format("%.2f",temperature), String.format("%.2f",pH),String.format("%.2f",dissolvedOxygen),String.format("%.2f",mlss),dateForm,firstName+" "+lastName.subSequence(0,1)));
                 }
                 connection.close();
             }
@@ -68,7 +66,7 @@ public class TreatmentsDBConnector {
                     String dateForm = resultSet.getString("DateForm");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    treatments.add(new Treatment(id, date, decimalFormat.format(volumeWater), decimalFormat.format(temperature), decimalFormat.format(pH),decimalFormat.format(dissolvedOxygen),decimalFormat.format(volumeSediment),decimalFormat.format(mlss),decimalFormat.format(electricity),decimalFormat.format(deodorizerSystem),standard,dateForm,firstName+" "+lastName.subSequence(0,1)));
+                    treatments.add(new Treatment(id, date, String.format("%.2f",volumeWater), String.format("%.2f",temperature), String.format("%.2f",pH),String.format("%.2f",dissolvedOxygen),String.format("%.2f",volumeSediment),String.format("%.2f",mlss),String.format("%.2f",electricity),String.format("%.2f",deodorizerSystem),standard,dateForm,firstName+" "+lastName.subSequence(0,1)));
                 }
                 connection.close();
             }

@@ -89,14 +89,6 @@ public class CreatePostTreatmentController {
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
-                volumeWater.setText("");
-                temperature.setText("");
-                pH.setText("");
-                dissolvedOxygen.setText("");
-                volumeSediment.setText("");
-                mlss.setText("");
-                electricity.setText("");
-                deodorizerSystem.setText("");
                 backToTreatmentOnAction(event);
             } else {
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save post treatment","Create Post Treatment");

@@ -7,14 +7,16 @@ public class Account {
     private String lastName;
     private String username;
     private String password;
+    private String status;
 
-    public Account(String type, String department, String firstName, String lastName, String username, String password) {
+    public Account(String type, String department, String firstName, String lastName, String username, String password, String status) {
         this.type = type;
         this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.status = status;
     }
 
     public String getType() {
@@ -39,5 +41,9 @@ public class Account {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

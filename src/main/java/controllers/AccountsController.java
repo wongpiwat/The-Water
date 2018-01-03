@@ -18,21 +18,39 @@ import utilities.DateUtilities;
 import java.io.IOException;
 import java.util.Optional;
 
-
 public class AccountsController {
     private Account account;
     private AccountsDBConnector accountsDBConnector;
     @FXML private TableView<Account> accountsTableView;
-    @FXML private Button deleteButton;
+    @FXML private Button deleteButton, blockButton, editButton;
 
     public void initialize() {
         deleteButton.setDisable(true);
+        blockButton.setDisable(true);
+        editButton.setDisable(true);
         accountsDBConnector = new AccountsDBConnector();
         accountsTableView.setItems(accountsDBConnector.getAccounts());
         accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
             public void changed(ObservableValue<? extends Account> observable, Account oldValue, Account newValue) {
-                deleteButton.setDisable(false);
+                if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
+                    if (accountsTableView.getSelectionModel().getSelectedItem().getStatus().equals("Disabled")) {
+                        blockButton.setText("Unblock");
+                    } else {
+                        blockButton.setText("Block");
+                    }
+                    if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
+                        blockButton.setDisable(true);
+                        deleteButton.setDisable(true);
+                    } else {
+                        deleteButton.setDisable(false);
+                        blockButton.setDisable(false);
+                        editButton.setDisable(false);
+                    }
+                } else {
+                    blockButton.setText("Block");
+                }
+
             }
         });
     }
@@ -79,13 +97,6 @@ public class AccountsController {
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
-                    if (accountsTableView.getSelectionModel().getSelectedItem().getUsername().equals(account.getUsername()) && accountsTableView.getSelectionModel().getSelectedItem().getPassword().equals(account.getPassword())) {
-                        try {
-                            backToLoginOnAction();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
                 } else {
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Account");
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
@@ -97,6 +108,41 @@ public class AccountsController {
         }
     }
 
+    public void editOnAction(ActionEvent event) throws IOException {
+        if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
+            Button button = (Button) event.getSource();
+            Stage stage = (Stage) button.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccountView.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            CreateAccountController createAccountController = loader.getController();
+            createAccountController.setTitle("Edit Staff Account");
+            createAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
+            stage.show();
+        }
+    }
+
+    public void blockOnAction(){
+        if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
+            if (accountsTableView.getSelectionModel().getSelectedItem().getStatus().equals("Disabled")) {
+                AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(),"Enabled");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Unblocked");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
+            } else {
+                AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(),"Disabled");
+                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Blocked");
+                informationAlert.setTitle("The Water");
+                informationAlert.setHeaderText("");
+                informationAlert.showAndWait();
+            }
+            accountsTableView.setItems(accountsDBConnector.getAccounts());
+            blockButton.setDisable(true);
+            deleteButton.setDisable(true);
+            editButton.setDisable(true);
+        }
+    }
+
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
@@ -105,14 +151,6 @@ public class AccountsController {
         HomeController homeController = loader.getController();
         homeController.setUser(account);
         stage.show();
-    }
-
-    public void backToLoginOnAction() throws IOException {
-        Stage stage = (Stage) accountsTableView.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
-        stage.setScene(new Scene(loader.load()));
-        stage.show();
-        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged out","Account");
     }
 
     public void setUser(Account account) {

@@ -26,7 +26,8 @@ public class AccountsDBConnector {
                     String lastName = resultSet.getString("LastName");
                     String username = resultSet.getString("Username");
                     String password = resultSet.getString("Password");
-                    accounts.add(new Account(type, department, firstName, lastName, username, password));
+                    String status = resultSet.getString("Status");
+                    accounts.add(new Account(type, department, firstName, lastName, username, password, status));
                 }
                 connection.close();
             }
@@ -38,12 +39,46 @@ public class AccountsDBConnector {
         return accounts;
     }
 
-    public static void saveAccount(String type, String department, String firstname, String lastname, String username, String password) {
+    public static void saveAccount(String type, String department, String firstname, String lastname, String username, String password, String status) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (Type, Department, FirstName, LastName, Username, Password) values ('" + type + "' , '" + department + "' , '" + firstname + "' , '" + lastname + "' , '" + username + "' , '" + password + "')";
+                String query = "insert into Accounts (Type, Department, FirstName, LastName, Username, Password, Status) values ('" + type + "' , '" + department + "' , '" + firstname + "' , '" + lastname + "' , '" + username + "' , '" + password + "' , '" + status + "')";
+                PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                connection.close();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editAccount(String type, String department, String firstname, String lastname, String username, String password) {
+        try {
+            Class.forName(dbName);
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "update Accounts set Type = '" + type + "' , Department = '" + department + "' , FirstName = '" + firstname + "' , LastName = '" + lastname + "' , Username = '" + username + "' , Password = '" + password + "' where Accounts.Username =='" + username + "'";
+                PreparedStatement p = connection.prepareStatement(query);
+                p.executeUpdate();
+                connection.close();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void blockAccount(String username, String status) {
+        try {
+            Class.forName(dbName);
+            Connection connection = DriverManager.getConnection(dbURL);
+            if (connection != null) {
+                String query = "update Accounts set Status = '" + status + "' where Accounts.Username =='" + username + "'";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
@@ -86,8 +121,9 @@ public class AccountsDBConnector {
                 String lastName = resultSet.getString("LastName");
                 String userName = resultSet.getString("Username");
                 String passWord = resultSet.getString("Password");
+                String status = resultSet.getString("Status");
                 connection.close();
-                return new Account(type,department,firstName,lastName,userName,passWord);
+                return new Account(type,department,firstName,lastName,userName,passWord,status);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -118,5 +154,4 @@ public class AccountsDBConnector {
         }
         return false;
     }
-
 }
