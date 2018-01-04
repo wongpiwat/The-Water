@@ -60,11 +60,11 @@ public class CreateAccountController {
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 if (edit) {
                     AccountsDBConnector.editAccount("Staff", this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText(), "Edit Account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText()+" account", "Edit Account");
                 } else {
                     if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
                         AccountsDBConnector.saveAccount("Staff",this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText(),"Enabled");
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText(),"Create Account");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" account","Create Account");
                     }
                 }
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");

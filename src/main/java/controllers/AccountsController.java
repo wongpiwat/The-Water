@@ -131,6 +131,11 @@ public class AccountsController {
                 Optional optional = alert.showAndWait();
                 if (optional.get() == ButtonType.OK) {
                     AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Enabled");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Unblock "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
+                    accountsTableView.setItems(accountsDBConnector.getAccounts());
+                    blockButton.setDisable(true);
+                    deleteButton.setDisable(true);
+                    editButton.setDisable(true);
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Unblocked");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
@@ -143,16 +148,17 @@ public class AccountsController {
                 Optional optional = alert.showAndWait();
                 if (optional.get() == ButtonType.OK) {
                     AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Disabled");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Block "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
+                    accountsTableView.setItems(accountsDBConnector.getAccounts());
+                    blockButton.setDisable(true);
+                    deleteButton.setDisable(true);
+                    editButton.setDisable(true);
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Blocked");
                     informationAlert.setTitle("The Water");
                     informationAlert.setHeaderText("");
                     informationAlert.showAndWait();
                 }
             }
-            accountsTableView.setItems(accountsDBConnector.getAccounts());
-            blockButton.setDisable(true);
-            deleteButton.setDisable(true);
-            editButton.setDisable(true);
         }
     }
 
