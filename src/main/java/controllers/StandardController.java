@@ -16,11 +16,11 @@ import java.io.IOException;
 public class StandardController {
     private Account account;
     private Standard standard;
-    @FXML private Label temperature,pH,dissolvedOxygen,mlss,name,date;
+    @FXML private Label temperature,pH,dissolvedOxygen,mlss,date;
+    @FXML private Button editButton;
     public void initialize() {
         standard = StandardDBConnector.getStandard();
         if (standard != null) {
-            name.setText(standard.getName());
             date.setText(standard.getDate());
             temperature.setText(String.format("%.2f",standard.getTemperature()));
             pH.setText(String.format("%.2f",standard.getpH()));
@@ -52,6 +52,9 @@ public class StandardController {
 
     public void setUser(Account account) {
         this.account = account;
+        if (account.getType().equals("Staff")) {
+            editButton.setDisable(true);
+        }
     }
 }
 

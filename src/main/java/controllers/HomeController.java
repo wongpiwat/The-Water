@@ -107,9 +107,6 @@ public class HomeController {
         if (account.getType().equals("Staff")) {
             accountsButton.setDisable(true);
             eventLogButton.setDisable(true);
-        } else if (account.getType().equals("Supervisor")) {
-            treatmentsButton.setDisable(true);
-            standardButton.setDisable(true);
         }
     }
 }

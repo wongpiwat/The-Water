@@ -32,7 +32,7 @@ public class TreatmentsController {
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
     @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
     @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
-    @FXML private Button deleteButton, clearFilterButton;
+    @FXML private Button deleteButton, deleteAllButton, clearFilterButton, createButton;
 
     public void initialize() {
         deleteButton.setDisable(true);
@@ -165,10 +165,6 @@ public class TreatmentsController {
         stage.show();
     }
 
-    public void setUser(Account account) {
-        this.account = account;
-    }
-
     public void deleteAllTreatmentsOnAction() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("The Water");
@@ -244,6 +240,16 @@ public class TreatmentsController {
             setFilter(TreatmentsDBConnector.getPostTreatments(),postTreatmentTableView);
             postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
             clearFilterButton.setDisable(true);
+        }
+    }
+
+    public void setUser(Account account) {
+        this.account = account;
+        if (account.getType().equals("Supervisor")) {
+            createButton.setDisable(true);
+            deleteButton.setDisable(true);
+        } else {
+            deleteAllButton.setDisable(true);
         }
     }
 }
