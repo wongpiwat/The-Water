@@ -1,6 +1,10 @@
 package controllers;
 
 import databases.EventLogsDBConnector;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,14 +18,69 @@ import models.Log;
 import utilities.DateUtilities;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class EventLogsController {
     private Account account;
+    private String year,month;
     @FXML private TableView<Log> logsTableView;
+    @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
+    @FXML private Button clearFilterButton;
 
     public void initialize() {
+        clearFilterButton.setDisable(true);
         logsTableView.setItems(EventLogsDBConnector.getEventLogs());
+        setFilter(EventLogsDBConnector.getEventLogs(),logsTableView);
+    }
+
+    private void setFilter(List<Log> logs, TableView tableView) {
+        ObservableList<Log> filter = FXCollections.observableArrayList();
+        ObservableList<String> months = FXCollections.observableArrayList();
+        ObservableList<String> years = FXCollections.observableArrayList();
+        for (int i = 0 ; i< logs.size() ; i++) {
+            Date date = DateUtilities.getDate(logs.get(i).getDate());
+            if (!years.contains(DateUtilities.getYear(date))) {
+                years.add(DateUtilities.getYear(date));
+            }
+        }
+        yearChoiceBox.setItems(years);
+        yearChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue yearObservable, Object yearOldValue, Object yearNewValue) {
+                clearFilterButton.setDisable(false);
+                months.clear();
+                for (int index = 0 ; index < logs.size() ; index++) {
+                    Date date = DateUtilities.getDate(logs.get(index).getDate());
+                    if (yearNewValue != null && yearNewValue.equals(DateUtilities.getYear(date))) {
+                        if (!months.contains(DateUtilities.getMonth(date))) {
+                            months.add(DateUtilities.getMonth(date));
+                            year = yearNewValue.toString();
+                        }
+                    }
+                    monthChoiceBox.setItems(months);
+                }
+            }
+        });
+        monthChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue monthObservable, Object monthOldValue, Object monthNewValue) {
+                clearFilterButton.setDisable(false);
+                filter.clear();
+                tableView.getItems().clear();
+                if (year != null && monthNewValue != null) {
+                    month = monthNewValue.toString();
+                    for (int index = 0 ; index < logs.size() ; index++) {
+                        Date date = DateUtilities.getDate(logs.get(index).getDate());
+                        if (year.equals(DateUtilities.getYear(date)) && month.equals(DateUtilities.getMonth(date))) {
+                            filter.add(logs.get(index));
+                        }
+                    }
+                    tableView.setItems(filter);
+                }
+            }
+        });
     }
 
     public void backOnAction(ActionEvent event) throws IOException {
@@ -73,6 +132,10 @@ public class EventLogsController {
                 logsTableView.setItems(EventLogsDBConnector.getEventLogs());
             }
         });
+    }
+
+    public void clearFilterOnAction() {
+
     }
 
     public void setUser(Account account) {

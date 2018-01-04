@@ -4,6 +4,8 @@ import databases.EventLogsDBConnector;
 import databases.TreatmentsDBConnector;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,18 +21,24 @@ import javafx.stage.Stage;
 import utilities.DateUtilities;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 public class TreatmentsController {
     private Account account;
     private int deleteMode;
-    @FXML private Button deleteButton;
-    @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
+    private String year,month;
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
+    @FXML private TableView<Treatment> preTreatmentTableView,postTreatmentTableView, tableView;
+    @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
+    @FXML private Button deleteButton, clearFilterButton;
 
     public void initialize() {
         deleteButton.setDisable(true);
+        clearFilterButton.setDisable(true);
         tableView = preTreatmentTableView;
+        setFilter(TreatmentsDBConnector.getPreTreatments(),preTreatmentTableView);
         preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
         postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
         preTreatmentTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Treatment>() {
@@ -62,6 +70,9 @@ public class TreatmentsController {
                     postTreatmentTableView.getSelectionModel().select(null);
                     tab = preTreatmentTab;
                     tableView = preTreatmentTableView;
+                    setFilter(TreatmentsDBConnector.getPreTreatments(),preTreatmentTableView);
+                    preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
+                    clearFilterButton.setDisable(true);
                 }
             }
         });
@@ -73,6 +84,57 @@ public class TreatmentsController {
                     preTreatmentTableView.getSelectionModel().select(null);
                     tab = postTreatmentTab;
                     tableView = postTreatmentTableView;
+                    setFilter(TreatmentsDBConnector.getPostTreatments(),postTreatmentTableView);
+                    postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
+                    clearFilterButton.setDisable(true);
+                }
+            }
+        });
+    }
+
+    private void setFilter(List<Treatment> treatments, TableView tableView) {
+        ObservableList<Treatment> filter = FXCollections.observableArrayList();
+        ObservableList<String> months = FXCollections.observableArrayList();
+        ObservableList<String> years = FXCollections.observableArrayList();
+        for (int i = 0 ; i< treatments.size() ; i++) {
+            Date date = DateUtilities.getDate(treatments.get(i).getDateWater());
+            if (!years.contains(DateUtilities.getYear(date))) {
+                years.add(DateUtilities.getYear(date));
+            }
+        }
+        yearChoiceBox.setItems(years);
+        yearChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue yearObservable, Object yearOldValue, Object yearNewValue) {
+                clearFilterButton.setDisable(false);
+                months.clear();
+                for (int index = 0 ; index < treatments.size() ; index++) {
+                    Date date = DateUtilities.getDate(treatments.get(index).getDateWater());
+                    if (yearNewValue != null && yearNewValue.equals(DateUtilities.getYear(date))) {
+                        if (!months.contains(DateUtilities.getMonth(date))) {
+                            months.add(DateUtilities.getMonth(date));
+                            year = yearNewValue.toString();
+                        }
+                    }
+                    monthChoiceBox.setItems(months);
+                }
+            }
+        });
+        monthChoiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue monthObservable, Object monthOldValue, Object monthNewValue) {
+                clearFilterButton.setDisable(false);
+                filter.clear();
+                tableView.getItems().clear();
+                if (year != null && monthNewValue != null) {
+                    month = monthNewValue.toString();
+                    for (int index = 0 ; index < treatments.size() ; index++) {
+                        Date date = DateUtilities.getDate(treatments.get(index).getDateWater());
+                        if (year.equals(DateUtilities.getYear(date)) && month.equals(DateUtilities.getMonth(date))) {
+                            filter.add(treatments.get(index));
+                        }
+                    }
+                    tableView.setItems(filter);
                 }
             }
         });
@@ -171,5 +233,17 @@ public class TreatmentsController {
                 errorAlert.showAndWait();
             }
         });
+    }
+
+    public void clearFilterOnAction() {
+        if (preTreatmentTab.isSelected()) {
+            setFilter(TreatmentsDBConnector.getPreTreatments(),preTreatmentTableView);
+            preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
+            clearFilterButton.setDisable(true);
+        } else {
+            setFilter(TreatmentsDBConnector.getPostTreatments(),postTreatmentTableView);
+            postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
+            clearFilterButton.setDisable(true);
+        }
     }
 }

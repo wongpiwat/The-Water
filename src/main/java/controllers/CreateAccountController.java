@@ -39,10 +39,15 @@ public class CreateAccountController {
     }
 
     public void saveAccountOnAction(ActionEvent event) throws IOException {
-            Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to Create Account " + firstName.getText() + " " + lastName.getText() + " ?", ButtonType.OK, ButtonType.CANCEL);
-            ConfirmationAlert.setTitle("The Water");
-            ConfirmationAlert.setHeaderText("");
-            Optional optional = ConfirmationAlert.showAndWait();
+        Alert ConfirmationAlert = new Alert(Alert.AlertType.CONFIRMATION,"",ButtonType.OK, ButtonType.CANCEL);
+        ConfirmationAlert.setTitle("The Water");
+        ConfirmationAlert.setHeaderText("");
+        if (edit) {
+            ConfirmationAlert.setContentText("Do you want to edit account " + firstName.getText() + " " + lastName.getText() + "?");
+        } else {
+            ConfirmationAlert.setContentText("Do you want to create account " + firstName.getText() + " " + lastName.getText() + "?");
+        }
+        Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
             List<Boolean> checkBoolean = new ArrayList<>();
             checkBoolean.add(CheckInput.isAllCharacter(department));
@@ -55,11 +60,11 @@ public class CreateAccountController {
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 if (edit) {
                     AccountsDBConnector.editAccount("Staff", this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText() + " Account", "Edit Account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText(), "Edit Account");
                 } else {
                     if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
                         AccountsDBConnector.saveAccount("Staff",this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText(),"Enabled");
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" Account","Create Account");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText(),"Create Account");
                     }
                 }
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");

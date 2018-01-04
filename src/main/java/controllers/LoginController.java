@@ -72,7 +72,7 @@ public class LoginController {
             this.loginToHome(stage,account);
         }
         if(!loginSuccess){
-            warningText.setText("The username or password is incorrect.");
+            warningText.setText("Incorrect username or password.");
         }
     }
 

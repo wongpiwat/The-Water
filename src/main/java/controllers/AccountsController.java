@@ -42,6 +42,7 @@ public class AccountsController {
                     if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
                         blockButton.setDisable(true);
                         deleteButton.setDisable(true);
+                        editButton.setDisable(false);
                     } else {
                         deleteButton.setDisable(false);
                         blockButton.setDisable(false);
@@ -115,7 +116,7 @@ public class AccountsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccountView.fxml"));
             stage.setScene(new Scene(loader.load()));
             CreateAccountController createAccountController = loader.getController();
-            createAccountController.setTitle("Edit Staff Account");
+            createAccountController.setTitle("Edit Account");
             createAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
             stage.show();
         }
@@ -124,17 +125,29 @@ public class AccountsController {
     public void blockOnAction(){
         if (accountsTableView.getSelectionModel().getSelectedItem() != null) {
             if (accountsTableView.getSelectionModel().getSelectedItem().getStatus().equals("Disabled")) {
-                AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(),"Enabled");
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Unblocked");
-                informationAlert.setTitle("The Water");
-                informationAlert.setHeaderText("");
-                informationAlert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to unblock ?", ButtonType.OK, ButtonType.CANCEL);
+                alert.setTitle("The Water");
+                alert.setHeaderText("");
+                Optional optional = alert.showAndWait();
+                if (optional.get() == ButtonType.OK) {
+                    AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Enabled");
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Unblocked");
+                    informationAlert.setTitle("The Water");
+                    informationAlert.setHeaderText("");
+                    informationAlert.showAndWait();
+                }
             } else {
-                AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(),"Disabled");
-                Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Blocked");
-                informationAlert.setTitle("The Water");
-                informationAlert.setHeaderText("");
-                informationAlert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to block ?", ButtonType.OK, ButtonType.CANCEL);
+                alert.setTitle("The Water");
+                alert.setHeaderText("");
+                Optional optional = alert.showAndWait();
+                if (optional.get() == ButtonType.OK) {
+                    AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Disabled");
+                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Blocked");
+                    informationAlert.setTitle("The Water");
+                    informationAlert.setHeaderText("");
+                    informationAlert.showAndWait();
+                }
             }
             accountsTableView.setItems(accountsDBConnector.getAccounts());
             blockButton.setDisable(true);

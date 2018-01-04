@@ -31,8 +31,8 @@ public class ReportController {
     private Account account;
     private String year,month;
     @FXML private TableView preReportTableView,postReportTableView;
-    @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
     @FXML private Tab preTreatmentTab,postTreatmentTab;
+    @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
 
     public void initialize() {
         setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);

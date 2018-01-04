@@ -14,20 +14,21 @@
     <Label layoutX="14.0" styleClass="homeTitle" text="Event Logs"><font><Font size="40.0" /></font></Label>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
     <Button layoutX="997.0" layoutY="11.0" mnemonicParsing="false" onAction="#deleteAllLogsOnAction" prefHeight="34.0" prefWidth="155.0" text="Delete All Logs"><font><Font size="17.0" /></font></Button>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" layoutX="282.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" layoutX="282.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="662.0" />
     <ChoiceBox fx:id="yearChoiceBox" layoutX="346.0" layoutY="8.0" prefHeight="38.0" prefWidth="150.0" />
     <ChoiceBox fx:id="monthChoiceBox" layoutX="657.0" layoutY="8.0" prefHeight="38.0" prefWidth="150.0" />
     <Label layoutX="285.0" layoutY="9.0" prefHeight="38.0" prefWidth="63.0" text="Year:"><font><Font size="25.0" /></font></Label>
     <Label layoutX="575.0" layoutY="9.0" prefHeight="38.0" prefWidth="84.0" text="Month:"><font><Font size="25.0" /></font></Label>
+    <Button fx:id="clearFilterButton" layoutX="818.0" layoutY="9.0" mnemonicParsing="false" onAction="#clearFilterOnAction" prefHeight="34.0" prefWidth="120.0" text="Clear Filter"><font><Font size="17.0" /></font></Button>
     <TableView fx:id="logsTableView" layoutX="82.0" layoutY="50.0" prefHeight="465.0" prefWidth="1070.0">
         <columns>
-            <TableColumn prefWidth="40.0" resizable="false" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="50.0" resizable="false" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Log Type"><cellValueFactory><PropertyValueFactory property="logType" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="accountType" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="130.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="300.0" resizable="false" sortable="false" text="Event"><cellValueFactory><PropertyValueFactory property="event" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="220.0" resizable="false" sortable="false" text="Source"><cellValueFactory><PropertyValueFactory property="source" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Source"><cellValueFactory><PropertyValueFactory property="source" /></cellValueFactory></TableColumn>
         </columns>
     </TableView>
 </Pane>

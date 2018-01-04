@@ -19,11 +19,12 @@
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
     <Button layoutX="1008.0" layoutY="522.0" mnemonicParsing="false" onAction="#createOnAction" prefHeight="69.0" prefWidth="175.0" text="Create"><font><Font size="30.0" /></font></Button>
     <Button fx:id="deleteButton" layoutX="513.0" layoutY="522.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="69.0" prefWidth="175.0" text="Delete"><font><Font size="30.0" /></font></Button>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" layoutX="282.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" layoutX="282.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="662.0" />
     <ChoiceBox fx:id="yearChoiceBox" layoutX="346.0" layoutY="8.0" prefHeight="38.0" prefWidth="150.0" />
     <ChoiceBox fx:id="monthChoiceBox" layoutX="657.0" layoutY="8.0" prefHeight="38.0" prefWidth="150.0" />
     <Label layoutX="285.0" layoutY="9.0" prefHeight="38.0" prefWidth="63.0" text="Year:"><font><Font size="25.0" /></font></Label>
     <Label layoutX="575.0" layoutY="9.0" prefHeight="38.0" prefWidth="84.0" text="Month:"><font><Font size="25.0" /></font></Label>
+    <Button fx:id="clearFilterButton" layoutX="818.0" layoutY="9.0" mnemonicParsing="false" onAction="#clearFilterOnAction" prefHeight="34.0" prefWidth="120.0" text="Clear Filter"><font><Font size="17.0" /></font></Button>
     <TabPane layoutY="50.0" prefHeight="465.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="preTreatmentTab" text="Pre Treatment">
@@ -32,12 +33,12 @@
                     <children>
                     <TableView fx:id="preTreatmentTableView" prefHeight="432.0" prefWidth="1200.0">
                         <columns>
-                            <TableColumn prefWidth="40.0" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="50.0" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" text="Date Water"><cellValueFactory><PropertyValueFactory property="dateWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="125.0" styleClass="table-right" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="Temp&#10;(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="60.0" styleClass="table-right" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="70.0" styleClass="table-right" text="DO&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="60.0" styleClass="table-right" text="DO&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="MLSS&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="130.0" styleClass="table-right" text="Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
@@ -53,12 +54,12 @@
                     <children>
                     <TableView fx:id="postTreatmentTableView" prefHeight="432.0" prefWidth="1200.0">
                         <columns>
-                            <TableColumn prefWidth="40.0" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="50.0" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" text="Date Water"><cellValueFactory><PropertyValueFactory property="dateWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="125.0" styleClass="table-right" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="Temp&#10;(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="60.0" styleClass="table-right" text="pH"><cellValueFactory><PropertyValueFactory property="pH" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="70.0" styleClass="table-right" text="DO&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="60.0" styleClass="table-right" text="DO&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="90.0" styleClass="table-right" text="Sediment&#10;(kg)"><cellValueFactory><PropertyValueFactory property="volumeSediment" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="MLSS&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="100.0" styleClass="table-right" text="Electricity&#10;(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
