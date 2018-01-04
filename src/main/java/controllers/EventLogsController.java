@@ -135,7 +135,9 @@ public class EventLogsController {
     }
 
     public void clearFilterOnAction() {
-
+        setFilter(EventLogsDBConnector.getEventLogs(),logsTableView);
+        logsTableView.setItems(EventLogsDBConnector.getEventLogs());
+        clearFilterButton.setDisable(true);
     }
 
     public void setUser(Account account) {
