@@ -1,7 +1,6 @@
 package controllers;
 
 import databases.EventLogsDBConnector;
-import databases.StandardDBConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Account;
-import models.Standard;
 import utilities.DateUtilities;
 
 import java.io.IOException;
@@ -19,17 +17,6 @@ public class HomeController {
     private Account account;
     @FXML private Label firstNameLabel, lastNameLabel;
     @FXML private Button treatmentsButton,reportButton,accountsButton,standardButton,eventLogButton;
-
-    public void initialize() {
-        Standard standard = StandardDBConnector.getStandard();
-        if (standard == null) {
-            treatmentsButton.setDisable(true);
-            reportButton.setDisable(true);
-        } else {
-            treatmentsButton.setDisable(false);
-            reportButton.setDisable(false);
-        }
-    }
 
     public void standardOnAction(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();

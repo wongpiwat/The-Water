@@ -39,14 +39,18 @@ public class AccountsController {
                     } else {
                         blockButton.setText("Block");
                     }
-                    if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
-                        blockButton.setDisable(true);
+                    if (accountsTableView.getSelectionModel().getSelectedItem().getActive().equals("✓")) {
                         deleteButton.setDisable(true);
-                        editButton.setDisable(false);
                     } else {
-                        deleteButton.setDisable(false);
-                        blockButton.setDisable(false);
-                        editButton.setDisable(false);
+                        if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
+                            blockButton.setDisable(true);
+                            deleteButton.setDisable(true);
+                            editButton.setDisable(false);
+                        } else {
+                            deleteButton.setDisable(false);
+                            blockButton.setDisable(false);
+                            editButton.setDisable(false);
+                        }
                     }
                 } else {
                     blockButton.setText("Block");
@@ -118,6 +122,7 @@ public class AccountsController {
             CreateAccountController createAccountController = loader.getController();
             createAccountController.setTitle("Edit Account");
             createAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
+            createAccountController.setUser(account);
             stage.show();
         }
     }

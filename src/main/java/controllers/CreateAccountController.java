@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class CreateAccountController {
     private boolean edit;
-    private Account account;
+    private Account account, editAccount;
     private AccountsDBConnector accountsDBConnector;
     @FXML private TextField department,firstName,lastName,userName,password;
     @FXML private Label title;
@@ -29,12 +29,12 @@ public class CreateAccountController {
     }
 
     public void setEditAccounts(Account account){
-        this.account = account;
-        department.setText(this.account.getDepartment());
-        firstName.setText(this.account.getFirstName());
-        lastName.setText(this.account.getLastName());
-        userName.setText(this.account.getUsername());
-        password.setText(this.account.getPassword());
+        editAccount = account;
+        department.setText(editAccount.getDepartment());
+        firstName.setText(editAccount.getFirstName());
+        lastName.setText(editAccount.getLastName());
+        userName.setText(editAccount.getUsername());
+        password.setText(editAccount.getPassword());
         edit = true;
     }
 
@@ -59,11 +59,12 @@ public class CreateAccountController {
             checkTextField.add(lastName.getText());
             if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
                 if (edit) {
-                    AccountsDBConnector.editAccount("Staff", this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText());
+                    AccountsDBConnector.editAccount(editAccount.getType(), department.getText(), firstName.getText(), lastName.getText(), userName.getText(), password.getText());
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText()+" account", "Edit Account");
+                    account = AccountsDBConnector.isLogin(userName.getText(),password.getText());
                 } else {
                     if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
-                        AccountsDBConnector.saveAccount("Staff",this.department.getText(), this.firstName.getText(), this.lastName.getText(), this.userName.getText(), this.password.getText(),"Enabled");
+                        AccountsDBConnector.saveAccount("Staff", department.getText(), firstName.getText(), lastName.getText(), userName.getText(), password.getText(),"Enabled");
                         EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" account","Create Account");
                     }
                 }

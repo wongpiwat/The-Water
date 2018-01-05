@@ -1,6 +1,8 @@
 package models;
 
 public class Standard {
+    private int no;
+    private String release;
     private double temperature;
     private double pH;
     private double dissolvedOxygen;
@@ -8,7 +10,9 @@ public class Standard {
     private String name;
     private String date;
 
-    public Standard(double temperature, double pH, double dissolvedOxygen, double mlss, String name, String date) {
+    public Standard(int no, String release, double temperature, double pH, double dissolvedOxygen, double mlss, String name, String date) {
+        this.no = no;
+        this.release = release;
         this.temperature = temperature;
         this.pH = pH;
         this.dissolvedOxygen = dissolvedOxygen;
@@ -19,9 +23,17 @@ public class Standard {
 
     public String checkStandard(double temperature, double pH, double dissolvedOxygen, double mlss) {
         if (temperature <= this.temperature && pH <= this.pH && dissolvedOxygen <= this.dissolvedOxygen && mlss <= this.mlss) {
-            return "P";
+            return "✓";
         }
-        return "F";
+        return "✕";
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public String getRelease() {
+        return release;
     }
 
     public double getTemperature() {

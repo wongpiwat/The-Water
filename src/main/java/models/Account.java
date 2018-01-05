@@ -1,5 +1,9 @@
 package models;
 
+import databases.TreatmentsDBConnector;
+
+import java.util.List;
+
 public class Account {
     private String type;
     private String department;
@@ -8,6 +12,7 @@ public class Account {
     private String username;
     private String password;
     private String status;
+    private String checkTreatment;
 
     public Account(String type, String department, String firstName, String lastName, String username, String password, String status) {
         this.type = type;
@@ -45,5 +50,24 @@ public class Account {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getActive() {
+        if (type.equals("Supervisor")) {
+            return "-";
+        }
+        List<Treatment> preTreatments = TreatmentsDBConnector.getPreTreatments();
+        for (int i = 0 ; i < preTreatments.size() ; i++) {
+            if (preTreatments.get(i).getName().equals(firstName+" "+lastName.subSequence(0,1))) {
+                return "✓";
+            }
+        }
+        List<Treatment> postTreatments = TreatmentsDBConnector.getPreTreatments();
+        for (int i = 0 ; i < postTreatments.size() ; i++) {
+            if (postTreatments.get(i).getName().equals(firstName+" "+lastName.subSequence(0,1))) {
+                return "✓";
+            }
+        }
+        return "✕";
     }
 }

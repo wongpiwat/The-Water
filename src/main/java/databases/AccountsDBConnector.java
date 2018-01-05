@@ -142,8 +142,9 @@ public class AccountsDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 String userName = resultSet.getString("Username");
+                String type = resultSet.getString("Type");
                 connection.close();
-                if (username.equals(userName)) {
+                if (username.equals(userName) && (type.equals("Supervisor"))) {
                     return true;
                 }
             }

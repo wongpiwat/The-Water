@@ -62,16 +62,17 @@ public class LoginController {
     }
 
     private void checkUsernameAndPassword(Stage stage) throws IOException {
-        boolean loginSuccess = false;
         userName.getText();
         userPassword.getText();
         Account account = AccountsDBConnector.isLogin(userName.getText(),userPassword.getText());
-        if (account!=null) {
-            loginSuccess = true;
-            EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in","Login");
-            this.loginToHome(stage,account);
-        }
-        if(!loginSuccess){
+        if (account != null) {
+            if (!account.getStatus().equals("Disabled")) {
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Logged in","Login");
+                this.loginToHome(stage,account);
+            } else {
+                warningText.setText("Your account has been disabled.");
+            }
+        } else {
             warningText.setText("Incorrect username or password.");
         }
     }

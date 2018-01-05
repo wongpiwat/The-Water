@@ -51,3 +51,7 @@
 .table-right {
   -fx-alignment: CENTER-RIGHT;
 }
+
+.table-center {
+  -fx-alignment: CENTER;
+}

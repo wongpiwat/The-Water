@@ -64,7 +64,7 @@
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="MLSS&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="100.0" styleClass="table-right" text="Electricity&#10;(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="78.0" styleClass="table-right" text="Deodorizer&#10;(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="65.0" styleClass="table-right" text="Standard"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="65.0" styleClass="table-center" text="Standard"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="130.0" styleClass="table-right" text="Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
                         </columns>

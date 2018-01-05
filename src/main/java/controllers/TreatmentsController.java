@@ -47,7 +47,9 @@ public class TreatmentsController {
                 if (newValue == null) {
                     deleteButton.setDisable(true);
                 } else {
-                    deleteButton.setDisable(false);
+                    if (account.getType().equals("Staff")) {
+                        deleteButton.setDisable(false);
+                    }
                 }
             }
         });
@@ -57,7 +59,9 @@ public class TreatmentsController {
                 if (newValue == null) {
                     deleteButton.setDisable(true);
                 } else {
-                    deleteButton.setDisable(false);
+                    if (account.getType().equals("Staff")) {
+                        deleteButton.setDisable(false);
+                    }
                 }
             }
         });
