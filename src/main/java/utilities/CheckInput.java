@@ -12,49 +12,38 @@ import java.util.List;
 public class CheckInput {
 
     public static boolean isAllNumber(TextField textField) {
-        boolean isCorrect = true;
+        if (textField.getText().equals("") || textField.getText().equals(" ") || textField.getText().equals(".")) {
+            textField.setStyle("-fx-border-color: red");
+            return false;
+        }
         for (int i = 0; i < textField.getText().length(); i++) {
-            if (isCorrect) {
-                if ((textField.getText().charAt(i) + "").matches("[0-9.]")) {
-                } else {
-                    isCorrect = false;
-                    textField.setStyle("-fx-border-color: red");
-                    return isCorrect;
-                }
+            if (!(textField.getText().charAt(i) + "").matches("[0-9.]")) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
             }
         }
         textField.setStyle("");
-        return isCorrect;
+        return true;
     }
 
     public static boolean isAllCharacter(TextField textField) {
-        boolean isCorrect = true;
+        if (textField.getText().equals("") || textField.getText().equals(" ") || textField.getText().equals(".")) {
+            textField.setStyle("-fx-border-color: red");
+            return false;
+        }
         for (int i = 0; i < textField.getText().length(); i++) {
-            if (isCorrect) {
-                if ((textField.getText().charAt(i) + "").matches("[a-zA-Z ]")) {
-                } else {
-                    isCorrect = false;
-                    textField.setStyle("-fx-border-color: red");
-                    return isCorrect;
-                }
+            if (!(textField.getText().charAt(i) + "").matches("[a-zA-Z ]")) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
             }
         }
         textField.setStyle("");
-        return isCorrect;
+        return true;
     }
 
     public static boolean isAllCorrectType(List<Boolean> list) {
         for (boolean i : list){
             if (!i){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean isAllCorrectEmpty(List<String> list) {
-        for (String i : list) {
-            if (i.equals("") || i.equals(" ") || i.equals(".")) {
                 return false;
             }
         }
@@ -81,6 +70,7 @@ public class CheckInput {
             textField.setStyle("");
             return true;
         } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
             System.err.println("Error isCorrectWater");
         }
         return false;
@@ -95,6 +85,7 @@ public class CheckInput {
             textField.setStyle("");
             return true;
         } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
             System.err.println("Error isCorrectTemp");
         }
         return false;
@@ -109,7 +100,84 @@ public class CheckInput {
             textField.setStyle("");
             return true;
         } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
             System.err.println("Error isCorrectPH");
+        }
+        return false;
+    }
+
+    public static boolean isCorrectDO(TextField textField) {
+        try {
+            if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectDO");
+        }
+        return false;
+    }
+
+
+    public static boolean isCorrectVolumeSediment(TextField textField) {
+        try {
+            if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectVolumeSediment");
+        }
+        return false;
+    }
+
+    public static boolean isCorrectMLSS(TextField textField) {
+        try {
+            if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectMLSS");
+        }
+        return false;
+    }
+
+    public static boolean isCorrectElectricity(TextField textField) {
+        try {
+            if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectElectricity");
+        }
+        return false;
+    }
+
+    public static boolean isCorrectDeodorizerSystem(TextField textField) {
+        try {
+            if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            textField.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectDeodorizerSystem");
         }
         return false;
     }

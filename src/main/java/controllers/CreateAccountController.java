@@ -57,7 +57,7 @@ public class CreateAccountController {
             checkTextField.add(department.getText());
             checkTextField.add(firstName.getText());
             checkTextField.add(lastName.getText());
-            if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+            if (CheckInput.isAllCorrectType(checkBoolean)) {
                 if (edit) {
                     AccountsDBConnector.editAccount(editAccount.getType(), department.getText(), firstName.getText(), lastName.getText(), userName.getText(), password.getText());
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText()+" account", "Edit Account");

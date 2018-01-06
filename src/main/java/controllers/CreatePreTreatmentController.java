@@ -59,14 +59,9 @@ public class CreatePreTreatmentController {
             checkBoolean.add(CheckInput.isCorrectWater(volumeWater));
             checkBoolean.add(CheckInput.isCorrectTemp(temperature));
             checkBoolean.add(CheckInput.isCorrectPH(pH));
-            List<String> checkTextField = new ArrayList<>();
-            checkTextField.add(volumeWater.getText());
-            checkTextField.add(temperature.getText());
-            checkTextField.add(pH.getText());
-            checkTextField.add(dissolvedOxygen.getText());
-            checkTextField.add(mlss.getText());
-            CheckInput.isCorrectDate(datePicker);
-            if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+            checkBoolean.add(CheckInput.isCorrectDO(dissolvedOxygen));
+            checkBoolean.add(CheckInput.isCorrectMLSS(mlss));
+            if (CheckInput.isAllCorrectType(checkBoolean)) {
                 String dateWater = String.format("%s %s:%s",DateUtilities.getFormDatePicker(datePicker.getValue()),hourComboBox.getValue(),minuteComboBox.getValue());
                 double volumeWaterValue = Double.parseDouble(volumeWater.getText());
                 double temperatureValue = Double.parseDouble(temperature.getText());
@@ -81,8 +76,9 @@ public class CreatePreTreatmentController {
                 informationAlert.showAndWait();
                 backToTreatmentOnAction(event);
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save a pre treatment","Create Pre Treatment");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save pre treatment");
+                String errorMessage = getMessageError("Could not save a pre treatment");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save pre treatment","Create Pre Treatment");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,errorMessage);
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
@@ -108,6 +104,45 @@ public class CreatePreTreatmentController {
         TreatmentsController treatmentController = loader.getController();
         treatmentController.setUser(account);
         stage.show();
+    }
+
+    private String getMessageError(String errorMessage) {
+        if (!CheckInput.isCorrectDate(datePicker)) {
+            errorMessage = errorMessage+"\n Date error";
+        } if (!CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox)) {
+            errorMessage = errorMessage+"\n Time error";
+        } if (!CheckInput.isAllNumber(volumeWater)) {
+            errorMessage = errorMessage+"\n Please fill in Volume Water";
+        } else {
+            if (!CheckInput.isCorrectWater(volumeWater)) {
+                errorMessage = errorMessage+"\n Volume Water error";
+            }
+        }  if (!CheckInput.isAllNumber(temperature)) {
+            errorMessage = errorMessage+"\n Please fill in temperature";
+        } else {
+            if (!CheckInput.isCorrectTemp(temperature)) {
+                errorMessage = errorMessage+"\n Temperature error";
+            }
+        }  if (!CheckInput.isAllNumber(pH)) {
+            errorMessage = errorMessage+"\n Please fill in pH";
+        } else {
+            if (!CheckInput.isCorrectPH(pH)) {
+                errorMessage = errorMessage+"\n pH error";
+            }
+        } if (!CheckInput.isAllNumber(dissolvedOxygen)) {
+            errorMessage = errorMessage+"\n Please fill in dissolvedOxygen";
+        } else {
+            if (!CheckInput.isCorrectDO(dissolvedOxygen)) {
+                errorMessage = errorMessage+"\n Dissolved Oxygen error";
+            }
+        } if (!CheckInput.isAllNumber(mlss)) {
+            errorMessage = errorMessage+"\n Please fill in mlss";
+        } else {
+            if (!CheckInput.isCorrectMLSS(mlss)) {
+                errorMessage = errorMessage+"\n MLSS error";
+            }
+        }
+        return errorMessage;
     }
 
     public void setUser(Account account) {

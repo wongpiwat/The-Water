@@ -50,7 +50,7 @@ public class EditStandardController {
             checkTextField.add(pH.getText());
             checkTextField.add(dissolvedOxygen.getText());
             checkTextField.add(mlss.getText());
-            if (CheckInput.isAllCorrectEmpty(checkTextField) && CheckInput.isAllCorrectType(checkBoolean)) {
+            if (CheckInput.isAllCorrectType(checkBoolean)) {
                 StandardDBConnector.saveStandard(Integer.parseInt(no.getText()),DateUtilities.getFormDatePicker(datePicker.getValue()),Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()),account.getUsername(),DateUtilities.getDateNumber());
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved standard","Create Standard");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");

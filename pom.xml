@@ -21,7 +21,7 @@
         </plugins>
     </build>
 
-    <name>The Cashier</name>
+    <name>The Water</name>
     <url>http://maven.apache.org/plugins/maven-resources-plugin/</url>
 
     <properties>

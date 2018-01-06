@@ -18,8 +18,8 @@
     <TextField fx:id="volumeWater" layoutX="372.0" layoutY="239.0" prefHeight="68.0" prefWidth="205.0"><font><Font size="30.0" /></font></TextField>
     <TextField fx:id="temperature" layoutX="309.0" layoutY="333.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
     <TextField fx:id="pH" layoutX="311.0" layoutY="424.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="dissolvedOxygen" layoutX="1001.0" layoutY="72.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="mlss" layoutX="1005.0" layoutY="158.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="dissolvedOxygen" layoutX="1000.0" layoutY="72.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="mlss" layoutX="1000.0" layoutY="158.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
     <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
     <Label layoutX="14.0" styleClass="homeTitle" text="Create Pre Treatment"><font><Font size="40.0" /></font></Label>
