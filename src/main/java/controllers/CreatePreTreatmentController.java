@@ -55,7 +55,7 @@ public class CreatePreTreatmentController {
             checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
             checkBoolean.add(CheckInput.isAllNumber(mlss));
             checkBoolean.add(CheckInput.isCorrectDate(datePicker));
-            checkBoolean.add(CheckInput.isCorrectTime(hourComboBox,minuteComboBox));
+            checkBoolean.add(CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox));
             checkBoolean.add(CheckInput.isCorrectWater(volumeWater));
             checkBoolean.add(CheckInput.isCorrectTemp(temperature));
             checkBoolean.add(CheckInput.isCorrectPH(pH));

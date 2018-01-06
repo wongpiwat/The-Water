@@ -60,7 +60,7 @@ public class CreatePostTreatmentController {
             checkBoolean.add(CheckInput.isAllNumber(electricity));
             checkBoolean.add(CheckInput.isAllNumber(deodorizerSystem));
             checkBoolean.add(CheckInput.isCorrectDate(datePicker));
-            checkBoolean.add(CheckInput.isCorrectTime(hourComboBox,minuteComboBox));
+            checkBoolean.add(CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox));
             checkBoolean.add(CheckInput.isCorrectWater(volumeWater));
             checkBoolean.add(CheckInput.isCorrectTemp(temperature));
             checkBoolean.add(CheckInput.isCorrectPH(pH));

@@ -100,22 +100,48 @@ public class CheckInput {
     }
 
     public static boolean isCorrectDate(DatePicker datePicker) {
-        if (datePicker.getValue().getDayOfMonth() > LocalDate.now().getDayOfMonth() || datePicker.getValue().getMonthValue() > LocalDate.now().getMonthValue() || datePicker.getValue().getYear() > LocalDate.now().getYear()) {
-            datePicker.setStyle("-fx-border-color: red");
-            return false;
+        int dayDatePicker = datePicker.getValue().getDayOfMonth();
+        int day = LocalDate.now().getDayOfMonth();
+        int monthDatePicker = datePicker.getValue().getMonthValue();
+        int month = LocalDate.now().getMonthValue();
+        int yearDatePicker = datePicker.getValue().getYear();
+        int year = LocalDate.now().getYear();
+        if ((monthDatePicker == month) && (yearDatePicker == year)) {
+            if (dayDatePicker <= day) {
+                if (dayDatePicker >= day-7) {
+                    System.out.println("2");
+                    datePicker.setStyle("");
+                    return true;
+                }
+            }
         }
-        datePicker.setStyle("");
-        return true;
+        datePicker.setStyle("-fx-border-color: red");
+        return false;
     }
 
-    public static boolean isCorrectTime(ComboBox hour, ComboBox minute) {
-        if (Integer.parseInt(hour.getValue().toString()) > LocalTime.now().getHour() || Integer.parseInt(minute.getValue().toString()) > LocalTime.now().getMinute()) {
-            hour.setStyle("-fx-border-color: red");
-            minute.setStyle("-fx-border-color: red");
+    public static boolean isCorrectTime(DatePicker datePicker, ComboBox hourComboBox, ComboBox minuteComboBox) {
+        int dayDatePicker = datePicker.getValue().getDayOfMonth();
+        int day = LocalDate.now().getDayOfMonth();
+        int hComboBox = Integer.parseInt(hourComboBox.getValue().toString());
+        int hour = LocalTime.now().getHour();
+        int mComboBox = Integer.parseInt(minuteComboBox.getValue().toString());
+        int minute = LocalTime.now().getMinute();
+        if (dayDatePicker == day) {
+            if (hComboBox <= hour && mComboBox <= minute) {
+                hourComboBox.setStyle("");
+                minuteComboBox.setStyle("");
+                return true;
+            }
+            hourComboBox.setStyle("-fx-border-color: red");
+            minuteComboBox.setStyle("-fx-border-color: red");
             return false;
+        } else if (dayDatePicker < day) {
+            hourComboBox.setStyle("");
+            minuteComboBox.setStyle("");
+            return true;
         }
-        hour.setStyle("");
-        minute.setStyle("");
-        return true;
+        hourComboBox.setStyle("-fx-border-color: red");
+        minuteComboBox.setStyle("-fx-border-color: red");
+        return false;
     }
 }
