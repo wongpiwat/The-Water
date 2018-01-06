@@ -112,7 +112,7 @@ public class AccountsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "Select * from Accounts where Username=='"+username+"' and Password=='"+password+"'";
+                String query = "Select * from Accounts where Username=='" + username + "' and Password=='" + password + "'";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 String type = resultSet.getString("Type");
@@ -123,12 +123,12 @@ public class AccountsDBConnector {
                 String passWord = resultSet.getString("Password");
                 String status = resultSet.getString("Status");
                 connection.close();
-                return new Account(type,department,firstName,lastName,userName,passWord,status);
+                return new Account(type, department, firstName, lastName, userName, passWord, status);
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("Class not found");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Account not found");
         }
         return null;
     }
@@ -149,9 +149,9 @@ public class AccountsDBConnector {
                 }
             }
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("Class not found");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Account not found");
         }
         return false;
     }

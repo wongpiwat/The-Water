@@ -7,7 +7,7 @@
     }
 
 .warningText {
-    -fx-fill : #0277BD;
+    -fx-fill : red;
     }
 
 .inputSection {

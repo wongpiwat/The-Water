@@ -73,30 +73,45 @@ public class CheckInput {
     }
 
     public static boolean isCorrectWater(TextField textField) {
-        if (Double.parseDouble(textField.getText()) > 3000000 || Double.parseDouble(textField.getText()) < 0) {
-            textField.setStyle("-fx-border-color: red");
-            return false;
+        try {
+            if (Double.parseDouble(textField.getText()) > 3000000 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error isCorrectWater");
         }
-        textField.setStyle("");
-        return true;
+        return false;
     }
 
     public static boolean isCorrectTemp(TextField textField) {
-        if (Double.parseDouble(textField.getText()) > 100 || Double.parseDouble(textField.getText()) < 0) {
-            textField.setStyle("-fx-border-color: red");
-            return false;
+        try {
+            if (Double.parseDouble(textField.getText()) > 100 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error isCorrectTemp");
         }
-        textField.setStyle("");
-        return true;
+        return false;
     }
 
     public static boolean isCorrectPH(TextField textField) {
-        if (Double.parseDouble(textField.getText()) > 14 || Double.parseDouble(textField.getText()) < 0) {
-            textField.setStyle("-fx-border-color: red");
-            return false;
+        try {
+            if (Double.parseDouble(textField.getText()) > 14 || Double.parseDouble(textField.getText()) < 0) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+            textField.setStyle("");
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error isCorrectPH");
         }
-        textField.setStyle("");
-        return true;
+        return false;
     }
 
     public static boolean isCorrectDate(DatePicker datePicker) {
@@ -109,7 +124,6 @@ public class CheckInput {
         if ((monthDatePicker == month) && (yearDatePicker == year)) {
             if (dayDatePicker <= day) {
                 if (dayDatePicker >= day-7) {
-                    System.out.println("2");
                     datePicker.setStyle("");
                     return true;
                 }
