@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HomeController {
     private Account account;
     @FXML private Label firstNameLabel, lastNameLabel;
-    @FXML private Button treatmentsButton,reportButton,accountsButton,standardButton,eventLogButton;
+    @FXML private Button accountsButton,eventLogButton;
 
     public void standardOnAction(ActionEvent event) throws IOException{
         Button button = (Button) event.getSource();
