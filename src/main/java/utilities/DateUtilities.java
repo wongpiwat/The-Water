@@ -43,4 +43,13 @@ public class DateUtilities {
 	public static String getFormDatePicker(LocalDate date) {
 		return date.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 	}
+
+	public static LocalDate getDateStandard(String string) {
+		try {
+			return LocalDate.parse(string,DateTimeFormatter.ofPattern("dd/MM/yy"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

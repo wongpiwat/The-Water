@@ -9,7 +9,7 @@ public class Treatment {
     private String dissolvedOxygen;
     private String volumeSediment;
     private String mlss;
-    private String electricity;
+    private String electricalEnergy;
     private String deodorizerSystem;
     private String standard;
     private String dateWater;
@@ -27,7 +27,7 @@ public class Treatment {
         this.accountUsername = accountUsername;
     }
 
-    public Treatment(int id, String dateWater, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem, String standard, String dateForm, String accountUsername) {
+    public Treatment(int id, String dateWater, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricalEnergy, String deodorizerSystem, String standard, String dateForm, String accountUsername) {
         this.id = id;
         this.dateWater = dateWater;
         this.volumeWater = volumeWater;
@@ -36,7 +36,7 @@ public class Treatment {
         this.dissolvedOxygen = dissolvedOxygen;
         this.volumeSediment = volumeSediment;
         this.mlss = mlss;
-        this.electricity = electricity;
+        this.electricalEnergy = electricalEnergy;
         this.deodorizerSystem = deodorizerSystem;
         this.standard = standard;
         this.dateForm = dateForm;
@@ -75,8 +75,8 @@ public class Treatment {
         return mlss;
     }
 
-    public String getElectricity() {
-        return electricity;
+    public String getElectricalEnergy() {
+        return electricalEnergy;
     }
 
     public String getDeodorizerSystem() {

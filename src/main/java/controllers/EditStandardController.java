@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Account;
+import models.ErrorMessagePopup;
 import models.Standard;
 import utilities.CheckInput;
 import utilities.DateUtilities;
@@ -16,18 +17,15 @@ import utilities.DateUtilities;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class EditStandardController {
+public class EditStandardController implements ErrorMessagePopup {
     private Account account;
     private Standard standard;
     @FXML private TextField no,temperature,pH,dissolvedOxygen,mlss;
     @FXML private DatePicker datePicker;
-
-    public void initialize(){
-        datePicker.setValue(LocalDate.now());
-    }
 
     public void saveOnAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to save ?", ButtonType.OK, ButtonType.CANCEL);
@@ -59,8 +57,9 @@ public class EditStandardController {
                 informationAlert.showAndWait();
                 backToStandard(event);
             } else {
+                String errorMessage = getMessageError("Could not save a standard");
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save standard","Create Standard");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not save standard");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,errorMessage);
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
@@ -68,6 +67,41 @@ public class EditStandardController {
         }
     }
 
+    @Override
+    public String getMessageError(String errorMessage) {
+        if (!CheckInput.isAllNumber(no)) {
+            errorMessage = errorMessage+"\n Please fill numeric in No";
+        }
+        if (!CheckInput.isCorrectDate(datePicker)) {
+            errorMessage = errorMessage+"\n Date error";
+        } if (!CheckInput.isAllNumber(temperature)) {
+            errorMessage = errorMessage+"\n Please fill numeric in Temperature";
+        } else {
+            if (!CheckInput.isCorrectTemp(temperature)) {
+                errorMessage = errorMessage+"\n Temperature error";
+            }
+        }  if (!CheckInput.isAllNumber(pH)) {
+            errorMessage = errorMessage+"\n Please fill numeric in pH";
+        } else {
+            if (!CheckInput.isCorrectPH(pH)) {
+                errorMessage = errorMessage+"\n pH error";
+            }
+        } if (!CheckInput.isAllNumber(dissolvedOxygen)) {
+            errorMessage = errorMessage+"\n Please fill numeric in Dissolved Oxygen";
+        } else {
+            if (!CheckInput.isCorrectDO(dissolvedOxygen)) {
+                errorMessage = errorMessage+"\n Dissolved Oxygen error";
+            }
+        } if (!CheckInput.isAllNumber(mlss)) {
+            errorMessage = errorMessage+"\n Please fill numeric in MLSS";
+        } else {
+            if (!CheckInput.isCorrectMLSS(mlss)) {
+                errorMessage = errorMessage+"\n MLSS error";
+            }
+        }
+        return errorMessage;
+
+    }
 
     public void backOnAction(ActionEvent event) throws IOException {
         this.backToStandard(event);
@@ -86,6 +120,8 @@ public class EditStandardController {
     public void setStandard(Standard standard) {
         this.standard = standard;
         if (standard != null) {
+            this.no.setText(standard.getNo()+"");
+            this.datePicker.setValue(DateUtilities.getDateStandard(standard.getRelease()));
             this.temperature.setText(standard.getTemperature()+"");
             this.pH.setText(standard.getpH()+"");
             this.dissolvedOxygen.setText(standard.getDissolvedOxygen()+"");

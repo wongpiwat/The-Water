@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TreatmentsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TreatmentsController">
     <Label layoutX="14.0" styleClass="homeTitle" text="Treatments"><font><Font size="40.0" /></font></Label>
     <Button fx:id="deleteAllButton" layoutX="980.0" layoutY="8.0" mnemonicParsing="false" onAction="#deleteAllTreatmentsOnAction" prefHeight="34.0" prefWidth="203.0" text="Delete All Treatments"><font><Font size="17.0" /></font></Button>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
@@ -62,7 +62,7 @@
                             <TableColumn prefWidth="60.0" styleClass="table-right" text="DO&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="dissolvedOxygen" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="90.0" styleClass="table-right" text="Sediment&#10;(kg)"><cellValueFactory><PropertyValueFactory property="volumeSediment" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="70.0" styleClass="table-right" text="MLSS&#10;(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
-                            <TableColumn prefWidth="100.0" styleClass="table-right" text="Electricity&#10;(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
+                            <TableColumn prefWidth="100.0" styleClass="table-right" text="Electrical&#10;Energy (kWH)"><cellValueFactory><PropertyValueFactory property="electricalEnergy" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="78.0" styleClass="table-right" text="Deodorizer&#10;(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="65.0" styleClass="table-center" text="Standard"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
                             <TableColumn prefWidth="140.0" text="Date Form"><cellValueFactory><PropertyValueFactory property="dateForm" /></cellValueFactory></TableColumn>

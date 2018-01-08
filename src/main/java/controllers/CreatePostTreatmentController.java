@@ -4,6 +4,7 @@ import databases.EventLogsDBConnector;
 import databases.StandardDBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.ErrorMessagePopup;
 import models.Standard;
 import utilities.CheckInput;
 import utilities.DateUtilities;
@@ -22,12 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CreatePostTreatmentController {
+public class CreatePostTreatmentController implements ErrorMessagePopup {
     private Standard standard;
     private Account account;
     private List<String> itemHour = new  ArrayList<String>(){{add("00");add("01");add("02");add("03");add("04");add("05");add("06");add("07");add("08");add("09");add("10");add("11");add("12");add("13");add("14");add("15");add("16");add("17");add("18");add("19");add("20");add("21");add("22");add("23"); }};
     private List<String> itemMinute = new ArrayList<String>(){{add("00");add("01");add("02");add("03");add("04");add("05");add("06");add("07");add("08");add("09");add("10");add("11");add("12");add("13");add("14");add("15");add("16");add("17");add("18");add("19");add("20");add("21");add("22");add("23");add("24");add("25");add("26");add("27");add("28");add("29");add("30");add("31");add("32");add("33");add("34");add("35");add("36");add("37");add("38");add("39");add("40");add("41");add("42");add("43");add("44");add("45");add("46");add("47");add("48");add("49");add("50");add("51");add("52");add("53");add("54");add("55");add("56");add("57");add("58");add("59");}};
-    @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,volumeSediment,mlss,electricity,deodorizerSystem;
+    @FXML private TextField volumeWater,temperature,pH,dissolvedOxygen,volumeSediment,mlss,electricalEnergy,deodorizerSystem;
     @FXML private DatePicker datePicker;
     @FXML private ComboBox hourComboBox;
     @FXML private ComboBox minuteComboBox;
@@ -57,7 +58,7 @@ public class CreatePostTreatmentController {
             checkBoolean.add(CheckInput.isAllNumber(dissolvedOxygen));
             checkBoolean.add(CheckInput.isAllNumber(volumeSediment));
             checkBoolean.add(CheckInput.isAllNumber(mlss));
-            checkBoolean.add(CheckInput.isAllNumber(electricity));
+            checkBoolean.add(CheckInput.isAllNumber(electricalEnergy));
             checkBoolean.add(CheckInput.isAllNumber(deodorizerSystem));
             checkBoolean.add(CheckInput.isCorrectDate(datePicker));
             checkBoolean.add(CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox));
@@ -67,7 +68,7 @@ public class CreatePostTreatmentController {
             checkBoolean.add(CheckInput.isCorrectDO(dissolvedOxygen));
             checkBoolean.add(CheckInput.isCorrectVolumeSediment(volumeSediment));
             checkBoolean.add(CheckInput.isCorrectMLSS(mlss));
-            checkBoolean.add(CheckInput.isCorrectElectricity(electricity));
+            checkBoolean.add(CheckInput.isCorrectElectricalEnergy(electricalEnergy));
             checkBoolean.add(CheckInput.isCorrectDeodorizerSystem(deodorizerSystem));
             if (CheckInput.isAllCorrectType(checkBoolean)) {
                 String releaseDate = String.format("%s %s:%s",DateUtilities.getFormDatePicker(datePicker.getValue()),hourComboBox.getValue(),minuteComboBox.getValue());
@@ -77,7 +78,7 @@ public class CreatePostTreatmentController {
                 double dissolvedOxygenValue = Double.parseDouble(dissolvedOxygen.getText());
                 double mlssValue = Double.parseDouble(mlss.getText());
                 double volumeSedimentValue = Double.parseDouble(volumeSediment.getText());
-                double electricityValue = Double.parseDouble(electricity.getText());
+                double electricityValue = Double.parseDouble(electricalEnergy.getText());
                 double deodorizerSystemValue = Double.parseDouble(deodorizerSystem.getText());
                 TreatmentsDBConnector.savePostTreatment(releaseDate,volumeWaterValue, temperatureValue, pHValue, dissolvedOxygenValue,volumeSedimentValue,mlssValue,electricityValue,deodorizerSystemValue,standard.checkStandard(temperatureValue,pHValue,dissolvedOxygenValue,mlssValue),DateUtilities.getDateNumber(),account.getUsername());
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved a post treatment","Create Post Treatment");
@@ -117,55 +118,56 @@ public class CreatePostTreatmentController {
         stage.show();
     }
 
-    private String getMessageError(String errorMessage) {
+    @Override
+    public String getMessageError(String errorMessage) {
         if (!CheckInput.isCorrectDate(datePicker)) {
             errorMessage = errorMessage+"\n Date error";
         } if (!CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox)) {
             errorMessage = errorMessage+"\n Time error";
         } if (!CheckInput.isAllNumber(volumeWater)) {
-            errorMessage = errorMessage+"\n Please fill in Volume Water";
+            errorMessage = errorMessage+"\n Please fill numeric in Volume Water";
         } else {
             if (!CheckInput.isCorrectWater(volumeWater)) {
                 errorMessage = errorMessage+"\n Volume Water error";
             }
         }  if (!CheckInput.isAllNumber(temperature)) {
-            errorMessage = errorMessage+"\n Please fill in temperature";
+            errorMessage = errorMessage+"\n Please fill numeric in Temperature";
         } else {
             if (!CheckInput.isCorrectTemp(temperature)) {
                 errorMessage = errorMessage+"\n Temperature error";
             }
         }  if (!CheckInput.isAllNumber(pH)) {
-            errorMessage = errorMessage+"\n Please fill in pH";
+            errorMessage = errorMessage+"\n Please fill numeric in pH";
         } else {
             if (!CheckInput.isCorrectPH(pH)) {
                 errorMessage = errorMessage+"\n pH error";
             }
         } if (!CheckInput.isAllNumber(dissolvedOxygen)) {
-            errorMessage = errorMessage+"\n Please fill in dissolvedOxygen";
+            errorMessage = errorMessage+"\n Please fill numeric in Dissolved Oxygen";
         } else {
             if (!CheckInput.isCorrectDO(dissolvedOxygen)) {
                 errorMessage = errorMessage+"\n Dissolved Oxygen error";
             }
         } if (!CheckInput.isAllNumber(mlss)) {
-            errorMessage = errorMessage+"\n Please fill in mlss";
+            errorMessage = errorMessage+"\n Please fill numeric in MLSS";
         } else {
             if (!CheckInput.isCorrectMLSS(mlss)) {
                 errorMessage = errorMessage+"\n MLSS error";
             }
         } if (!CheckInput.isAllNumber(volumeSediment)) {
-            errorMessage = errorMessage+"\n Please fill in Volume Sediment";
+            errorMessage = errorMessage+"\n Please fill numeric in Volume Sediment";
         } else {
             if (!CheckInput.isCorrectMLSS(volumeSediment)) {
                 errorMessage = errorMessage+"\n Volume Sediment error";
             }
-        } if (!CheckInput.isAllNumber(electricity)) {
-            errorMessage = errorMessage+"\n Please fill in Electricity";
+        } if (!CheckInput.isAllNumber(electricalEnergy)) {
+            errorMessage = errorMessage+"\n Please fill numeric in Electrical Energy";
         } else {
-            if (!CheckInput.isCorrectMLSS(electricity)) {
-                errorMessage = errorMessage+"\n Electricity error";
+            if (!CheckInput.isCorrectMLSS(electricalEnergy)) {
+                errorMessage = errorMessage+"\n Electrical Energy error";
             }
         } if (!CheckInput.isAllNumber(deodorizerSystem)) {
-            errorMessage = errorMessage+"\n Please fill in Deodorizer System";
+            errorMessage = errorMessage+"\n Please fill numeric in Deodorizer System";
         } else {
             if (!CheckInput.isCorrectMLSS(deodorizerSystem)) {
                 errorMessage = errorMessage+"\n Deodorizer System error";

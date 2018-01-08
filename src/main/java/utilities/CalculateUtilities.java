@@ -85,11 +85,11 @@ public class CalculateUtilities {
         }
     }
 
-    public static String getAverageElectricity(List list) {
+    public static String getAverageElectricalEnergy(List list) {
         double sum = 0;
         for (int i = 0; i<list.size();i++) {
-            if (((Treatment) list.get(i)).getElectricity() != null) {
-                sum += Double.parseDouble(((Treatment) list.get(i)).getElectricity());
+            if (((Treatment) list.get(i)).getElectricalEnergy() != null) {
+                sum += Double.parseDouble(((Treatment) list.get(i)).getElectricalEnergy());
             }
         }
         String string = sum/list.size()+"";

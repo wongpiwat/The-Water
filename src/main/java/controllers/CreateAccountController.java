@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.Account;
+import models.ErrorMessagePopup;
 import utilities.CheckInput;
 import utilities.DateUtilities;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CreateAccountController {
+public class CreateAccountController implements ErrorMessagePopup {
     private boolean edit;
     private Account account, editAccount;
     private AccountsDBConnector accountsDBConnector;
@@ -74,13 +75,30 @@ public class CreateAccountController {
                 informationAlert.showAndWait();
                 this.backOnAction(event);
             } else {
+                String errorMessage = getMessageError("Could not save a account");
                 EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not create account","Create Account");
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Could not create account");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR,errorMessage);
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
                 errorAlert.showAndWait();
             }
         }
+    }
+
+    @Override
+    public String getMessageError(String errorMessage) {
+        if (!CheckInput.isAllCharacter(department)) {
+            errorMessage = errorMessage+"\n Please fill alphabet in department";
+        } if (!CheckInput.isAllCharacter(firstName)) {
+            errorMessage = errorMessage+"\n Please fill alphabet in first name";
+        } if (!CheckInput.isAllCharacter(lastName)) {
+            errorMessage = errorMessage+"\n Please fill alphabet in last name";
+        } if (!CheckInput.isAllCharacterNumber(userName)) {
+            errorMessage = errorMessage+"\n Please fill alphabet or  in username";
+        } if (!CheckInput.isAllCharacterNumber(password)) {
+            errorMessage = errorMessage+"\n Please fill alphabet in password";
+        }
+        return errorMessage;
     }
 
     public void backOnAction(ActionEvent event) throws IOException {

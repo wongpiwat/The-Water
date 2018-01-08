@@ -41,6 +41,21 @@ public class CheckInput {
         return true;
     }
 
+    public static boolean isAllCharacterNumber(TextField textField) {
+        if (textField.getText().equals("") || textField.getText().equals(" ") || textField.getText().equals(".")) {
+            textField.setStyle("-fx-border-color: red");
+            return false;
+        }
+        for (int i = 0; i < textField.getText().length(); i++) {
+            if (!(textField.getText().charAt(i) + "").matches("[0-9a-zA-Z]")) {
+                textField.setStyle("-fx-border-color: red");
+                return false;
+            }
+        }
+        textField.setStyle("");
+        return true;
+    }
+
     public static boolean isAllCorrectType(List<Boolean> list) {
         for (boolean i : list){
             if (!i){
@@ -152,7 +167,7 @@ public class CheckInput {
         return false;
     }
 
-    public static boolean isCorrectElectricity(TextField textField) {
+    public static boolean isCorrectElectricalEnergy(TextField textField) {
         try {
             if (Double.parseDouble(textField.getText()) > 1000 || Double.parseDouble(textField.getText()) < 0) {
                 textField.setStyle("-fx-border-color: red");
@@ -162,7 +177,7 @@ public class CheckInput {
             return true;
         } catch (Exception e) {
             textField.setStyle("-fx-border-color: red");
-            System.err.println("Error isCorrectElectricity");
+            System.err.println("Error isCorrectElectrical Energy");
         }
         return false;
     }
@@ -183,21 +198,25 @@ public class CheckInput {
     }
 
     public static boolean isCorrectDate(DatePicker datePicker) {
-        int dayDatePicker = datePicker.getValue().getDayOfMonth();
-        int day = LocalDate.now().getDayOfMonth();
-        int monthDatePicker = datePicker.getValue().getMonthValue();
-        int month = LocalDate.now().getMonthValue();
-        int yearDatePicker = datePicker.getValue().getYear();
-        int year = LocalDate.now().getYear();
-        if ((monthDatePicker == month) && (yearDatePicker == year)) {
-            if (dayDatePicker <= day) {
-                if (dayDatePicker >= day-7) {
-                    datePicker.setStyle("");
-                    return true;
+        try {
+            int dayDatePicker = datePicker.getValue().getDayOfMonth();
+            int day = LocalDate.now().getDayOfMonth();
+            int monthDatePicker = datePicker.getValue().getMonthValue();
+            int month = LocalDate.now().getMonthValue();
+            int yearDatePicker = datePicker.getValue().getYear();
+            int year = LocalDate.now().getYear();
+            if ((monthDatePicker == month) && (yearDatePicker == year)) {
+                if (dayDatePicker <= day) {
+                    if (dayDatePicker >= day - 7) {
+                        datePicker.setStyle("");
+                        return true;
+                    }
                 }
             }
+        } catch (Exception e) {
+            datePicker.setStyle("-fx-border-color: red");
+            System.err.println("Error isCorrectDate");
         }
-        datePicker.setStyle("-fx-border-color: red");
         return false;
     }
 

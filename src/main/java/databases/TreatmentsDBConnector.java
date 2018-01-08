@@ -60,13 +60,13 @@ public class TreatmentsDBConnector {
                     double dissolvedOxygen = resultSet.getDouble("DissolvedOxygen");
                     double volumeSediment = resultSet.getDouble("VolumeSediment");
                     double mlss = resultSet.getDouble("MLSS");
-                    double electricity = resultSet.getDouble("Electricity");
+                    double electricalEnergy = resultSet.getDouble("ElectricalEnergy");
                     double deodorizerSystem = resultSet.getDouble("DeodorizerSystem");
                     String standard = resultSet.getString("Standard");
                     String dateForm = resultSet.getString("DateForm");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    treatments.add(new Treatment(id, date, String.format("%.2f",volumeWater), String.format("%.2f",temperature), String.format("%.2f",pH),String.format("%.2f",dissolvedOxygen),String.format("%.2f",volumeSediment),String.format("%.2f",mlss),String.format("%.2f",electricity),String.format("%.2f",deodorizerSystem),standard,dateForm,firstName+" "+lastName.subSequence(0,1)));
+                    treatments.add(new Treatment(id, date, String.format("%.2f",volumeWater), String.format("%.2f",temperature), String.format("%.2f",pH),String.format("%.2f",dissolvedOxygen),String.format("%.2f",volumeSediment),String.format("%.2f",mlss),String.format("%.2f",electricalEnergy),String.format("%.2f",deodorizerSystem),standard,dateForm,firstName+" "+lastName.subSequence(0,1)));
                 }
                 connection.close();
             }
@@ -102,7 +102,7 @@ public class TreatmentsDBConnector {
         }
     }
 
-    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricity,double deodorizerSystem,String standard,String dateForm,String account) {
+    public static void savePostTreatment(String Date, double volumeWater,double temperature,double pH,double dissolvedOxygen,double volumeSediment,double mlss,double electricalEnergy,double deodorizerSystem,String standard,String dateForm,String account) {
         try {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
@@ -114,7 +114,7 @@ public class TreatmentsDBConnector {
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
                 int max = resultSet.getInt(1);
-                query = "insert into PostTreatment (TreatmentID, VolumeSediment, Electricity, DeodorizerSystem, Standard) values ("+max+","+volumeSediment+","+electricity+","+deodorizerSystem+",'"+standard+"')";
+                query = "insert into PostTreatment (TreatmentID, VolumeSediment, ElectricalEnergy, DeodorizerSystem, Standard) values ("+max+","+volumeSediment+","+electricalEnergy+","+deodorizerSystem+",'"+standard+"')";
                 p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();

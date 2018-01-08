@@ -18,11 +18,11 @@
        <Button fx:id="blockButton" layoutX="522.0" layoutY="522.0" mnemonicParsing="false" onAction="#blockOnAction" prefHeight="69.0" prefWidth="175.0" text="Block"><font><Font size="30.0" /></font></Button>
        <TableView fx:id="accountsTableView" layoutX="123.0" layoutY="50.0" prefHeight="465.0" prefWidth="960.0">
            <columns>
-               <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="First Name"><cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Last Name"><cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="220.0" resizable="false" sortable="false" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
-               <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Status"><cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="200.0" sortable="false" text="First Name"><cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="200.0" sortable="false" text="Last Name"><cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="220.0" sortable="false" text="Department"><cellValueFactory><PropertyValueFactory property="department" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="120.0" sortable="false" text="Type"><cellValueFactory><PropertyValueFactory property="type" /></cellValueFactory></TableColumn>
+               <TableColumn prefWidth="100.0" sortable="false" text="Status"><cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory></TableColumn>
                <TableColumn styleClass="table-center" prefWidth="90.0" resizable="false" sortable="false" text="Active"><cellValueFactory><PropertyValueFactory property="active" /></cellValueFactory></TableColumn>
            </columns>
        </TableView>

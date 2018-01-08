@@ -5,6 +5,7 @@ import databases.TreatmentsDBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import models.ErrorMessagePopup;
 import utilities.CheckInput;
 import utilities.DateUtilities;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CreatePreTreatmentController {
+public class CreatePreTreatmentController implements ErrorMessagePopup {
     private Account account;
     private List<String> itemHour = new  ArrayList<String>(){{add("00");add("01");add("02");add("03");add("04");add("05");add("06");add("07");add("08");add("09");add("10");add("11");add("12");add("13");add("14");add("15");add("16");add("17");add("18");add("19");add("20");add("21");add("22");add("23"); }};
     private List<String> itemMinute = new ArrayList<String>(){{add("00");add("01");add("02");add("03");add("04");add("05");add("06");add("07");add("08");add("09");add("10");add("11");add("12");add("13");add("14");add("15");add("16");add("17");add("18");add("19");add("20");add("21");add("22");add("23");add("24");add("25");add("26");add("27");add("28");add("29");add("30");add("31");add("32");add("33");add("34");add("35");add("36");add("37");add("38");add("39");add("40");add("41");add("42");add("43");add("44");add("45");add("46");add("47");add("48");add("49");add("50");add("51");add("52");add("53");add("54");add("55");add("56");add("57");add("58");add("59");}};
@@ -106,7 +107,8 @@ public class CreatePreTreatmentController {
         stage.show();
     }
 
-    private String getMessageError(String errorMessage) {
+    @Override
+    public String getMessageError(String errorMessage) {
         if (!CheckInput.isCorrectDate(datePicker)) {
             errorMessage = errorMessage+"\n Date error";
         } if (!CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox)) {
@@ -118,7 +120,7 @@ public class CreatePreTreatmentController {
                 errorMessage = errorMessage+"\n Volume Water error";
             }
         }  if (!CheckInput.isAllNumber(temperature)) {
-            errorMessage = errorMessage+"\n Please fill in temperature";
+            errorMessage = errorMessage+"\n Please fill in Temperature";
         } else {
             if (!CheckInput.isCorrectTemp(temperature)) {
                 errorMessage = errorMessage+"\n Temperature error";
@@ -130,13 +132,13 @@ public class CreatePreTreatmentController {
                 errorMessage = errorMessage+"\n pH error";
             }
         } if (!CheckInput.isAllNumber(dissolvedOxygen)) {
-            errorMessage = errorMessage+"\n Please fill in dissolvedOxygen";
+            errorMessage = errorMessage+"\n Please fill in Dissolved Oxygen";
         } else {
             if (!CheckInput.isCorrectDO(dissolvedOxygen)) {
                 errorMessage = errorMessage+"\n Dissolved Oxygen error";
             }
         } if (!CheckInput.isAllNumber(mlss)) {
-            errorMessage = errorMessage+"\n Please fill in mlss";
+            errorMessage = errorMessage+"\n Please fill in MLSS";
         } else {
             if (!CheckInput.isCorrectMLSS(mlss)) {
                 errorMessage = errorMessage+"\n MLSS error";

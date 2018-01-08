@@ -22,12 +22,12 @@
     <Button fx:id="clearFilterButton" layoutX="818.0" layoutY="9.0" mnemonicParsing="false" onAction="#clearFilterOnAction" prefHeight="34.0" prefWidth="120.0" text="Clear Filter"><font><Font size="17.0" /></font></Button>
     <TableView fx:id="logsTableView" layoutY="50.0" prefHeight="465.0" prefWidth="1200.0">
         <columns>
-            <TableColumn prefWidth="50.0" resizable="false" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="50.0" styleClass="table-right" text="No."><cellValueFactory><PropertyValueFactory property="no" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="140.0" resizable="false" sortable="false" text="Date"><cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="100.0" resizable="false" sortable="false" text="Log Type"><cellValueFactory><PropertyValueFactory property="logType" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="120.0" resizable="false" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="accountType" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="130.0" resizable="false" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
-            <TableColumn prefWidth="400.0" resizable="false" sortable="false" text="Event"><cellValueFactory><PropertyValueFactory property="event" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="120.0" sortable="false" text="Account Type"><cellValueFactory><PropertyValueFactory property="accountType" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="130.0" sortable="false" text="Account"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="400.0" sortable="false" text="Event"><cellValueFactory><PropertyValueFactory property="event" /></cellValueFactory></TableColumn>
             <TableColumn prefWidth="200.0" resizable="false" sortable="false" text="Source"><cellValueFactory><PropertyValueFactory property="source" /></cellValueFactory></TableColumn>
         </columns>
     </TableView>

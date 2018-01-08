@@ -21,19 +21,19 @@
     <TextField fx:id="dissolvedOxygen" layoutX="1000.0" layoutY="72.0" prefHeight="68.0" prefWidth="157.0"><font><Font size="30.0" /></font></TextField>
     <TextField fx:id="volumeSediment" layoutX="1000.0" layoutY="155.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
     <TextField fx:id="mlss" layoutX="1000.0" layoutY="243.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
-    <TextField fx:id="electricity" layoutX="1000.0" layoutY="329.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
+    <TextField fx:id="electricalEnergy" layoutX="1000.0" layoutY="329.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
     <TextField fx:id="deodorizerSystem" layoutX="1000.0" layoutY="415.0" prefHeight="68.0" prefWidth="150.0"><font><Font size="30.0" /></font></TextField>
     <Button layoutX="650.0" layoutY="522.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="255.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
     <Label layoutX="14.0" styleClass="homeTitle" text="Create Post Treatment"><font><Font size="40.0" /></font></Label>
-    <Label layoutX="626.0" layoutY="81.0" prefHeight="50.0" prefWidth="347.0" text="Dissolved Oxygen (mg/L)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="626.0" layoutY="81.0" prefHeight="50.0" prefWidth="369.0" text="Dissolved Oxygen (mg/L)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="45.0" layoutY="337.0" prefHeight="50.0" prefWidth="253.0" text="Temperature (°C)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="45.0" layoutY="251.0" prefHeight="50.0" prefWidth="315.0" text="Volume of Water (M3)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="626.0" layoutY="164.0" prefHeight="50.0" prefWidth="347.0" text="Volume of Sediment (kg)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="626.0" layoutY="164.0" prefHeight="50.0" prefWidth="369.0" text="Volume of Sediment (kg)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="45.0" layoutY="423.0" prefHeight="50.0" prefWidth="225.0" text="pH (0-14)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="626.0" layoutY="338.0" prefHeight="50.0" prefWidth="286.0" text="Electricity (kWH)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="626.0" layoutY="338.0" prefHeight="50.0" prefWidth="369.0" text="Electrical Energy (kWH)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="626.0" layoutY="252.0" prefHeight="50.0" prefWidth="286.0" text="MLSS (mg/L)"><font><Font size="30.0" /></font></Label>
-    <Label layoutX="626.0" layoutY="424.0" prefHeight="50.0" prefWidth="329.0" text="Deodorizer System (kg)"><font><Font size="30.0" /></font></Label>
+    <Label layoutX="626.0" layoutY="424.0" prefHeight="50.0" prefWidth="369.0" text="Deodorizer System (kg)"><font><Font size="30.0" /></font></Label>
     <Label layoutX="47.0" layoutY="77.0" prefHeight="50.0" prefWidth="253.0" text="Water Out"><font><Font size="30.0" /></font></Label>
     <Label layoutX="47.0" layoutY="162.0" prefHeight="50.0" prefWidth="253.0" text="Time"><font><Font size="30.0" /></font></Label>
     <Label layoutX="410.0" layoutY="162.0" prefHeight="50.0" prefWidth="14.0" text=":"><font><Font size="30.0" /></font></Label>
