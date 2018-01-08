@@ -132,27 +132,4 @@ public class AccountsDBConnector {
         }
         return null;
     }
-
-    public static boolean checkUser(String username ,String password) {
-        try {
-            Class.forName(dbName);
-            Connection connection = DriverManager.getConnection(dbURL);
-            if (connection != null) {
-                String query = "Select Username from Accounts where Username=='"+username+"' and Password=='"+password+"'";
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query);
-                String userName = resultSet.getString("Username");
-                String type = resultSet.getString("Type");
-                connection.close();
-                if (username.equals(userName) && (type.equals("Supervisor"))) {
-                    return true;
-                }
-            }
-        } catch (ClassNotFoundException e) {
-            System.err.println("Class not found");
-        } catch (SQLException e) {
-            System.err.println("Account not found");
-        }
-        return false;
-    }
 }

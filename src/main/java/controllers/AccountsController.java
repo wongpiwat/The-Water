@@ -42,15 +42,15 @@ public class AccountsController {
                     if (accountsTableView.getSelectionModel().getSelectedItem().getActive().equals("✓")) {
                         deleteButton.setDisable(true);
                     } else {
-                        if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
-                            blockButton.setDisable(true);
-                            deleteButton.setDisable(true);
-                            editButton.setDisable(false);
-                        } else {
-                            deleteButton.setDisable(false);
-                            blockButton.setDisable(false);
-                            editButton.setDisable(false);
-                        }
+                        deleteButton.setDisable(false);
+                    }
+                    if (accountsTableView.getSelectionModel().getSelectedItem().getType().equals("Supervisor")) {
+                        blockButton.setDisable(true);
+                        deleteButton.setDisable(true);
+                        editButton.setDisable(false);
+                    } else {
+                        blockButton.setDisable(false);
+                        editButton.setDisable(false);
                     }
                 } else {
                     blockButton.setText("Block");
@@ -93,18 +93,22 @@ public class AccountsController {
             });
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(usernamePassword -> {
-                if (AccountsDBConnector.checkUser(account.getUsername(),usernamePassword)) {
-                    accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
-                    accountsTableView.setItems(accountsDBConnector.getAccounts());
-                    deleteButton.setDisable(true);
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
-                    informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("");
-                    informationAlert.showAndWait();
-                } else {
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Account");
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
+                Account checkAccount = AccountsDBConnector.isLogin(account.getUsername(),usernamePassword);
+                try {
+                    if (checkAccount.getUsername().equals(account.getUsername())) {
+                        accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Deleted " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " account", "Account");
+                        accountsTableView.setItems(accountsDBConnector.getAccounts());
+                        deleteButton.setDisable(true);
+                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Deleted");
+                        informationAlert.setTitle("The Water");
+                        informationAlert.setHeaderText("");
+                        informationAlert.showAndWait();
+                    }
+                } catch (Exception e) {
+                    System.err.println("Account not found");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(E) Error", account.getUsername(), "Password error", "Account");
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Password error");
                     errorAlert.setTitle("The Water");
                     errorAlert.setHeaderText("");
                     errorAlert.showAndWait();

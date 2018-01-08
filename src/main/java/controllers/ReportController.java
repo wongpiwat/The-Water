@@ -3,7 +3,7 @@ package controllers;
 import databases.TreatmentsDBConnector;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import models.Report;
 import utilities.CalculateUtilities;
 import utilities.DateUtilities;
@@ -15,9 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import models.Account;
 import models.Treatment;
@@ -33,8 +30,16 @@ public class ReportController {
     @FXML private TableView preReportTableView,postReportTableView;
     @FXML private Tab preTreatmentTab,postTreatmentTab;
     @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
+    @FXML private Label round, water, electricalEnergy, sediment, deodorizer, standard, electricalEnergyLabel, sedimentLabel, deodorizerLabel, standardLabel;
 
     public void initialize() {
+        electricalEnergy.setText("");
+        sediment.setText("");
+        deodorizer.setText("");
+        electricalEnergyLabel.setText("");
+        sedimentLabel.setText("");
+        deodorizerLabel.setText("");
+        standardLabel.setText("");
         setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);
         preReportTableView.setMouseTransparent(true);
         postReportTableView.setMouseTransparent(true);
@@ -42,12 +47,31 @@ public class ReportController {
             @Override
             public void handle(Event event) {
                 setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);
+                round.setText("");
+                water.setText("");
+                electricalEnergy.setText("");
+                sediment.setText("");
+                deodorizer.setText("");
+                electricalEnergyLabel.setText("");
+                sedimentLabel.setText("");
+                deodorizerLabel.setText("");
+                standardLabel.setText("");
+                standard.setText("");
             }
         });
         postTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
                 setReport(TreatmentsDBConnector.getPostTreatments(),postReportTableView);
+                round.setText("");
+                water.setText("");
+                electricalEnergy.setText("");
+                sediment.setText("");
+                deodorizer.setText("");
+                electricalEnergyLabel.setText("Total Electrical Energy (kWH):");
+                sedimentLabel.setText("Total Sediment (kg):");
+                deodorizerLabel.setText("Total Deodorizer (kg):");
+                standardLabel.setText("Total Standard (✓):");
             }
         });
     }
@@ -126,13 +150,21 @@ public class ReportController {
                             allTreatments.add(treatments.get(index));
                         }
                     }
-                    report.add(new Report("1",oneWeekTreatments.size(),CalculateUtilities.getAverageVolumeWater(oneWeekTreatments),CalculateUtilities.getAverageTemperature(oneWeekTreatments),CalculateUtilities.getAveragePH(oneWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(oneWeekTreatments),CalculateUtilities.getAverageVolumeSediment(oneWeekTreatments),CalculateUtilities.getAverageMLSS(oneWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(oneWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(oneWeekTreatments),CalculateUtilities.getCountStandard(oneWeekTreatments)));
-                    report.add(new Report("2",twoWeekTreatments.size(),CalculateUtilities.getAverageVolumeWater(twoWeekTreatments),CalculateUtilities.getAverageTemperature(twoWeekTreatments),CalculateUtilities.getAveragePH(twoWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(twoWeekTreatments),CalculateUtilities.getAverageVolumeSediment(twoWeekTreatments),CalculateUtilities.getAverageMLSS(twoWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(twoWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(twoWeekTreatments),CalculateUtilities.getCountStandard(twoWeekTreatments)));
-                    report.add(new Report("3",threeWeekTreatments.size(),CalculateUtilities.getAverageVolumeWater(threeWeekTreatments),CalculateUtilities.getAverageTemperature(threeWeekTreatments),CalculateUtilities.getAveragePH(threeWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(threeWeekTreatments),CalculateUtilities.getAverageVolumeSediment(threeWeekTreatments),CalculateUtilities.getAverageMLSS(threeWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(threeWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(threeWeekTreatments),CalculateUtilities.getCountStandard(threeWeekTreatments)));
-                    report.add(new Report("4",fourWeekTreatments.size(),CalculateUtilities.getAverageVolumeWater(fourWeekTreatments),CalculateUtilities.getAverageTemperature(fourWeekTreatments),CalculateUtilities.getAveragePH(fourWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fourWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fourWeekTreatments),CalculateUtilities.getAverageMLSS(fourWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(fourWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fourWeekTreatments),CalculateUtilities.getCountStandard(fourWeekTreatments)));
-                    report.add(new Report("5",fiveWeekTreatments.size(),CalculateUtilities.getAverageVolumeWater(fiveWeekTreatments),CalculateUtilities.getAverageTemperature(fiveWeekTreatments),CalculateUtilities.getAveragePH(fiveWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fiveWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fiveWeekTreatments),CalculateUtilities.getAverageMLSS(fiveWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(fiveWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fiveWeekTreatments),CalculateUtilities.getCountStandard(fiveWeekTreatments)));
-                    report.add(new Report("Average",allTreatments.size(),CalculateUtilities.getAverageVolumeWater(allTreatments),CalculateUtilities.getAverageTemperature(allTreatments),CalculateUtilities.getAveragePH(allTreatments),CalculateUtilities.getAverageDissolvedOxygen(allTreatments),CalculateUtilities.getAverageVolumeSediment(allTreatments),CalculateUtilities.getAverageMLSS(allTreatments),CalculateUtilities.getAverageElectricalEnergy(allTreatments),CalculateUtilities.getAverageDeodorizerSystem(allTreatments),CalculateUtilities.getCountStandard(allTreatments)));
+                    report.add(new Report("1",oneWeekTreatments.size()+"",CalculateUtilities.getAverageVolumeWater(oneWeekTreatments),CalculateUtilities.getAverageTemperature(oneWeekTreatments),CalculateUtilities.getAveragePH(oneWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(oneWeekTreatments),CalculateUtilities.getAverageVolumeSediment(oneWeekTreatments),CalculateUtilities.getAverageMLSS(oneWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(oneWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(oneWeekTreatments),CalculateUtilities.getCountStandard(oneWeekTreatments)));
+                    report.add(new Report("2",twoWeekTreatments.size()+"",CalculateUtilities.getAverageVolumeWater(twoWeekTreatments),CalculateUtilities.getAverageTemperature(twoWeekTreatments),CalculateUtilities.getAveragePH(twoWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(twoWeekTreatments),CalculateUtilities.getAverageVolumeSediment(twoWeekTreatments),CalculateUtilities.getAverageMLSS(twoWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(twoWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(twoWeekTreatments),CalculateUtilities.getCountStandard(twoWeekTreatments)));
+                    report.add(new Report("3",threeWeekTreatments.size()+"",CalculateUtilities.getAverageVolumeWater(threeWeekTreatments),CalculateUtilities.getAverageTemperature(threeWeekTreatments),CalculateUtilities.getAveragePH(threeWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(threeWeekTreatments),CalculateUtilities.getAverageVolumeSediment(threeWeekTreatments),CalculateUtilities.getAverageMLSS(threeWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(threeWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(threeWeekTreatments),CalculateUtilities.getCountStandard(threeWeekTreatments)));
+                    report.add(new Report("4",fourWeekTreatments.size()+"",CalculateUtilities.getAverageVolumeWater(fourWeekTreatments),CalculateUtilities.getAverageTemperature(fourWeekTreatments),CalculateUtilities.getAveragePH(fourWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fourWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fourWeekTreatments),CalculateUtilities.getAverageMLSS(fourWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(fourWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fourWeekTreatments),CalculateUtilities.getCountStandard(fourWeekTreatments)));
+                    report.add(new Report("5",fiveWeekTreatments.size()+"",CalculateUtilities.getAverageVolumeWater(fiveWeekTreatments),CalculateUtilities.getAverageTemperature(fiveWeekTreatments),CalculateUtilities.getAveragePH(fiveWeekTreatments),CalculateUtilities.getAverageDissolvedOxygen(fiveWeekTreatments),CalculateUtilities.getAverageVolumeSediment(fiveWeekTreatments),CalculateUtilities.getAverageMLSS(fiveWeekTreatments),CalculateUtilities.getAverageElectricalEnergy(fiveWeekTreatments),CalculateUtilities.getAverageDeodorizerSystem(fiveWeekTreatments),CalculateUtilities.getCountStandard(fiveWeekTreatments)));
+                    report.add(new Report("Average","",CalculateUtilities.getAverageVolumeWater(allTreatments),CalculateUtilities.getAverageTemperature(allTreatments),CalculateUtilities.getAveragePH(allTreatments),CalculateUtilities.getAverageDissolvedOxygen(allTreatments),CalculateUtilities.getAverageVolumeSediment(allTreatments),CalculateUtilities.getAverageMLSS(allTreatments),CalculateUtilities.getAverageElectricalEnergy(allTreatments),CalculateUtilities.getAverageDeodorizerSystem(allTreatments),""));
                     reportTableView.setItems(report);
+                    round.setText(allTreatments.size()+"");
+                    water.setText(CalculateUtilities.getTotalVolumeWater(allTreatments));
+                    if (postTreatmentTab.isSelected()) {
+                        electricalEnergy.setText(CalculateUtilities.getTotalElectricalEnergy(allTreatments));
+                        sediment.setText(CalculateUtilities.getTotalVolumeSediment(allTreatments));
+                        deodorizer.setText(CalculateUtilities.getTotalDeodorizerSystem(allTreatments));
+                        standard.setText(CalculateUtilities.getCountStandard(allTreatments));
+                    }
                     oneWeekTreatments.clear();
                     twoWeekTreatments.clear();
                     threeWeekTreatments.clear();

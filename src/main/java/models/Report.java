@@ -2,7 +2,7 @@ package models;
 
 public class Report {
     private String week;
-    private int round;
+    private String round;
     private String volumeWater;
     private String temperature;
     private String pH;
@@ -13,7 +13,7 @@ public class Report {
     private String deodorizerSystem;
     private String standard;
 
-    public Report(String week, int round, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem, String standard) {
+    public Report(String week, String round, String volumeWater, String temperature, String pH, String dissolvedOxygen, String volumeSediment, String mlss, String electricity, String deodorizerSystem, String standard) {
         this.week = week;
         this.round = round;
         this.volumeWater = volumeWater;
@@ -31,7 +31,7 @@ public class Report {
         return week;
     }
 
-    public int getRound() {
+    public String getRound() {
         return round;
     }
 

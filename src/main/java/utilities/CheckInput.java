@@ -211,6 +211,9 @@ public class CheckInput {
                         datePicker.setStyle("");
                         return true;
                     }
+                } else {
+                    datePicker.setStyle("-fx-border-color: red");
+                    System.err.println("Error isCorrectDate");
                 }
             }
         } catch (Exception e) {
@@ -228,7 +231,11 @@ public class CheckInput {
         int mComboBox = Integer.parseInt(minuteComboBox.getValue().toString());
         int minute = LocalTime.now().getMinute();
         if (dayDatePicker == day) {
-            if (hComboBox <= hour && mComboBox <= minute) {
+            if (hComboBox == hour && mComboBox <= minute) {
+                hourComboBox.setStyle("");
+                minuteComboBox.setStyle("");
+                return true;
+            } else if (hComboBox < hour) {
                 hourComboBox.setStyle("");
                 minuteComboBox.setStyle("");
                 return true;

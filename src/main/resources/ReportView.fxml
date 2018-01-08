@@ -15,15 +15,15 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportController">
     <Label layoutX="14.0" styleClass="homeTitle" text="Report"><font><Font size="40.0" /></font></Label>
     <Button layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Back"><font><Font size="30.0" /></font></Button>
-    <TabPane layoutX="78.0" layoutY="128.0" prefHeight="260.0" prefWidth="1070.0" tabClosingPolicy="UNAVAILABLE">
+    <TabPane layoutX="41.0" layoutY="123.0" prefHeight="260.0" prefWidth="1110.0" tabClosingPolicy="UNAVAILABLE">
      <tabs>
        <Tab fx:id="preTreatmentTab" text="Pre Treatment">
          <content>
            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="1070.0">
                   <children>
-                     <TableView fx:id="preReportTableView" prefHeight="214.0" prefWidth="1070.0">
+                     <TableView fx:id="preReportTableView" prefHeight="214.0" prefWidth="1110.0">
                        <columns>
-                           <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" styleClass="table-right" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" styleClass="table-right" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" styleClass="table-right" text="Round"><cellValueFactory><PropertyValueFactory property="round" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="120.0" resizable="false" sortable="false" styleClass="table-right" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="70.0" resizable="false" sortable="false" styleClass="table-right" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
@@ -40,9 +40,9 @@
          <content>
            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="1070.0">
                   <children>
-                     <TableView fx:id="postReportTableView" prefHeight="214.0" prefWidth="1070.0">
+                     <TableView fx:id="postReportTableView" prefHeight="214.0" prefWidth="1110.0">
                        <columns>
-                           <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" styleClass="table-right" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
+                           <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" styleClass="table-right" text="Week"><cellValueFactory><PropertyValueFactory property="week" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" styleClass="table-right" text="Round"><cellValueFactory><PropertyValueFactory property="round" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="120.0" resizable="false" sortable="false" styleClass="table-right" text="Water(M3)"><cellValueFactory><PropertyValueFactory property="volumeWater" /></cellValueFactory></TableColumn>
                            <TableColumn minWidth="0.0" prefWidth="70.0" resizable="false" sortable="false" styleClass="table-right" text="Temp(°C)"><cellValueFactory><PropertyValueFactory property="temperature" /></cellValueFactory></TableColumn>
@@ -52,7 +52,7 @@
                            <TableColumn minWidth="0.0" prefWidth="100.0" resizable="false" sortable="false" styleClass="table-right" text="MLSS(mg/L)"><cellValueFactory><PropertyValueFactory property="mlss" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="150.0" resizable="false" sortable="false" styleClass="table-right" text="Electrical Energy(kWH)"><cellValueFactory><PropertyValueFactory property="electricity" /></cellValueFactory></TableColumn>
                            <TableColumn prefWidth="120.0" resizable="false" sortable="false" styleClass="table-right" text="Deodorizer(kg)"><cellValueFactory><PropertyValueFactory property="deodorizerSystem" /></cellValueFactory></TableColumn>
-                           <TableColumn prefWidth="100.0" resizable="false" sortable="false" styleClass="table-right" text="Standard(P)"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
+                           <TableColumn prefWidth="100.0" resizable="false" sortable="false" styleClass="table-right" text="Standard(✓)"><cellValueFactory><PropertyValueFactory property="standard" /></cellValueFactory></TableColumn>
                        </columns>
                      </TableView>
                   </children>
@@ -66,24 +66,16 @@
    <Label layoutX="285.0" layoutY="78.0" prefHeight="40.0" prefWidth="68.0" text="Year:"><font><Font size="25.0" /></font></Label>
    <Label layoutX="575.0" layoutY="78.0" prefHeight="40.0" prefWidth="90.0" text="Month:"><font><Font size="25.0" /></font></Label>
    <Label layoutX="355.0" layoutY="29.0" text="Average Water Treatment"><font><Font size="35.0" /></font></Label>
-   <Label layoutX="80.0" layoutY="390.0" prefHeight="40.0" prefWidth="155.0" text="Total Round:">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
-   <Label layoutX="80.0" layoutY="455.0" prefHeight="40.0" prefWidth="276.0" text="Total electrical energy:">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
-   <Label layoutX="620.0" layoutY="390.0" prefHeight="40.0" prefWidth="190.0" text="Total sediment:">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
-   <Label layoutX="620.0" layoutY="455.0" prefHeight="40.0" prefWidth="210.0" text="Total deodorizer:">
-      <font>
-         <Font size="25.0" />
-      </font>
-   </Label>
+   <Label layoutX="226.0" layoutY="390.0" prefHeight="40.0" prefWidth="155.0" text="Total Round:"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="electricalEnergyLabel" layoutX="645.0" layoutY="458.0" prefHeight="40.0" prefWidth="360.0" text="Total Electrical Energy (kWH):"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="sedimentLabel" layoutX="645.0" layoutY="526.0" prefHeight="40.0" prefWidth="246.0" text="Total Sediment (kg):"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="deodorizerLabel" layoutX="226.0" layoutY="526.0" prefHeight="40.0" prefWidth="265.0" text="Total Deodorizer (kg):"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="standardLabel" layoutX="226.0" layoutY="458.0" prefHeight="40.0" prefWidth="235.0" text="Total Standard (✓):"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="round" layoutX="388.0" layoutY="390.0" prefHeight="40.0" prefWidth="155.0"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="electricalEnergy" layoutX="1005.0" layoutY="458.0" prefHeight="40.0" prefWidth="150.0"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="sediment" layoutX="891.0" layoutY="526.0" prefHeight="40.0" prefWidth="155.0"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="deodorizer" layoutX="491.0" layoutY="526.0" prefHeight="40.0" prefWidth="140.0"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="standard" layoutX="461.0" layoutY="458.0" prefHeight="40.0" prefWidth="165.0"><font><Font size="25.0" /></font></Label>
+   <Label layoutX="645.0" layoutY="390.0" prefHeight="40.0" prefWidth="215.0" text="Total Water (M3):"><font><Font size="25.0" /></font></Label>
+   <Label fx:id="water" layoutX="860.0" layoutY="390.0" prefHeight="40.0" prefWidth="196.0"><font><Font size="25.0" /></font></Label>
 </Pane>
