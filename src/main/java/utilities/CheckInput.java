@@ -65,9 +65,12 @@ public class CheckInput {
         return true;
     }
 
-    public static boolean isCorrectUsername(List<Account> list, TextField textField) {
+    public static boolean isCorrectUsername(List<Account> list, TextField textField,boolean isEdit) {
         for (Account i:list) {
             if (i.getUsername().equals(textField.getText())) {
+                if (isEdit) {
+                    return false;
+                }
                 textField.setStyle("-fx-border-color: red");
                 return false;
             }

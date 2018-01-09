@@ -65,7 +65,7 @@ public class CreateAccountController implements ErrorMessagePopup {
                     informationAlert.showAndWait();
                     this.backOnAction(event);
                 } else {
-                    if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
+                    if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName,edit)) {
                         AccountsDBConnector.saveAccount("Staff", firstName.getText(), lastName.getText(), userName.getText(), password.getText(),"Enabled");
                         EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" account","Create Account");
                         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
@@ -102,11 +102,12 @@ public class CreateAccountController implements ErrorMessagePopup {
         } if (!CheckInput.isAllCharacterNumber(userName)) {
             errorMessage = errorMessage+"\n Please fill alphabet or in username";
         } else {
-            if (!CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
+            if (!CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName,edit) && !edit) {
                 errorMessage = errorMessage+"\n Username has already been taken";
-            }if (!CheckInput.isAllCharacterNumber(password)) {
-                errorMessage = errorMessage+"\n Please fill alphabet in password";
             }
+        }
+        if (!CheckInput.isAllCharacterNumber(password)) {
+            errorMessage = errorMessage+"\n Please fill alphabet in password";
         }
         return errorMessage;
     }
