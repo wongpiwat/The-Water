@@ -125,49 +125,49 @@ public class CreatePostTreatmentController implements ErrorMessagePopup {
         } if (!CheckInput.isCorrectTime(datePicker,hourComboBox,minuteComboBox)) {
             errorMessage = errorMessage+"\n Time error";
         } if (!CheckInput.isAllNumber(volumeWater)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Volume Water";
+            errorMessage = errorMessage+"\n Please fill number in Volume Water";
         } else {
             if (!CheckInput.isCorrectWater(volumeWater)) {
                 errorMessage = errorMessage+"\n Volume Water error";
             }
         }  if (!CheckInput.isAllNumber(temperature)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Temperature";
+            errorMessage = errorMessage+"\n Please fill number in Temperature";
         } else {
             if (!CheckInput.isCorrectTemp(temperature)) {
                 errorMessage = errorMessage+"\n Temperature error";
             }
         }  if (!CheckInput.isAllNumber(pH)) {
-            errorMessage = errorMessage+"\n Please fill numeric in pH";
+            errorMessage = errorMessage+"\n Please fill number in pH";
         } else {
             if (!CheckInput.isCorrectPH(pH)) {
                 errorMessage = errorMessage+"\n pH error";
             }
         } if (!CheckInput.isAllNumber(dissolvedOxygen)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Dissolved Oxygen";
+            errorMessage = errorMessage+"\n Please fill number in Dissolved Oxygen";
         } else {
             if (!CheckInput.isCorrectDO(dissolvedOxygen)) {
                 errorMessage = errorMessage+"\n Dissolved Oxygen error";
             }
         } if (!CheckInput.isAllNumber(mlss)) {
-            errorMessage = errorMessage+"\n Please fill numeric in MLSS";
+            errorMessage = errorMessage+"\n Please fill number in MLSS";
         } else {
             if (!CheckInput.isCorrectMLSS(mlss)) {
                 errorMessage = errorMessage+"\n MLSS error";
             }
         } if (!CheckInput.isAllNumber(volumeSediment)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Volume Sediment";
+            errorMessage = errorMessage+"\n Please fill number in Volume Sediment";
         } else {
             if (!CheckInput.isCorrectMLSS(volumeSediment)) {
                 errorMessage = errorMessage+"\n Volume Sediment error";
             }
         } if (!CheckInput.isAllNumber(electricalEnergy)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Electrical Energy";
+            errorMessage = errorMessage+"\n Please fill number in Electrical Energy";
         } else {
             if (!CheckInput.isCorrectMLSS(electricalEnergy)) {
                 errorMessage = errorMessage+"\n Electrical Energy error";
             }
         } if (!CheckInput.isAllNumber(deodorizerSystem)) {
-            errorMessage = errorMessage+"\n Please fill numeric in Deodorizer System";
+            errorMessage = errorMessage+"\n Please fill number in Deodorizer System";
         } else {
             if (!CheckInput.isCorrectMLSS(deodorizerSystem)) {
                 errorMessage = errorMessage+"\n Deodorizer System error";

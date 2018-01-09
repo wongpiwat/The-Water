@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <Pane prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAccountController">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="380.0" layoutX="350.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" width="565.0" />
-    <TextField fx:id="department" layoutX="582.0" layoutY="96.0" prefHeight="50.0" prefWidth="250.0"><font><Font size="20.0" /></font></TextField>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="313.0" layoutX="350.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="565.0" />
     <TextField fx:id="firstName" layoutX="582.0" layoutY="174.0" prefHeight="50.0" prefWidth="250.0"><font><Font size="20.0" /></font></TextField>
     <TextField fx:id="lastName" layoutX="582.0" layoutY="245.0" prefHeight="50.0" prefWidth="250.0"><font><Font size="20.0" /></font></TextField>
     <TextField fx:id="userName" layoutX="582.0" layoutY="316.0" prefHeight="50.0" prefWidth="250.0"><font><Font size="20.0" /></font></TextField>
@@ -17,7 +16,6 @@
     <Button layoutX="735.0" layoutY="525.0" mnemonicParsing="false" onAction="#saveAccountOnAction" prefHeight="69.0" prefWidth="175.0" text="Save"><font><Font size="30.0" /></font></Button>
     <Button layoutX="350.0" layoutY="525.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="69.0" prefWidth="175.0" text="Cancel"><font><Font size="30.0" /></font></Button>
     <Label fx:id="title" layoutX="14.0" styleClass="homeTitle" text="Create Staff Account"><font><Font size="40.0" /></font></Label>
-    <Label layoutX="378.0" layoutY="98.0" prefHeight="45.0" prefWidth="200.0" text="Department"><font><Font size="30.0" /></font></Label>
     <Label layoutX="378.0" layoutY="176.0" prefHeight="45.0" prefWidth="200.0" text="First Name"><font><Font size="30.0" /></font></Label>
     <Label layoutX="378.0" layoutY="247.0" prefHeight="45.0" prefWidth="200.0" text="Last Name"><font><Font size="30.0" /></font></Label>
     <Label layoutX="378.0" layoutY="318.0" prefHeight="45.0" prefWidth="200.0" text="Username"><font><Font size="30.0" /></font></Label>

@@ -22,7 +22,7 @@ public class CreateAccountController implements ErrorMessagePopup {
     private boolean edit;
     private Account account, editAccount;
     private AccountsDBConnector accountsDBConnector;
-    @FXML private TextField department,firstName,lastName,userName,password;
+    @FXML private TextField firstName,lastName,userName,password;
     @FXML private Label title;
 
     public void initialize() {
@@ -31,7 +31,6 @@ public class CreateAccountController implements ErrorMessagePopup {
 
     public void setEditAccounts(Account account){
         editAccount = account;
-        department.setText(editAccount.getDepartment());
         firstName.setText(editAccount.getFirstName());
         lastName.setText(editAccount.getLastName());
         userName.setText(editAccount.getUsername());
@@ -51,16 +50,14 @@ public class CreateAccountController implements ErrorMessagePopup {
         Optional optional = ConfirmationAlert.showAndWait();
         if (optional.get() == ButtonType.OK) {
             List<Boolean> checkBoolean = new ArrayList<>();
-            checkBoolean.add(CheckInput.isAllCharacter(department));
             checkBoolean.add(CheckInput.isAllCharacter(firstName));
             checkBoolean.add(CheckInput.isAllCharacter(lastName));
             List<String> checkTextField = new ArrayList<>();
-            checkTextField.add(department.getText());
             checkTextField.add(firstName.getText());
             checkTextField.add(lastName.getText());
-            if (CheckInput.isAllCorrectType(checkBoolean) && CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
+            if (CheckInput.isAllCorrectType(checkBoolean)) {
                 if (edit) {
-                    AccountsDBConnector.editAccount(editAccount.getType(), department.getText(), firstName.getText(), lastName.getText(), userName.getText(), password.getText());
+                    AccountsDBConnector.editAccount(editAccount.getType(), firstName.getText(), lastName.getText(), userName.getText(), password.getText());
                     EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Edited " + firstName.getText() + " " + lastName.getText()+" account", "Edit Account");
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                     informationAlert.setTitle("The Water");
@@ -68,13 +65,22 @@ public class CreateAccountController implements ErrorMessagePopup {
                     informationAlert.showAndWait();
                     this.backOnAction(event);
                 } else {
-                    AccountsDBConnector.saveAccount("Staff", department.getText(), firstName.getText(), lastName.getText(), userName.getText(), password.getText(),"Enabled");
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" account","Create Account");
-                    Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
-                    informationAlert.setTitle("The Water");
-                    informationAlert.setHeaderText("");
-                    informationAlert.showAndWait();
-                    this.backOnAction(event);
+                    if (CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
+                        AccountsDBConnector.saveAccount("Staff", firstName.getText(), lastName.getText(), userName.getText(), password.getText(),"Enabled");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Created "+firstName.getText()+" "+lastName.getText()+" account","Create Account");
+                        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
+                        informationAlert.setTitle("The Water");
+                        informationAlert.setHeaderText("");
+                        informationAlert.showAndWait();
+                        this.backOnAction(event);
+                    } else {
+                        String errorMessage = getMessageError("Could not save a account");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not create account","Create Account");
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR,errorMessage);
+                        errorAlert.setTitle("The Water");
+                        errorAlert.setHeaderText("");
+                        errorAlert.showAndWait();
+                    }
                 }
             } else {
                 String errorMessage = getMessageError("Could not save a account");
@@ -89,14 +95,12 @@ public class CreateAccountController implements ErrorMessagePopup {
 
     @Override
     public String getMessageError(String errorMessage) {
-        if (!CheckInput.isAllCharacter(department)) {
-            errorMessage = errorMessage+"\n Please fill alphabet in department";
-        } if (!CheckInput.isAllCharacter(firstName)) {
+        if (!CheckInput.isAllCharacter(firstName)) {
             errorMessage = errorMessage+"\n Please fill alphabet in first name";
         } if (!CheckInput.isAllCharacter(lastName)) {
             errorMessage = errorMessage+"\n Please fill alphabet in last name";
         } if (!CheckInput.isAllCharacterNumber(userName)) {
-            errorMessage = errorMessage+"\n Please fill alphabet or  in username";
+            errorMessage = errorMessage+"\n Please fill alphabet or in username";
         } else {
             if (!CheckInput.isCorrectUsername(accountsDBConnector.getAccounts(),userName)) {
                 errorMessage = errorMessage+"\n Username has already been taken";

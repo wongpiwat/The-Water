@@ -210,6 +210,9 @@ public class CheckInput {
                     if (dayDatePicker >= day - 7) {
                         datePicker.setStyle("");
                         return true;
+                    } else {
+                        datePicker.setStyle("-fx-border-color: red");
+                        System.err.println("Error isCorrectDate");
                     }
                 } else {
                     datePicker.setStyle("-fx-border-color: red");
@@ -243,11 +246,12 @@ public class CheckInput {
             hourComboBox.setStyle("-fx-border-color: red");
             minuteComboBox.setStyle("-fx-border-color: red");
             return false;
-        } else if (dayDatePicker < day) {
+        } else if (dayDatePicker >= day-7) {
             hourComboBox.setStyle("");
             minuteComboBox.setStyle("");
             return true;
         }
+        datePicker.setStyle("-fx-border-color: red");
         hourComboBox.setStyle("-fx-border-color: red");
         minuteComboBox.setStyle("-fx-border-color: red");
         return false;

@@ -6,17 +6,14 @@ import java.util.List;
 
 public class Account {
     private String type;
-    private String department;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
     private String status;
-    private String checkTreatment;
 
-    public Account(String type, String department, String firstName, String lastName, String username, String password, String status) {
+    public Account(String type, String firstName, String lastName, String username, String password, String status) {
         this.type = type;
-        this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -26,10 +23,6 @@ public class Account {
 
     public String getType() {
         return type;
-    }
-
-    public String getDepartment() {
-        return department;
     }
 
     public String getFirstName() {
