@@ -43,7 +43,7 @@ public class AccountsDBConnector {
             Class.forName(dbName);
             Connection connection = DriverManager.getConnection(dbURL);
             if (connection != null) {
-                String query = "insert into Accounts (Type, Department, FirstName, LastName, Username, Password, Status) values ('" + type + "' , '" + firstname + "' , '" + lastname + "' , '" + username + "' , '" + password + "' , '" + status + "')";
+                String query = "insert into Accounts (Type, FirstName, LastName, Username, Password, Status) values ('" + type + "' , '" + firstname + "' , '" + lastname + "' , '" + username + "' , '" + password + "' , '" + status + "')";
                 PreparedStatement p = connection.prepareStatement(query);
                 p.executeUpdate();
                 connection.close();
