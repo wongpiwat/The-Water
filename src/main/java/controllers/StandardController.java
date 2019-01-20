@@ -10,15 +10,18 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Account;
 import models.Standard;
+import utilities.AccountManager;
 
 import java.io.IOException;
 
 public class StandardController {
-    private Account account;
     private Standard standard;
     @FXML private Label temperature, pH, dissolvedOxygen, mlss, date, no, release;
     @FXML private Button editButton;
     public void initialize() {
+        if (AccountManager.getAccount().getType().equals("Staff")) {
+            editButton.setDisable(true);
+        }
         standard = StandardDBConnector.getStandard();
         if (standard != null) {
             no.setText(standard.getNo()+"");
@@ -38,7 +41,6 @@ public class StandardController {
         stage.setScene(new Scene(loader.load()));
         EditStandardController editStandardController = loader.getController();
         editStandardController.setStandard(standard);
-        editStandardController.setUser(account);
         stage.show();
     }
 
@@ -47,16 +49,7 @@ public class StandardController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
-        if (account.getType().equals("Staff")) {
-            editButton.setDisable(true);
-        }
     }
 }
 

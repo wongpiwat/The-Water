@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.List;
 
 public class ReportController {
-    private Account account;
     private String year,month;
     @FXML private TableView preReportTableView,postReportTableView;
     @FXML private Tab preTreatmentTab,postTreatmentTab;
@@ -41,8 +40,6 @@ public class ReportController {
         deodorizerLabel.setText("");
         standardLabel.setText("");
         setReport(TreatmentsDBConnector.getPreTreatments(),preReportTableView);
-        preReportTableView.setMouseTransparent(true);
-        postReportTableView.setMouseTransparent(true);
         preTreatmentTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
@@ -81,13 +78,7 @@ public class ReportController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
     }
 
     private void setReport(List<Treatment> treatments,TableView reportTableView) {

@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import utilities.AccountManager;
 import utilities.DateUtilities;
 
 import java.io.IOException;
@@ -26,7 +27,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class TreatmentsController {
-    private Account account;
     private int deleteMode;
     private String year,month;
     @FXML private Tab preTreatmentTab,postTreatmentTab,tab;
@@ -35,6 +35,12 @@ public class TreatmentsController {
     @FXML private Button deleteButton, deleteAllButton, clearFilterButton, createButton;
 
     public void initialize() {
+        if (AccountManager.getAccount().getType().equals("Supervisor")) {
+            createButton.setDisable(true);
+            deleteButton.setDisable(true);
+        } else {
+            deleteAllButton.setDisable(true);
+        }
         deleteButton.setDisable(true);
         clearFilterButton.setDisable(true);
         tableView = preTreatmentTableView;
@@ -47,7 +53,7 @@ public class TreatmentsController {
                 if (newValue == null) {
                     deleteButton.setDisable(true);
                 } else {
-                    if (account.getType().equals("Staff")) {
+                    if (AccountManager.getAccount().getType().equals("Staff")) {
                         deleteButton.setDisable(false);
                     }
                 }
@@ -59,7 +65,7 @@ public class TreatmentsController {
                 if (newValue == null) {
                     deleteButton.setDisable(true);
                 } else {
-                    if (account.getType().equals("Staff")) {
+                    if (AccountManager.getAccount().getType().equals("Staff")) {
                         deleteButton.setDisable(false);
                     }
                 }
@@ -154,8 +160,6 @@ public class TreatmentsController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChooseTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        ChooseTreatmentController chooseTreatmentController = loader.getController();
-        chooseTreatmentController.setUser(account);
         stage.show();
     }
 
@@ -164,8 +168,6 @@ public class TreatmentsController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
     }
 
@@ -191,11 +193,11 @@ public class TreatmentsController {
         });
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(usernamePassword -> {
-            if (account.getPassword().equals(usernamePassword)) {
+            if (AccountManager.getAccount().getPassword().equals(usernamePassword)) {
                 if (deleteMode == 1) {
                     if (tab.getText().equals("Pre Treatment")) {
                         TreatmentsDBConnector.deletePreTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted pre treatment","Treatment");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",AccountManager.getAccount().getUsername(),"Deleted pre treatment","Treatment");
                         preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -205,7 +207,7 @@ public class TreatmentsController {
                         informationAlert.showAndWait();
                     } else if (tab.getText().equals("Post Treatment")) {
                         TreatmentsDBConnector.deletePostTreatment(tableView.getSelectionModel().getSelectedItem().getId());
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted post treatment","Treatment");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",AccountManager.getAccount().getUsername(),"Deleted post treatment","Treatment");
                         postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                         deleteButton.setDisable(true);
                         deleteMode = 0;
@@ -217,7 +219,7 @@ public class TreatmentsController {
                 } else {
                     TreatmentsDBConnector.deleteAllTreatments();
                     TreatmentsDBConnector.resetSequence();
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Deleted all treatments","Treatment");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",AccountManager.getAccount().getUsername(),"Deleted all treatments","Treatment");
                     preTreatmentTableView.setItems(TreatmentsDBConnector.getPreTreatments());
                     postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
                     Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Deleted");
@@ -226,7 +228,7 @@ public class TreatmentsController {
                     informationAlert.showAndWait();
                 }
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Treatment");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",AccountManager.getAccount().getUsername(),"Password error","Treatment");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
@@ -244,16 +246,6 @@ public class TreatmentsController {
             setFilter(TreatmentsDBConnector.getPostTreatments(),postTreatmentTableView);
             postTreatmentTableView.setItems(TreatmentsDBConnector.getPostTreatments());
             clearFilterButton.setDisable(true);
-        }
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
-        if (account.getType().equals("Supervisor")) {
-            createButton.setDisable(true);
-            deleteButton.setDisable(true);
-        } else {
-            deleteAllButton.setDisable(true);
         }
     }
 }

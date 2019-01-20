@@ -13,13 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Account;
+import utilities.AccountManager;
 import utilities.DateUtilities;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class AccountsController {
-    private Account account;
     private AccountsDBConnector accountsDBConnector;
     @FXML private TableView<Account> accountsTableView;
     @FXML private Button deleteButton, blockButton, editButton;
@@ -65,8 +65,6 @@ public class AccountsController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateAccountView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        CreateAccountController createAccountController = loader.getController();
-        createAccountController.setUser(account);
         stage.show();
     }
 
@@ -93,11 +91,11 @@ public class AccountsController {
             });
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(usernamePassword -> {
-                Account checkAccount = AccountsDBConnector.isLogin(account.getUsername(),usernamePassword);
+                Account checkAccount = AccountsDBConnector.isLogin(AccountManager.getAccount().getUsername(),usernamePassword);
                 try {
-                    if (checkAccount.getUsername().equals(account.getUsername())) {
+                    if (checkAccount.getUsername().equals(AccountManager.getAccount().getUsername())) {
                         accountsDBConnector.deleteAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername());
-                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", account.getUsername(), "Deleted " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " account", "Account");
+                        EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(I) Info", AccountManager.getAccount().getUsername(), "Deleted " + accountsTableView.getSelectionModel().getSelectedItem().getFirstName() + " " + accountsTableView.getSelectionModel().getSelectedItem().getLastName() + " account", "Account");
                         accountsTableView.setItems(accountsDBConnector.getAccounts());
                         deleteButton.setDisable(true);
                         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION, "Deleted");
@@ -107,7 +105,7 @@ public class AccountsController {
                     }
                 } catch (Exception e) {
                     System.err.println("Account not found");
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(E) Error", account.getUsername(), "Password error", "Account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(), "(E) Error", AccountManager.getAccount().getUsername(), "Password error", "Account");
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Password error");
                     errorAlert.setTitle("The Water");
                     errorAlert.setHeaderText("");
@@ -126,7 +124,6 @@ public class AccountsController {
             CreateAccountController createAccountController = loader.getController();
             createAccountController.setTitle("Edit Account");
             createAccountController.setEditAccounts(accountsTableView.getSelectionModel().getSelectedItem());
-            createAccountController.setUser(account);
             stage.show();
         }
     }
@@ -140,7 +137,7 @@ public class AccountsController {
                 Optional optional = alert.showAndWait();
                 if (optional.get() == ButtonType.OK) {
                     AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Enabled");
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Unblock "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",AccountManager.getAccount().getUsername(),"Unblock "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
                     accountsTableView.setItems(accountsDBConnector.getAccounts());
                     blockButton.setDisable(true);
                     deleteButton.setDisable(true);
@@ -157,7 +154,7 @@ public class AccountsController {
                 Optional optional = alert.showAndWait();
                 if (optional.get() == ButtonType.OK) {
                     AccountsDBConnector.blockAccount(accountsTableView.getSelectionModel().getSelectedItem().getUsername(), "Disabled");
-                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Block "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
+                    EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",AccountManager.getAccount().getUsername(),"Block "+accountsTableView.getSelectionModel().getSelectedItem().getFirstName()+" "+accountsTableView.getSelectionModel().getSelectedItem().getLastName()+" account","Account");
                     accountsTableView.setItems(accountsDBConnector.getAccounts());
                     blockButton.setDisable(true);
                     deleteButton.setDisable(true);
@@ -176,12 +173,6 @@ public class AccountsController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
     }
 }

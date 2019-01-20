@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import models.Account;
 import models.ErrorMessagePopup;
 import models.Standard;
+import utilities.AccountManager;
 import utilities.CheckInput;
 import utilities.DateUtilities;
 
@@ -22,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class EditStandardController implements ErrorMessagePopup {
-    private Account account;
     private Standard standard;
     @FXML private TextField no,temperature,pH,dissolvedOxygen,mlss;
     @FXML private DatePicker datePicker;
@@ -49,8 +49,8 @@ public class EditStandardController implements ErrorMessagePopup {
             checkTextField.add(dissolvedOxygen.getText());
             checkTextField.add(mlss.getText());
             if (CheckInput.isAllCorrectType(checkBoolean)) {
-                StandardDBConnector.saveStandard(Integer.parseInt(no.getText()),DateUtilities.getFormDatePicker(datePicker.getValue()),Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()),account.getUsername(),DateUtilities.getDateNumber());
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info",account.getUsername(),"Saved standard","Create Standard");
+                StandardDBConnector.saveStandard(Integer.parseInt(no.getText()),DateUtilities.getFormDatePicker(datePicker.getValue()),Double.parseDouble(temperature.getText()), Double.parseDouble(pH.getText()), Double.parseDouble(dissolvedOxygen.getText()), Double.parseDouble(mlss.getText()),AccountManager.getAccount().getUsername(),DateUtilities.getDateNumber());
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(I) Info", AccountManager.getAccount().getUsername(),"Saved standard","Create Standard");
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION,"Saved");
                 informationAlert.setTitle("The Water");
                 informationAlert.setHeaderText("");
@@ -58,7 +58,7 @@ public class EditStandardController implements ErrorMessagePopup {
                 backToStandard(event);
             } else {
                 String errorMessage = getMessageError("Could not save a standard");
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Could not save standard","Create Standard");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",AccountManager.getAccount().getUsername(),"Could not save standard","Create Standard");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,errorMessage);
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
@@ -112,8 +112,6 @@ public class EditStandardController implements ErrorMessagePopup {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/StandardView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        StandardController standardController = loader.getController();
-        standardController.setUser(account);
         stage.show();
     }
 
@@ -127,9 +125,5 @@ public class EditStandardController implements ErrorMessagePopup {
             this.dissolvedOxygen.setText(standard.getDissolvedOxygen()+"");
             this.mlss.setText(standard.getMlss()+"");
         }
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
     }
 }

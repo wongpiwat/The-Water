@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.Account;
+import utilities.AccountManager;
 import utilities.DateUtilities;
 
 import java.io.IOException;
@@ -79,9 +80,9 @@ public class LoginController {
 
     private void loginToHome(Stage stage,Account account) throws IOException {
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/HomeView.fxml"));
+        AccountManager accountManager = new AccountManager();
+        accountManager.setAccount(account);
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
         warningText.setText("");
     }

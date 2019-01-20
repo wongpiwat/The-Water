@@ -10,15 +10,12 @@ import models.Account;
 import java.io.IOException;
 
 public class ChooseTreatmentController {
-    private Account account;
 
     public void backOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/TreatmentsView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        TreatmentsController treatmentController = loader.getController();
-        treatmentController.setUser(account);
         stage.show();
     }
 
@@ -27,8 +24,6 @@ public class ChooseTreatmentController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreatePreTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        CreatePreTreatmentController createPreTreatmentController = loader.getController();
-        createPreTreatmentController.setUser(account);
         stage.show();
     }
 
@@ -37,12 +32,6 @@ public class ChooseTreatmentController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreatePostTreatmentView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        CreatePostTreatmentController createPostTreatmentController = loader.getController();
-        createPostTreatmentController.setUser(account);
         stage.show();
-    }
-
-    public void setUser(Account account) {
-        this.account = account;
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Account;
 import models.Log;
+import utilities.AccountManager;
 import utilities.DateUtilities;
 
 import java.io.IOException;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class EventLogsController {
-    private Account account;
     private String year,month;
     @FXML private TableView<Log> logsTableView;
     @FXML private ChoiceBox yearChoiceBox,monthChoiceBox;
@@ -88,8 +88,6 @@ public class EventLogsController {
         Stage stage = (Stage) button.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/HomeView.fxml"));
         stage.setScene(new Scene(loader.load()));
-        HomeController homeController = loader.getController();
-        homeController.setUser(account);
         stage.show();
     }
 
@@ -115,7 +113,7 @@ public class EventLogsController {
         });
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(usernamePassword -> {
-            if (account.getPassword().equals(usernamePassword)) {
+            if (AccountManager.getAccount().getPassword().equals(usernamePassword)) {
                 EventLogsDBConnector.deleteAllLogs();
                 EventLogsDBConnector.resetSequence();
                 logsTableView.setItems(EventLogsDBConnector.getEventLogs());
@@ -124,7 +122,7 @@ public class EventLogsController {
                 informationAlert.setHeaderText("");
                 informationAlert.showAndWait();
             } else {
-                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",account.getUsername(),"Password error","Event Logs");
+                EventLogsDBConnector.saveLog(DateUtilities.getDateNumber(),"(E) Error",AccountManager.getAccount().getUsername(),"Password error","Event Logs");
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR,"Password error");
                 errorAlert.setTitle("The Water");
                 errorAlert.setHeaderText("");
@@ -139,9 +137,4 @@ public class EventLogsController {
         logsTableView.setItems(EventLogsDBConnector.getEventLogs());
         clearFilterButton.setDisable(true);
     }
-
-    public void setUser(Account account) {
-        this.account = account;
-    }
-
 }
