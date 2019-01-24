@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import models.Account;
 import utilities.AccountManager;
 import utilities.DateUtilities;
 
@@ -46,7 +45,7 @@ public class HomeController {
     public void reportOnAction(ActionEvent event) throws IOException {
         Button button = (Button) event.getSource();
         Stage stage = (Stage) button.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReportView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReportsView.fxml"));
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }

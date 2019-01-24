@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ReportController {
+public class ReportsController {
     private String year,month;
     @FXML private TableView preReportTableView,postReportTableView;
     @FXML private Tab preTreatmentTab,postTreatmentTab;

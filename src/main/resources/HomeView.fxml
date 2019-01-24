@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="theBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <GridPane layoutX="150.0" layoutY="155.0" prefHeight="367.0" prefWidth="868.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,7 +25,7 @@
         <Button mnemonicParsing="false" onAction="#treatmentsOnAction" prefHeight="150.0" prefWidth="260.0" text="Treatments" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
         <Button fx:id="accountsButton" mnemonicParsing="false" onAction="#accountsOnAction" prefHeight="150.0" prefWidth="260.0" text="Accounts" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
         <Button mnemonicParsing="false" onAction="#aboutOnAction" prefHeight="150.0" prefWidth="260.0" text="About" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
-        <Button mnemonicParsing="false" onAction="#reportOnAction" prefHeight="150.0" prefWidth="260.0" text="Report" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
+        <Button mnemonicParsing="false" onAction="#reportOnAction" prefHeight="150.0" prefWidth="260.0" text="Reports" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
         <Button fx:id="eventLogButton" mnemonicParsing="false" onAction="#eventLogsOnAction" prefHeight="150.0" prefWidth="260.0" text="Event Logs" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"><font><Font size="30.0" /></font></Button>
     </GridPane>
     <Button layoutX="972.0" layoutY="55.0" mnemonicParsing="false" onAction="#logoutOnAction" prefHeight="65.0" prefWidth="170.0" text="Log out"><font><Font size="30.0" /></font></Button>
